@@ -1,0 +1,969 @@
+{
+  "sessionId": "fanout-sol-a-1784385520599-ecg4bg",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "SOL-A-I001-P1-001",
+      "severity": "P1",
+      "title": "Completed research phases retain pre-run continuity state",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 13,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "mergedFindingIds": [
+        "SOL-A-I003-P1-001"
+      ]
+    },
+    {
+      "findingId": "SOL-A-I002-P1-001",
+      "severity": "P1",
+      "title": "Hydration has no contracted filesystem-containment boundary",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": 103,
+      "description": "The planned manifest and hydration CLI has generation guards but no canonical-root, traversal, or symlink acceptance criterion, so a conforming implementation may read outside styles/.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Scoped exact search across phase 004/006/007/010 planning artifacts found no filesystem-containment control; phase 004 is the shared filesystem producer.",
+      "affectedSurfaceHints": [
+        "manifest generator",
+        "hydrate CLI",
+        "source-scan fallback",
+        "STUDY hydration"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I002-P1-002",
+      "severity": "P1",
+      "title": "The STUDY injection envelope records a boundary but does not neutralize untrusted instructions",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/spec.md",
+      "line": 104,
+      "description": "The planned transformer injects corpus-derived observations but specifies only an auditable envelope and literal/span leak gates, not instruction rejection or a data-only prompt boundary.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Scoped search found envelope references across phase-006 artifacts but no behavioral prompt-injection criterion; phase-007 authority ordering does not sanitize prompt content.",
+      "affectedSurfaceHints": [
+        "study transformer",
+        "STUDY prompt block",
+        "adversarial fixtures",
+        "runGuided retry"
+      ],
+      "contentHash": "5d2be1beddf22032bde4e59d4bb0d4b73c7f3a54d1718ede78e6988f0c7918aa",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I004-P1-001",
+      "severity": "P1",
+      "title": "Two implementation packets classify existing mode and transport surfaces as new creations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/spec.md",
+      "line": 99,
+      "description": "Phase 009 marks existing foundations and motion contracts as Create in spec and plan; phase 010's spec marks the existing transport directory Create while its plan says Add.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": "Exact change-type searches covered phase-004-010 artifacts and direct reads proved all three runtime contracts already exist.",
+      "affectedSurfaceHints": [
+        "design-foundations contract",
+        "design-motion contract",
+        "Open Design transport",
+        "phase implementation routing"
+      ],
+      "contentHash": "b7cf0020db168dabf10e64564a8d5ffba7c8ef4299f5cd37ea364573d500cb45",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "traceability across requirement closure, checklist evidence, dependency handoffs, and parent metadata",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "traceability across requirement closure, checklist evidence, dependency handoffs, and parent metadata",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability across requirement closure, checklist evidence, dependency handoffs, and parent metadata",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "SOL-A-I001-P1-001",
+      "severity": "P1",
+      "title": "Completed research phases retain pre-run continuity state",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 13,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "mergedFindingIds": [
+        "SOL-A-I003-P1-001"
+      ]
+    },
+    {
+      "findingId": "SOL-A-I002-P1-001",
+      "severity": "P1",
+      "title": "Hydration has no contracted filesystem-containment boundary",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": 103,
+      "description": "The planned manifest and hydration CLI has generation guards but no canonical-root, traversal, or symlink acceptance criterion, so a conforming implementation may read outside styles/.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Scoped exact search across phase 004/006/007/010 planning artifacts found no filesystem-containment control; phase 004 is the shared filesystem producer.",
+      "affectedSurfaceHints": [
+        "manifest generator",
+        "hydrate CLI",
+        "source-scan fallback",
+        "STUDY hydration"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I002-P1-002",
+      "severity": "P1",
+      "title": "The STUDY injection envelope records a boundary but does not neutralize untrusted instructions",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/spec.md",
+      "line": 104,
+      "description": "The planned transformer injects corpus-derived observations but specifies only an auditable envelope and literal/span leak gates, not instruction rejection or a data-only prompt boundary.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Scoped search found envelope references across phase-006 artifacts but no behavioral prompt-injection criterion; phase-007 authority ordering does not sanitize prompt content.",
+      "affectedSurfaceHints": [
+        "study transformer",
+        "STUDY prompt block",
+        "adversarial fixtures",
+        "runGuided retry"
+      ],
+      "contentHash": "5d2be1beddf22032bde4e59d4bb0d4b73c7f3a54d1718ede78e6988f0c7918aa",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I004-P1-001",
+      "severity": "P1",
+      "title": "Two implementation packets classify existing mode and transport surfaces as new creations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/spec.md",
+      "line": 99,
+      "description": "Phase 009 marks existing foundations and motion contracts as Create in spec and plan; phase 010's spec marks the existing transport directory Create while its plan says Add.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": "Exact change-type searches covered phase-004-010 artifacts and direct reads proved all three runtime contracts already exist.",
+      "affectedSurfaceHints": [
+        "design-foundations contract",
+        "design-motion contract",
+        "Open Design transport",
+        "phase implementation routing"
+      ],
+      "contentHash": "b7cf0020db168dabf10e64564a8d5ffba7c8ef4299f5cd37ea364573d500cb45",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "SOL-A-I001-P1-001",
+      "severity": "P1",
+      "title": "Completed research phases retain pre-run continuity state",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 13,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "mergedFindingIds": [
+        "SOL-A-I003-P1-001"
+      ]
+    },
+    {
+      "findingId": "SOL-A-I002-P1-001",
+      "severity": "P1",
+      "title": "Hydration has no contracted filesystem-containment boundary",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": 103,
+      "description": "The planned manifest and hydration CLI has generation guards but no canonical-root, traversal, or symlink acceptance criterion, so a conforming implementation may read outside styles/.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Scoped exact search across phase 004/006/007/010 planning artifacts found no filesystem-containment control; phase 004 is the shared filesystem producer.",
+      "affectedSurfaceHints": [
+        "manifest generator",
+        "hydrate CLI",
+        "source-scan fallback",
+        "STUDY hydration"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I002-P1-002",
+      "severity": "P1",
+      "title": "The STUDY injection envelope records a boundary but does not neutralize untrusted instructions",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/spec.md",
+      "line": 104,
+      "description": "The planned transformer injects corpus-derived observations but specifies only an auditable envelope and literal/span leak gates, not instruction rejection or a data-only prompt boundary.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Scoped search found envelope references across phase-006 artifacts but no behavioral prompt-injection criterion; phase-007 authority ordering does not sanitize prompt content.",
+      "affectedSurfaceHints": [
+        "study transformer",
+        "STUDY prompt block",
+        "adversarial fixtures",
+        "runGuided retry"
+      ],
+      "contentHash": "5d2be1beddf22032bde4e59d4bb0d4b73c7f3a54d1718ede78e6988f0c7918aa",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-A-I004-P1-001",
+      "severity": "P1",
+      "title": "Two implementation packets classify existing mode and transport surfaces as new creations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/spec.md",
+      "line": 99,
+      "description": "Phase 009 marks existing foundations and motion contracts as Create in spec and plan; phase 010's spec marks the existing transport directory Create while its plan says Add.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "new",
+      "scopeProof": "Exact change-type searches covered phase-004-010 artifacts and direct reads proved all three runtime contracts already exist.",
+      "affectedSurfaceHints": [
+        "design-foundations contract",
+        "design-motion contract",
+        "Open Design transport",
+        "phase implementation routing"
+      ],
+      "contentHash": "b7cf0020db168dabf10e64564a8d5ffba7c8ef4299f5cd37ea364573d500cb45",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 0
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 3,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1.75,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "adapter": "graphless_fallback",
+    "dimensionCoverage": 1,
+    "coverageAge": 1,
+    "searchDebt": 0,
+    "mechanicalIterationsVerified": 5
+  },
+  "candidateCoverage": {
+    "covered": [
+      "change_amplification",
+      "checklist_evidence",
+      "dependency_handoff",
+      "ownership_drift",
+      "traceability_gap"
+    ],
+    "ruledOut": [
+      "checklist_evidence",
+      "schema_duplication"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "traceability_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dependency_handoff": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "ownership_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "change_amplification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "schema_duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 3,
+      "id": "SL-003-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        "phase-004–010 checklists"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No false checked evidence exists in the planned implementation packets.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md:54-121",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/checklist.md:53-130"
+      ],
+      "reason": "All phase-004–010 checklist rows reviewed by exact grep are unchecked."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase-007",
+        "phase-008",
+        "phase-009",
+        "phase-010"
+      ],
+      "bugClass": "schema_duplication",
+      "disposition": "ruled_out",
+      "rationale": "No downstream packet requires a parallel common-field schema.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam/spec.md:99-121",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/plan.md:100-105",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/tasks.md:55"
+      ],
+      "reason": "The producer/consumer contracts consistently preserve phase-007 ownership and reuse."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 3,
+      "id": "SL-003-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        "phase-004–010 checklists"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No false checked evidence exists in the planned implementation packets.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md:54-121",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/checklist.md:53-130"
+      ],
+      "proof": "All phase-004–010 checklist rows reviewed by exact grep are unchecked."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase-007",
+        "phase-008",
+        "phase-009",
+        "phase-010"
+      ],
+      "bugClass": "schema_duplication",
+      "disposition": "ruled_out",
+      "rationale": "No downstream packet requires a parallel common-field schema.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam/spec.md:99-121",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/plan.md:100-105",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/tasks.md:55"
+      ],
+      "proof": "The producer/consumer contracts consistently preserve phase-007 ownership and reuse."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "ownership_drift",
+      "schema_duplication",
+      "change_amplification"
+    ],
+    "covered": [
+      "ownership_drift",
+      "change_amplification"
+    ],
+    "ruledOut": [
+      "schema_duplication"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 11,
+      "executed": 11,
+      "pass": 1,
+      "partial": 8,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 13,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:122-136",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/tasks.md:94-112",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/spec.md:104-117",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/tasks.md:65-80"
+        ],
+        "findingRefs": [
+          "SOL-A-I002-P1-001",
+          "SOL-A-I002-P1-002"
+        ],
+        "summary": "Fifteen phase-004/006 requirements were mapped; the two active security controls remain absent from requirements, tasks, and owned verification."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 7,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md:51-121",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/checklist.md:50-130",
+          "phase-005–010 checklist unchecked-item exact search"
+        ],
+        "findingRefs": [
+          "SOL-A-I002-P1-001",
+          "SOL-A-I002-P1-002"
+        ],
+        "summary": "All seven planned checklists remain honestly unchecked; two active controls lack dedicated evidence rows."
+      },
+      {
+        "protocolId": "dependency_handoff",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 11,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:121-126",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/graph-metadata.json:6-21",
+          "phase-004–010 child graph-metadata.json:8"
+        ],
+        "findingRefs": [
+          "SOL-A-I003-P1-001"
+        ],
+        "summary": "Eleven child-local dependency edges are documented, but zero implementation handoffs are projected into the parent table or child graph dependencies."
+      },
+      {
+        "protocolId": "ownership_drift",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 4,
+          "partial": 3,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/spec.md:99-104",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/spec.md:83-88"
+        ],
+        "findingRefs": [
+          "SOL-A-I004-P1-001"
+        ],
+        "summary": "Ownership is named, but three existing surfaces are classified as creations."
+      },
+      {
+        "protocolId": "schema_duplication",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 4,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam/spec.md:99-121",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/plan.md:100-105",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/tasks.md:55"
+        ],
+        "findingRefs": [],
+        "summary": "The shared seam owns common fields once and downstream phases reference or reuse it."
+      },
+      {
+        "protocolId": "change_amplification",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 4,
+          "partial": 3,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/plan.md:97-105",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/plan.md:91-97"
+        ],
+        "findingRefs": [
+          "SOL-A-I004-P1-001"
+        ],
+        "summary": "Contradictory create/add labels amplify reconciliation across foundations, motion, and transport."
+      },
+      {
+        "protocolId": "claim_replay",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 5,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "iteration-005.md P1 claim packets"
+        ],
+        "findingRefs": [
+          "SOL-A-I001-P1-001",
+          "SOL-A-I002-P1-001",
+          "SOL-A-I002-P1-002",
+          "SOL-A-I003-P1-001",
+          "SOL-A-I004-P1-001"
+        ],
+        "summary": "Five active P1s survived compact skeptic/referee replay unchanged."
+      },
+      {
+        "protocolId": "producer_consumer",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "004-retrieval-substrate/spec.md:103-136",
+          "006-md-generator-study-exemplars/spec.md:73-79"
+        ],
+        "findingRefs": [
+          "SOL-A-I002-P1-001"
+        ],
+        "summary": "Shared hydration producer lacks root-containment acceptance and negative fixtures."
+      },
+      {
+        "protocolId": "negative_test_gap",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "006-md-generator-study-exemplars/checklist.md:96-118"
+        ],
+        "findingRefs": [
+          "SOL-A-I002-P1-002"
+        ],
+        "summary": "Literal/span fixtures do not test instruction non-influence."
+      },
+      {
+        "protocolId": "metadata_consumer",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          "system-spec-kit/references/workflows/quick_reference.md:492-498",
+          "system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1712-1723"
+        ],
+        "findingRefs": [
+          "SOL-A-I001-P1-001",
+          "SOL-A-I003-P1-001"
+        ],
+        "summary": "Resume precedence contains stale continuity; empty dependency metadata suppresses graph blocks links."
+      },
+      {
+        "protocolId": "change_classification",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 3,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "009-foundations-motion/spec.md:99-104",
+          "010-open-design-transport/spec.md:83-88",
+          "010-open-design-transport/plan.md:91-97"
+        ],
+        "findingRefs": [
+          "SOL-A-I004-P1-001"
+        ],
+        "summary": "Additive intent is clear but owning Create/Add labels conflict."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

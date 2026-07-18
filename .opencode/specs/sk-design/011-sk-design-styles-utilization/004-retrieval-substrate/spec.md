@@ -134,6 +134,7 @@ Build the Phase A retrieval substrate the research specified: a deterministic, r
 | REQ-006 | Bounded source-scan fallback | When the lexical cache is stale/absent, retrieval degrades to deterministic filters + a bounded `DESIGN.md` scan and returns `degraded:true`. |
 | REQ-007 | Compact candidate cards | Each `query` returns ≤5 cards carrying id/title/thesis, generation+content hashes, generic capabilities, token axes, provenance/rights, score breakdown, and estimated hydration bytes. |
 | REQ-008 | Change/invalidation CI tests | Fixtures cover byte-stable `--check`, add/change/delete invalidation, pre/post mutation abort, stale/absent FTS fallback, generation-mismatch refusal, deterministic card ordering, and valid/invalid proof cards. |
+| REQ-009 | Path-contained hydration | Every hydrated artifact path resolves under the corpus root (`styles/`) via realpath containment; `..` traversal and symlinks that escape the root are rejected with `path-escape`, so hydration can never read outside the corpus regardless of manifest contents. |
 <!-- /ANCHOR:requirements -->
 
 ---

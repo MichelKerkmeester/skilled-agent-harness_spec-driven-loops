@@ -1,0 +1,916 @@
+{
+  "sessionId": "fanout-sol-b-1784385520599-ecg4bg",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-07-18T15:39:18.049Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Completed research phases still advertise pre-dispatch continuation state",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Dependency graph metadata omits every declared implementation prerequisite",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Hydration has no path-containment or symlink safety contract",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Unknown-rights styles are both forbidden from results and permitted as decision references",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "The STUDY injection envelope has no malicious-instruction handling or test oracle",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "",
+      "file": "spec.md",
+      "line": 125,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "",
+      "file": "007-shared-context-seam/spec.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Completed research phases still advertise pre-dispatch continuation state",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Dependency graph metadata omits every declared implementation prerequisite",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Hydration has no path-containment or symlink safety contract",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Unknown-rights styles are both forbidden from results and permitted as decision references",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "The STUDY injection envelope has no malicious-instruction handling or test oracle",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "",
+      "file": "spec.md",
+      "line": 125,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "",
+      "file": "007-shared-context-seam/spec.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Completed research phases still advertise pre-dispatch continuation state",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Dependency graph metadata omits every declared implementation prerequisite",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Hydration has no path-containment or symlink safety contract",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Unknown-rights styles are both forbidden from results and permitted as decision references",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "The STUDY injection envelope has no malicious-instruction handling or test oracle",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "",
+      "file": "spec.md",
+      "line": 125,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "",
+      "file": "007-shared-context-seam/spec.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 1
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 4.666666666666667,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "graphCoverageMode": "graphless_fallback",
+    "requiredBugClasses": 7,
+    "coveredBugClasses": 7,
+    "searchDebt": 0,
+    "citedFallbackLedger": true
+  },
+  "candidateCoverage": {
+    "covered": [
+      "consumer_field_redefinition",
+      "contract_ownership_and_concrete_location",
+      "dependency_metadata_omission",
+      "dependency_sequencing",
+      "hydration_path_containment",
+      "lifecycle_state_contradiction",
+      "rights_state_contradiction",
+      "rollback_independence",
+      "shared_contract_ownership",
+      "stale_synthesis_pointers",
+      "study_prompt_injection"
+    ],
+    "ruledOut": [
+      "consumer_field_redefinition",
+      "rollback_independence"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "contract_ownership_and_concrete_location": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dependency_sequencing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "consumer_field_redefinition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "rollback_independence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "lifecycle_state_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "dependency_metadata_omission": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "hydration_path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "rights_state_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "study_prompt_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_synthesis_pointers": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "shared_contract_ownership": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 4,
+      "id": "SL-004-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "008-interface-audit-pilots/plan.md",
+        "009-foundations-motion/plan.md"
+      ],
+      "bugClass": "consumer_field_redefinition",
+      "disposition": "ruled_out",
+      "rationale": "The planned consumer contracts explicitly prohibit local extension/redefinition.",
+      "evidenceRefs": [
+        "008-interface-audit-pilots/plan.md:81-88",
+        "009-foundations-motion/plan.md:97-105"
+      ],
+      "reason": "Direct plan language requires reference/consumption of the phase-007 owner rather than copied fields."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "006-md-generator-study-exemplars/plan.md",
+        "008-interface-audit-pilots/plan.md",
+        "008-interface-audit-pilots/checklist.md",
+        "009-foundations-motion/plan.md",
+        "010-open-design-transport/plan.md"
+      ],
+      "bugClass": "rollback_independence",
+      "disposition": "ruled_out",
+      "rationale": "Each consumer phase has a local off/revert boundary that leaves shared phases intact.",
+      "evidenceRefs": [
+        "006-md-generator-study-exemplars/plan.md:149-153",
+        "008-interface-audit-pilots/plan.md:198-209",
+        "008-interface-audit-pilots/checklist.md:163-168",
+        "009-foundations-motion/plan.md:155-160",
+        "010-open-design-transport/plan.md:143-147"
+      ],
+      "reason": "Direct rollback contracts prove phase-local reversibility; phase 008 additionally requires per-consumer flags."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 4,
+      "id": "SL-004-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "008-interface-audit-pilots/plan.md",
+        "009-foundations-motion/plan.md"
+      ],
+      "bugClass": "consumer_field_redefinition",
+      "disposition": "ruled_out",
+      "rationale": "The planned consumer contracts explicitly prohibit local extension/redefinition.",
+      "evidenceRefs": [
+        "008-interface-audit-pilots/plan.md:81-88",
+        "009-foundations-motion/plan.md:97-105"
+      ],
+      "proof": "Direct plan language requires reference/consumption of the phase-007 owner rather than copied fields."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "006-md-generator-study-exemplars/plan.md",
+        "008-interface-audit-pilots/plan.md",
+        "008-interface-audit-pilots/checklist.md",
+        "009-foundations-motion/plan.md",
+        "010-open-design-transport/plan.md"
+      ],
+      "bugClass": "rollback_independence",
+      "disposition": "ruled_out",
+      "rationale": "Each consumer phase has a local off/revert boundary that leaves shared phases intact.",
+      "evidenceRefs": [
+        "006-md-generator-study-exemplars/plan.md:149-153",
+        "008-interface-audit-pilots/plan.md:198-209",
+        "008-interface-audit-pilots/checklist.md:163-168",
+        "009-foundations-motion/plan.md:155-160",
+        "010-open-design-transport/plan.md:143-147"
+      ],
+      "proof": "Direct rollback contracts prove phase-local reversibility; phase 008 additionally requires per-consumer flags."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "lifecycle_state_contradiction",
+      "dependency_metadata_omission",
+      "hydration_path_containment",
+      "rights_state_contradiction",
+      "study_prompt_injection",
+      "stale_synthesis_pointers",
+      "shared_contract_ownership"
+    ],
+    "covered": [
+      "lifecycle_state_contradiction",
+      "dependency_metadata_omission",
+      "hydration_path_containment",
+      "rights_state_contradiction",
+      "study_prompt_injection",
+      "stale_synthesis_pointers",
+      "shared_contract_ownership"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

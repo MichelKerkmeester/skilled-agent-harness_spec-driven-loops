@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade"
     last_updated_at: "2026-07-18T11:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the md-generator upgrade research charter"
-    next_safe_action: "Dispatch the SOL-xhigh research loop over the md-generator topic"
+    recent_action: "Research converged at 5 iters; ranked upgrade levers delivered"
+    next_safe_action: "Seed a md-generator implementation phase from the Phase A schema contract"
     blockers: []
     key_files:
       - "spec.md"

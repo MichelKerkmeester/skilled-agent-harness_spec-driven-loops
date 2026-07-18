@@ -115,6 +115,7 @@ Add a separate, reversible pre-WRITE STUDY phase that grounds prose in exactly O
 | REQ-005 | Target-facts binding precedes the STUDY block | The STUDY block is bound to the locked target-facts digest and injected AFTER the locked FACTS and before the prose task via `buildWritePrompt` / `buildPlan`. |
 | REQ-006 | Provenance / rights / injection envelope | Every STUDY bundle carries a provenance/rights/injection envelope so its origin, usage rights, and injection boundary are explicit and auditable. |
 | REQ-007 | Adversarial + counterfactual fixtures exist | Fixtures exercise leak-gate trips (exact-value and normalized-span) and confirm the no-STUDY retry produces a clean draft. |
+| REQ-008 | Injected instructions are neutralized, not just recorded | The observation transformer strips or inertizes imperative/instruction-like content in the hydrated exemplar — the provenance envelope marks the boundary but is not the control — and an injection test oracle proves an exemplar carrying an embedded instruction cannot alter the generator's locked task. |
 <!-- /ANCHOR:requirements -->
 
 ---

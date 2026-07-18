@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracted 1,290 real design-system bundles into `.opencode/skills/sk-design/styles/` (1,291 child directories, one of which is `harness` infrastructure)",
     "created_at": "2026-07-18T14:18:05.487Z",
-    "last_save_at": "2026-07-18T14:28:38.019Z",
+    "last_save_at": "2026-07-18T16:04:37.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40853aab73d17406fc8b68edc387f7d158d6726d522405ea729f2622133b395f",
+    "source_fingerprint": "sha256:52127503fee14a2d65ddf7ee9da2ec9e5c3455fb8c5107e31231ff0abc574d94",
     "source_doc_hashes": {
-      "spec.md": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "spec.md": "d443cfd4c0fb30c7a341fd3d7dc28fa651e2d27fcc19510790ea0883e6e4aaaf",
       "plan.md": "d92e57dd85f5f71d913fc34e140fb5caa6aa3f916190d8b2ddf2d4e3c41dbe60",
       "tasks.md": "da35474891b983bc3ca5a68f1f041af5e0963376dbfce2bc55175d7fd424ec26",
       "checklist.md": "f79b7172286fd836d57ab2b47233120f706a5ddb2564ce2918dcbb14e1bfc93c",

@@ -1,0 +1,47 @@
+{
+  "run_id": "1784385520599-ecg4bg",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-design/011-sk-design-styles-utilization",
+  "base_artifact_dir": ".opencode/specs/sk-design/011-sk-design-styles-utilization/review",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol-a",
+      "state_log": ".opencode/specs/sk-design/011-sk-design-styles-utilization/review/lineages/sol-a/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-18T14:38:40.603Z",
+        "end_at_iso": "2026-07-18T15:58:09.695Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 17
+      },
+      "sample": [
+        {
+          "index": 16,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T16:02:00Z",
+          "deltaMs": 110305
+        }
+      ]
+    }
+  ]
+}

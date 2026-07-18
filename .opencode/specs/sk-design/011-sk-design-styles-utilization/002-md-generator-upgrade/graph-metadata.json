@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-design `design-md-generator` mode (backend `formatters-v3` + the DESIGN.md section schema at `.opencode/skills/sk-design/design-md-generator/`) generates design documents without any grounding in real, high-quality design systems",
     "created_at": "2026-07-18T12:23:41.357Z",
-    "last_save_at": "2026-07-18T13:23:26.438Z",
+    "last_save_at": "2026-07-18T16:04:36.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60867800194fb907d94bcce1603dadc4cdce6df6288d996ce96531a9ad12e8db",
+    "source_fingerprint": "sha256:64a1527416aa9baaef409d9da86c0a7e0bfa5558dfc503161f9ff0603b47706f",
     "source_doc_hashes": {
-      "spec.md": "5477a2b4047343981c93d585610381d2da404bda3da4e2fa7ddab397f054257a",
-      "plan.md": "6ba6ad3f7fcce9a16f978293a22dcd9384d7d8e7299187615edd09fb89c35d5b",
-      "tasks.md": "f21bdb986fd421d86d91bf684651d8d49175c88b24f3ad79fc3b9fd64b0788fe",
-      "implementation-summary.md": "f70c00fe702ee1b25a06cb1e9ea0ea1ea453aa70ad6f140a3988886abd8766a4"
+      "spec.md": "1d783f666361a9b3d89d6bb0b955a395b67fae76fe8b2a0218930d2377ef365e",
+      "plan.md": "ecec9e87d2fc8462a6d20d19b459f18648ec8461cf8b03c8b733f1823e0fb172",
+      "tasks.md": "cd55f5a4f9301e4ed9a477ecfaba1f87fe64fe7382b2ea4a9b948da3ea5d563b",
+      "implementation-summary.md": "9ff39dbe9c407cdecf9ae0158eaaa5a9fc1f96dbd4984f28784d6d232eb945b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

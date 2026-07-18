@@ -1,0 +1,88 @@
+{
+  "topic": "Review: .opencode/specs/sk-design/011-sk-design-styles-utilization",
+  "sessionId": "fanout-sol-b-1784385520599-ecg4bg",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-design/011-sk-design-styles-utilization",
+  "createdAt": "2026-07-18T14:43:18.153Z",
+  "status": "complete",
+  "releaseReadinessState": "converged",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-design/011-sk-design-styles-utilization",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/graph-metadata.json",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion",
+    ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport",
+    ".opencode/skills/sk-design"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "resource_map": {
+    "emit": true
+  },
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

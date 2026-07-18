@@ -1,0 +1,1269 @@
+{
+  "sessionId": "fanout-sol-c-1784385520599-ecg4bg",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "timestamp": "2026-07-18T15:18:43Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Resume continuity points back to completed research",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "STUDY lacks an enforceable pre-prompt injection gate",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All phase 004-010 planning artifacts were searched for concrete prompt-injection controls.",
+      "affectedSurfaceHints": [
+        "study hydration",
+        "study transformer",
+        "buildWritePrompt",
+        "buildPlan",
+        "runGuided"
+      ],
+      "contentHash": "fcafdcafff36250dff8e257e1c6d0e13d629786af0b56f07f115302114e355ac",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Verification Summary totals undercount checklist obligations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Exact priority-row counts covered all seven implementation checklists.",
+      "affectedSurfaceHints": [
+        "phase checklists",
+        "completion reconciliation",
+        "strict validation"
+      ],
+      "contentHash": "e6025011ac3d86253aa4d633aa5887d01bd29c414da57797bd1bedfcb3ac3a13",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Phase 004 documents retain orphan transport tags",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "artifact-hygiene",
+      "deltaStatus": null,
+      "scopeProof": "Exact malformed-tag searches covered every Markdown file under the phase parent and localized all matches to phase 004.",
+      "affectedSurfaceHints": [
+        "phase 004 Markdown rendering",
+        "anchor extraction",
+        "routed context ingestion"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Phase 004 handoff truncates the task queue at T028",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/implementation-summary.md",
+      "line": null,
+      "description": "",
+      "findingClass": "handoff-consistency",
+      "deltaStatus": null,
+      "scopeProof": "Exact task-id search compared the summary's bounded range against every phase-004 task definition.",
+      "affectedSurfaceHints": [
+        "phase 004 resume handoff",
+        "ADR governance",
+        "task completion reconciliation"
+      ],
+      "contentHash": "78999b295c7ce1d08cf3f716ccf6f2a7aee672b310f693860df343e2994dc928",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 5,
+      "blockedBy": [
+        "graphlessFallbackGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": true,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": true,
+          "activeP0": 0
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.4
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 3
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": false,
+          "mode": "graphless_fallback",
+          "missing": [
+            "lifecycle_state",
+            "prompt_injection",
+            "summary_denominator",
+            "artifact_hygiene",
+            "queue_consistency",
+            "adjacent_variant"
+          ],
+          "unavailabilityReason": "Iteration 5 fallback search actions used non-canonical method labels."
+        }
+      },
+      "recoveryStrategy": "Repeat stabilization with cited fallback ledger rows using canonical exact_grep, direct_read, or negative_test_inspection methods.",
+      "timestamp": "2026-07-18T15:13:36Z"
+    }
+  ],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Resume continuity points back to completed research",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "STUDY lacks an enforceable pre-prompt injection gate",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All phase 004-010 planning artifacts were searched for concrete prompt-injection controls.",
+      "affectedSurfaceHints": [
+        "study hydration",
+        "study transformer",
+        "buildWritePrompt",
+        "buildPlan",
+        "runGuided"
+      ],
+      "contentHash": "fcafdcafff36250dff8e257e1c6d0e13d629786af0b56f07f115302114e355ac",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Verification Summary totals undercount checklist obligations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Exact priority-row counts covered all seven implementation checklists.",
+      "affectedSurfaceHints": [
+        "phase checklists",
+        "completion reconciliation",
+        "strict validation"
+      ],
+      "contentHash": "e6025011ac3d86253aa4d633aa5887d01bd29c414da57797bd1bedfcb3ac3a13",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Phase 004 documents retain orphan transport tags",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "artifact-hygiene",
+      "deltaStatus": null,
+      "scopeProof": "Exact malformed-tag searches covered every Markdown file under the phase parent and localized all matches to phase 004.",
+      "affectedSurfaceHints": [
+        "phase 004 Markdown rendering",
+        "anchor extraction",
+        "routed context ingestion"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Phase 004 handoff truncates the task queue at T028",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/implementation-summary.md",
+      "line": null,
+      "description": "",
+      "findingClass": "handoff-consistency",
+      "deltaStatus": null,
+      "scopeProof": "Exact task-id search compared the summary's bounded range against every phase-004 task definition.",
+      "affectedSurfaceHints": [
+        "phase 004 resume handoff",
+        "ADR governance",
+        "task completion reconciliation"
+      ],
+      "contentHash": "78999b295c7ce1d08cf3f716ccf6f2a7aee672b310f693860df343e2994dc928",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Resume continuity points back to completed research",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "STUDY lacks an enforceable pre-prompt injection gate",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All phase 004-010 planning artifacts were searched for concrete prompt-injection controls.",
+      "affectedSurfaceHints": [
+        "study hydration",
+        "study transformer",
+        "buildWritePrompt",
+        "buildPlan",
+        "runGuided"
+      ],
+      "contentHash": "fcafdcafff36250dff8e257e1c6d0e13d629786af0b56f07f115302114e355ac",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Verification Summary totals undercount checklist obligations",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Exact priority-row counts covered all seven implementation checklists.",
+      "affectedSurfaceHints": [
+        "phase checklists",
+        "completion reconciliation",
+        "strict validation"
+      ],
+      "contentHash": "e6025011ac3d86253aa4d633aa5887d01bd29c414da57797bd1bedfcb3ac3a13",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Phase 004 documents retain orphan transport tags",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "artifact-hygiene",
+      "deltaStatus": null,
+      "scopeProof": "Exact malformed-tag searches covered every Markdown file under the phase parent and localized all matches to phase 004.",
+      "affectedSurfaceHints": [
+        "phase 004 Markdown rendering",
+        "anchor extraction",
+        "routed context ingestion"
+      ],
+      "contentHash": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Phase 004 handoff truncates the task queue at T028",
+      "file": ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/implementation-summary.md",
+      "line": null,
+      "description": "",
+      "findingClass": "handoff-consistency",
+      "deltaStatus": null,
+      "scopeProof": "Exact task-id search compared the summary's bounded range against every phase-004 task definition.",
+      "affectedSurfaceHints": [
+        "phase 004 resume handoff",
+        "ADR governance",
+        "task completion reconciliation"
+      ],
+      "contentHash": "78999b295c7ce1d08cf3f716ccf6f2a7aee672b310f693860df343e2994dc928",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "adjacent_variant",
+      "artifact_hygiene",
+      "authority_duplication",
+      "authority_override",
+      "cache_exposure",
+      "checked_evidence",
+      "lifecycle_state",
+      "path_precision",
+      "phase_coverage",
+      "phase_order",
+      "prompt_injection",
+      "queue_consistency",
+      "research_handoff",
+      "rights_reuse",
+      "status_consistency",
+      "summary_denominator"
+    ],
+    "ruledOut": [
+      "adjacent_variant",
+      "authority_duplication",
+      "authority_override",
+      "cache_exposure",
+      "checked_evidence",
+      "path_precision",
+      "phase_coverage",
+      "phase_order",
+      "rights_reuse",
+      "status_consistency"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "lifecycle_state": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5,
+          6
+        ]
+      },
+      "phase_order": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "status_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "prompt_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5,
+          6
+        ]
+      },
+      "rights_reuse": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "cache_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authority_override": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "research_handoff": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checked_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "summary_denominator": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5,
+          6
+        ]
+      },
+      "phase_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "artifact_hygiene": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6
+        ]
+      },
+      "queue_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6
+        ]
+      },
+      "path_precision": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "authority_duplication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "adjacent_variant": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          6
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "parent phase map",
+        "child predecessor/successor metadata"
+      ],
+      "bugClass": "phase_order",
+      "disposition": "ruled_out",
+      "rationale": "No ordering contradiction found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:100-125"
+      ],
+      "reason": "Parent and child links agree"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "all child specs and summaries"
+      ],
+      "bugClass": "status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "Validator and direct reads agree",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:41-47"
+      ],
+      "reason": "No spec-summary status mismatch"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "phases 004,007,008,009"
+      ],
+      "bugClass": "rights_reuse",
+      "disposition": "ruled_out",
+      "rationale": "No contradictory exact-reuse path found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md:97-102",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam/spec.md:99-122"
+      ],
+      "reason": "All consumers keep unknown-rights evidence non-authoritative"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "phase 010 transport"
+      ],
+      "bugClass": "cache_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No cache-authority gap in the plan",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/plan.md:45-53,101-127",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:96-102"
+      ],
+      "reason": "Offline and live no-cache gates are both required"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "phases 005,007-010"
+      ],
+      "bugClass": "authority_override",
+      "disposition": "ruled_out",
+      "rationale": "No authority inversion found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots/decision-record.md:51-70,234-250",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/plan.md:76-87"
+      ],
+      "reason": "Each consumer states explicit subordinate behavior"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research task files"
+      ],
+      "bugClass": "checked_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No unsupported checked claim found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/tasks.md:55-84",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade/tasks.md:55-84",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/tasks.md:55-84"
+      ],
+      "reason": "Evidence is present and resolves"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "parent phase map",
+        "global research sequence"
+      ],
+      "bugClass": "phase_coverage",
+      "disposition": "ruled_out",
+      "rationale": "No missing implementation child",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/research.md:368-400",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:100-111"
+      ],
+      "reason": "Parent phases 007-010 cover Phase A-D"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase 004 proposed engine paths"
+      ],
+      "bugClass": "path_precision",
+      "disposition": "ruled_out",
+      "rationale": "No contradictory or falsely existing path claim was found.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/tasks.md:79-140",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/decision-record.md:131-135"
+      ],
+      "reason": "All proposed paths use the same styles/_engine and manifest locations."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase 004 plan ADR summary",
+        "phase 004 decision record"
+      ],
+      "bugClass": "authority_duplication",
+      "disposition": "ruled_out",
+      "rationale": "Repeated rules are consistent summaries rather than competing authorities.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/plan.md:333-343",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/decision-record.md:298-324"
+      ],
+      "reason": "No contradictory authority assignment was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "implementation phases 005-010",
+        "planned verification metadata",
+        "proposed engine paths"
+      ],
+      "bugClass": "adjacent_variant",
+      "disposition": "ruled_out",
+      "rationale": "Adjacent anomalies are either absent or explicitly correct planned-scaffold state.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/checklist.md:133-141",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:126-134",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112"
+      ],
+      "reason": "Exact searches and direct reads found no adjacent variant requiring a new finding."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "implementation phases 005-010",
+        "planned verification metadata",
+        "proposed engine paths"
+      ],
+      "bugClass": "adjacent_variant",
+      "disposition": "ruled_out",
+      "rationale": "Canonical negative-test inspection found no adjacent variant.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/checklist.md:133-141",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:126-134",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112"
+      ],
+      "reason": "No adjacent variant requires a new finding."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "parent phase map",
+        "child predecessor/successor metadata"
+      ],
+      "bugClass": "phase_order",
+      "disposition": "ruled_out",
+      "rationale": "No ordering contradiction found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:100-125"
+      ],
+      "proof": "Parent and child links agree"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "all child specs and summaries"
+      ],
+      "bugClass": "status_consistency",
+      "disposition": "ruled_out",
+      "rationale": "Validator and direct reads agree",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:41-47"
+      ],
+      "proof": "No spec-summary status mismatch"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "phases 004,007,008,009"
+      ],
+      "bugClass": "rights_reuse",
+      "disposition": "ruled_out",
+      "rationale": "No contradictory exact-reuse path found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/checklist.md:97-102",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/007-shared-context-seam/spec.md:99-122"
+      ],
+      "proof": "All consumers keep unknown-rights evidence non-authoritative"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "phase 010 transport"
+      ],
+      "bugClass": "cache_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No cache-authority gap in the plan",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/plan.md:45-53,101-127",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:96-102"
+      ],
+      "proof": "Offline and live no-cache gates are both required"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "phases 005,007-010"
+      ],
+      "bugClass": "authority_override",
+      "disposition": "ruled_out",
+      "rationale": "No authority inversion found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots/decision-record.md:51-70,234-250",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/plan.md:76-87"
+      ],
+      "proof": "Each consumer states explicit subordinate behavior"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research task files"
+      ],
+      "bugClass": "checked_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No unsupported checked claim found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/tasks.md:55-84",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade/tasks.md:55-84",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/tasks.md:55-84"
+      ],
+      "proof": "Evidence is present and resolves"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "parent phase map",
+        "global research sequence"
+      ],
+      "bugClass": "phase_coverage",
+      "disposition": "ruled_out",
+      "rationale": "No missing implementation child",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/research.md:368-400",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:100-111"
+      ],
+      "proof": "Parent phases 007-010 cover Phase A-D"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase 004 proposed engine paths"
+      ],
+      "bugClass": "path_precision",
+      "disposition": "ruled_out",
+      "rationale": "No contradictory or falsely existing path claim was found.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/tasks.md:79-140",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/decision-record.md:131-135"
+      ],
+      "proof": "All proposed paths use the same styles/_engine and manifest locations."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "phase 004 plan ADR summary",
+        "phase 004 decision record"
+      ],
+      "bugClass": "authority_duplication",
+      "disposition": "ruled_out",
+      "rationale": "Repeated rules are consistent summaries rather than competing authorities.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/plan.md:333-343",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/decision-record.md:298-324"
+      ],
+      "proof": "No contradictory authority assignment was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "implementation phases 005-010",
+        "planned verification metadata",
+        "proposed engine paths"
+      ],
+      "bugClass": "adjacent_variant",
+      "disposition": "ruled_out",
+      "rationale": "Adjacent anomalies are either absent or explicitly correct planned-scaffold state.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/checklist.md:133-141",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:126-134",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112"
+      ],
+      "proof": "Exact searches and direct reads found no adjacent variant requiring a new finding."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "implementation phases 005-010",
+        "planned verification metadata",
+        "proposed engine paths"
+      ],
+      "bugClass": "adjacent_variant",
+      "disposition": "ruled_out",
+      "rationale": "Canonical negative-test inspection found no adjacent variant.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/009-foundations-motion/checklist.md:133-141",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/010-open-design-transport/checklist.md:126-134",
+        ".opencode/specs/sk-design/011-sk-design-styles-utilization/004-retrieval-substrate/spec.md:104-112"
+      ],
+      "proof": "No adjacent variant requires a new finding."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "lifecycle_state",
+      "prompt_injection",
+      "summary_denominator",
+      "artifact_hygiene",
+      "queue_consistency",
+      "adjacent_variant"
+    ],
+    "covered": [
+      "lifecycle_state",
+      "prompt_injection",
+      "summary_denominator",
+      "artifact_hygiene",
+      "queue_consistency",
+      "adjacent_variant"
+    ],
+    "ruledOut": [
+      "adjacent_variant"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 1,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "checked": 3,
+          "passed": 2,
+          "partial": 1
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade/research/lineages/sol/research.md:304-316",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars/plan.md:76-135"
+        ],
+        "findingRefs": [
+          "F002"
+        ],
+        "summary": "Phase handoffs align except F002."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "checkedClaims": 3,
+          "supported": 3
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/tasks.md:55-84",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade/tasks.md:55-84",
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/tasks.md:55-84"
+        ],
+        "findingRefs": [],
+        "summary": "Checked research evidence resolves and planned rows remain unchecked."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {},
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:95-125"
+        ],
+        "findingRefs": [],
+        "summary": "No feature-catalog delivery claim."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {},
+        "evidence": [
+          ".opencode/specs/sk-design/011-sk-design-styles-utilization/spec.md:95-125"
+        ],
+        "findingRefs": [],
+        "summary": "No playbook capability claim."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
