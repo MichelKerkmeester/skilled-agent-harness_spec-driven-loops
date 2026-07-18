@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Define `CORPUS_CONTEXT_PLAN v1` with generic capability/proof planning and 0 hydrated styles (shared schema package).
-- [ ] T002 Encode the fixed authority order and its six prohibitions in the schema (shared schema package).
+- [x] T001 Define `CORPUS_CONTEXT_PLAN v1` with generic capability/proof planning and 0 hydrated styles (shared schema package).
+- [x] T002 Encode the fixed authority order and its six prohibitions in the schema (shared schema package). [evidence: authority order + six prohibitions in `validate-context-plan.mjs`]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,8 +62,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P] Define the seven common proof/handoff fields once: generation identity, source identity, provenance/use-label, semantic role, transformation, fallback, proof-state (shared schema package).
-- [ ] T004 Represent proof-state so `anchor:null` and other negatives validate as successful evidence (shared schema package).
+- [x] T003 [P] Define the seven common proof/handoff fields once: generation identity, source identity, provenance/use-label, semantic role, transformation, fallback, proof-state (shared schema package). [evidence: seven common fields in `corpus-context-plan.mjs`]
+- [x] T004 Represent proof-state so `anchor:null` and other negatives validate as successful evidence (shared schema package).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 [P] Author the five shared fixtures: positive, no-fit, unavailable, generation-mismatch, unknown-rights (shared fixtures).
-- [ ] T006 Build the validator that rejects mode-specific fields and keeps the hub routing-only (shared validator).
-- [ ] T007 [B] Wire the hub intake/registry route to emit the envelope — blocked on phase 004 retrieval output (hub route).
+- [x] T005 [P] Author the five shared fixtures: positive, no-fit, unavailable, generation-mismatch, unknown-rights (shared fixtures). [evidence: five fixtures in `__tests__/fixtures.mjs`; `node --test` 28/28]
+- [x] T006 Build the validator that rejects mode-specific fields and keeps the hub routing-only (shared validator).
+- [ ] T007 [B] Wire the hub intake/registry route to emit the envelope — blocked on phase 004 retrieval output (hub route). [deferred: hub intake/registry route wiring lands with a consumer (phase 008+); hub stays routing-only]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,10 +81,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] `CORPUS_CONTEXT_PLAN v1` validates with 0 hydrated styles
-- [ ] Seven common proof/handoff fields defined once and reused
-- [ ] Five shared fixtures validate; negatives pass as successful evidence
-- [ ] Fixed authority order enforced; hub stays routing-only
+- [x] `CORPUS_CONTEXT_PLAN v1` validates with 0 hydrated styles
+- [x] Seven common proof/handoff fields defined once and reused
+- [x] Five shared fixtures validate; negatives pass as successful evidence
+- [x] Fixed authority order enforced; hub stays routing-only
 <!-- /ANCHOR:completion -->
 
 ---

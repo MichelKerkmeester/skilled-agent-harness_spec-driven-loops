@@ -60,15 +60,15 @@ This phase ships the top-ranked Phase A deliverable from the 003 research: a thi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 retrieval output shape is available to feed the intake/registry route
-- [ ] The 003 cross-mode contract matrix fields are extracted as the common field set
+- [x] Phase 004 retrieval output shape is available to feed the intake/registry route
+- [x] The 003 cross-mode contract matrix fields are extracted as the common field set
 
 ### Definition of Done
-- [ ] `CORPUS_CONTEXT_PLAN v1` envelope validates with 0 hydrated styles
-- [ ] The seven common proof/handoff fields are defined once and reused
-- [ ] All five shared fixtures validate; negatives pass as successful evidence
-- [ ] The fixed authority order is encoded and enforced by the validator
-- [ ] No mode-specific field lives in the hub; the hub stays routing-only
+- [x] `CORPUS_CONTEXT_PLAN v1` envelope validates with 0 hydrated styles
+- [x] The seven common proof/handoff fields are defined once and reused
+- [x] All five shared fixtures validate; negatives pass as successful evidence
+- [x] The fixed authority order is encoded and enforced by the validator
+- [x] No mode-specific field lives in the hub; the hub stays routing-only
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,16 +103,16 @@ Neutral-envelope seam: the hub intake/registry route produces a `CORPUS_CONTEXT_
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Envelope schema
-- [ ] Define `CORPUS_CONTEXT_PLAN v1` with generic capability/proof planning and 0 hydrated styles
-- [ ] Encode the fixed authority order and its prohibitions in the schema
+- [x] Define `CORPUS_CONTEXT_PLAN v1` with generic capability/proof planning and 0 hydrated styles
+- [x] Encode the fixed authority order and its prohibitions in the schema
 
 ### Phase 2: Common fields
-- [ ] Define the seven proof/handoff fields once (generation identity, source identity, provenance/use-label, semantic role, transformation, fallback, proof-state)
-- [ ] Mark proof-state so negative results (`anchor:null`) validate as successful evidence
+- [x] Define the seven proof/handoff fields once (generation identity, source identity, provenance/use-label, semantic role, transformation, fallback, proof-state)
+- [x] Mark proof-state so negative results (`anchor:null`) validate as successful evidence
 
 ### Phase 3: Fixtures + validator
-- [ ] Author the five shared fixtures (positive, no-fit, unavailable, generation-mismatch, unknown-rights)
-- [ ] Build the validator that rejects mode-specific fields and enforces routing-only hub behavior
+- [x] Author the five shared fixtures (positive, no-fit, unavailable, generation-mismatch, unknown-rights)
+- [x] Build the validator that rejects mode-specific fields and enforces routing-only hub behavior
 <!-- /ANCHOR:phases -->
 
 ---

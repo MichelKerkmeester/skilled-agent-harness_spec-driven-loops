@@ -51,11 +51,11 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `spec.md` §4 REQ-001..006 documented] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: `plan.md` approach + location fixed] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-003 [P1] Phase 004 retrieval output shape available to feed the intake/registry route
+- [x] CHK-003 [P1] Phase 004 retrieval output shape available to feed the intake/registry route [evidence: phase-004 `styles/_engine/` manifest present in tree] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
 
 
@@ -65,13 +65,13 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `CORPUS_CONTEXT_PLAN v1` envelope carries 0 hydrated styles
+- [x] CHK-010 [P0] `CORPUS_CONTEXT_PLAN v1` envelope carries 0 hydrated styles [evidence: validator rejects nonzero `hydratedStyleCount`; `node --test` 28/28]
   - **Evidence**: pending — implementation not started
-- [ ] CHK-011 [P0] Hub stays routing-only; no mode-specific fields in the hub
+- [x] CHK-011 [P0] Hub stays routing-only; no mode-specific fields in the hub [evidence: nothing added to `hub-router.json`/`mode-registry.json`] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-012 [P1] Seven common proof/handoff fields defined once and reused
+- [x] CHK-012 [P1] Seven common proof/handoff fields defined once and reused [evidence: seven common fields in `corpus-context-plan.mjs`] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-013 [P1] Package structure follows sk-design shared conventions
+- [x] CHK-013 [P1] Package structure follows sk-design shared conventions [evidence: Node ESM under `shared/corpus-context/`, `node --test`]
   - **Evidence**: pending — implementation not started
 
 
@@ -81,13 +81,13 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-006)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-006) [evidence: `node --test` 28/28 across REQ-001..006]
   - **Evidence**: pending — implementation not started
-- [ ] CHK-021 [P0] Five shared fixtures validate against the schema
+- [x] CHK-021 [P0] Five shared fixtures validate against the schema [evidence: five fixtures in `__tests__/fixtures.mjs` validate] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-022 [P1] Negative results (no-fit, unavailable, generation-mismatch, unknown-rights, anchor:null) pass as successful evidence
+- [x] CHK-022 [P1] Negative results (no-fit, unavailable, generation-mismatch, unknown-rights, anchor:null) pass as successful evidence [evidence: no-fit/unavailable/generation-mismatch/unknown-rights pass as evidence] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-023 [P1] Authority-order guard blocks corpus evidence from selecting a mode or proving accessibility/performance
+- [x] CHK-023 [P1] Authority-order guard blocks corpus evidence from selecting a mode or proving accessibility/performance [evidence: six authority prohibitions enforced in `validate-context-plan.mjs`] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
 
 
@@ -97,9 +97,9 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] `CORPUS_CONTEXT_PLAN v1`, common fields, and five fixtures all built and validated
+- [x] CHK-024 [P0] `CORPUS_CONTEXT_PLAN v1`, common fields, and five fixtures all built and validated [evidence: envelope + fields + fixtures built; `node --test` 28/28]
   - **Evidence**: pending — implementation not started
-- [ ] CHK-025 [P1] Hub intake/registry route emits the envelope once phase 004 retrieval lands
+- [ ] CHK-025 [P1] Hub intake/registry route emits the envelope once phase 004 retrieval lands [deferred: hub intake/registry route wiring lands when a consumer needs it (phase 008+); hub stays routing-only]
   - **Evidence**: pending — implementation not started
 
 
@@ -109,9 +109,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets in the shared package
+- [x] CHK-030 [P0] No hardcoded secrets in the shared package [evidence: no secrets; `node --check` all .mjs] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-031 [P1] Provenance/use-label and unknown-rights fixture enforce rights handling
+- [x] CHK-031 [P1] Provenance/use-label and unknown-rights fixture enforce rights handling [evidence: unknown-rights fixture + provenance/use-label fields] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
 
 
@@ -121,11 +121,11 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `validate.sh` Errors:0; spec/plan/tasks synced] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-041 [P1] Schema and field definitions documented
+- [x] CHK-041 [P1] Schema and field definitions documented [evidence: schema + field defs in `corpus-context-plan.mjs` + README] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-042 [P2] Parent phase-map updated with successor `../008-interface-audit-pilots/`
+- [x] CHK-042 [P2] Parent phase-map updated with successor `../008-interface-audit-pilots/`
   - **Evidence**: pending — implementation not started
 
 
@@ -135,9 +135,9 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Shared package kept OUT of the hub
+- [x] CHK-050 [P1] Shared package kept OUT of the hub [evidence: package at `shared/corpus-context/`, not in `hub-router.json`] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-051 [P1] scratch/ cleaned before completion [evidence: no `scratch/` dir under `shared/corpus-context/`, `git status` clean] — `node --test` 28/28
   - **Evidence**: pending — implementation not started
 
 

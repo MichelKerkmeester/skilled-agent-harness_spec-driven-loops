@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -175,13 +175,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003 global-modes research settled that the styles library is a mode-owned evidence system, not a hub-level style chooser, and that its top-ranked, ship-first deliverable is a thin shared seam (Phase A)",
     "created_at": "2026-07-18T14:14:26.760Z",
-    "last_save_at": "2026-07-18T14:16:07.697Z",
+    "last_save_at": "2026-07-18T18:07:37.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b6067833350a8beef1dc79a803377514ec9268a0b24e17d70295c21fbb0f42e",
+    "source_fingerprint": "sha256:62e652e2069a515ec41a96bcce59c649eefb851a9b79e13f5c6e51d95660a3f1",
     "source_doc_hashes": {
-      "spec.md": "fa0971ff86a348439de97c50a6c9629f1ada2d46cea9bb6b24eecaeaaa59dc75",
-      "plan.md": "d412fefd3887cbd13d17d037d92e5cf94756be69d995973abe0d1da71ec2f239",
-      "tasks.md": "3bf887f4d6a59c9e8c09e9d46c897618a8d4e2fdbfe0995c7d333234b5e9cf27",
-      "checklist.md": "0c5f2c83c4df5a059a07714d4aa9c7409744d7d4e355056bea467e91bcf39345",
-      "implementation-summary.md": "f573503433e37ccb07d44fd256b4665bc8d345ca9d5b675636f49c4e74e8be76"
+      "spec.md": "1c5727fab78cfd9d760146eddf4a54fc2da3d3544bd92add95a3f5500972b78d",
+      "plan.md": "005234068ead6c6ae86b5ac5d792c24b8f972b59f2f77ff87453b27aa7c959bf",
+      "tasks.md": "051b1a95a490ba2a86848512ce85d5005eaa55af5cae759be62aa1111f8be4cb",
+      "checklist.md": "9ed3aeb6884dfe21720375cc46c7e6660ebed749eb8b47f7bc26545fad6728df",
+      "implementation-summary.md": "4066bf6fcb4078b47861d6f42e82914fcb852b4a61549da2a550424632520a34"
     },
     "last_active_child_id": null,
     "last_active_at": null
