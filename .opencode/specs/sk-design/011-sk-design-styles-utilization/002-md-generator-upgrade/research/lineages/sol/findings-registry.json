@@ -1,0 +1,268 @@
+{
+  "sessionId": "fanout-sol-1784377726143-umj0lt",
+  "generation": 1,
+  "status": "complete",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "text": "Where exactly do formatters-v3 and pipeline stages create quality limits that corpus evidence can address?",
+      "status": "resolved",
+      "iteration": 1,
+      "evidence": "iterations/iteration-001.md:14-24"
+    },
+    {
+      "id": "Q2",
+      "text": "What corpus section shapes and token vocabularies imply for a calibrated output schema?",
+      "status": "resolved",
+      "iteration": 2,
+      "evidence": "iterations/iteration-002.md:15-25"
+    },
+    {
+      "id": "Q3",
+      "text": "How should exemplars or study pairs improve reasoning without overriding measured truth or anti-copy controls?",
+      "status": "resolved",
+      "iteration": 3,
+      "evidence": "iterations/iteration-003.md:15-25"
+    },
+    {
+      "id": "Q4",
+      "text": "Which quality baselines, validators, and fixtures can be derived from the corpus?",
+      "status": "resolved",
+      "iteration": 4,
+      "evidence": "iterations/iteration-004.md:15-25"
+    },
+    {
+      "id": "Q5",
+      "text": "Which smart integrations offer the best quality lift per build cost?",
+      "status": "resolved",
+      "iteration": 5,
+      "evidence": "iterations/iteration-005.md:14-36"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "I001-F1",
+      "iteration": 1,
+      "question": "Q1",
+      "summary": "The guided pipeline stops before DESIGN.md authorship; corpus reasoning belongs in a separate STUDY/pre-WRITE phase, not EXTRACT, VALIDATE, or REPORT.",
+      "sources": [".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:151-229"]
+    },
+    {
+      "id": "I001-F2",
+      "iteration": 1,
+      "question": "Q1",
+      "summary": "buildWritePrompt is the narrowest bounded few-shot insertion point after locked facts and before prose work.",
+      "roughBuildCost": "1-2 engineer-days",
+      "sources": [".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:102-154"]
+    },
+    {
+      "id": "I001-F3",
+      "iteration": 1,
+      "question": "Q1",
+      "summary": "A shared versioned section/field manifest is needed because the v3 reference, Quick Start emitter, and heading validator drift.",
+      "roughBuildCost": "2-4 engineer-days",
+      "sources": [".opencode/skills/sk-design/design-md-generator/references/design_md_format.md:235-300", ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:187-238", ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:279-310"]
+    },
+    {
+      "id": "I001-F4",
+      "iteration": 1,
+      "question": "Q1",
+      "summary": "Corpus-calibrated structure and vocabulary checks should be additive after existing fidelity checks and before score calculation.",
+      "roughBuildCost": "3-5 engineer-days",
+      "sources": [".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:248-496"]
+    },
+    {
+      "id": "I001-F5",
+      "iteration": 1,
+      "question": "Q1",
+      "summary": "Generated corpus summaries plus selected edge bundles can extend current compact fixtures without loading all raw bundles in tests.",
+      "roughBuildCost": "2-3 engineer-days",
+      "sources": [".opencode/skills/sk-design/design-md-generator/backend/tests/formatters-v3.test.ts:5-60", ".opencode/skills/sk-design/design-md-generator/backend/tests/validate.test.ts:35-208"]
+    },
+    {
+      "id": "I002-F1",
+      "iteration": 2,
+      "question": "Q2",
+      "summary": "The corpus supports a stable required spine, conditional capability sections, and ordered extension slots rather than one exact sequence.",
+      "roughBuildCost": "2-4 engineer-days",
+      "sources": ["iterations/iteration-002.md:17"]
+    },
+    {
+      "id": "I002-F2",
+      "iteration": 2,
+      "question": "Q2",
+      "summary": "Quick Start needs a shared capability matrix for source, requiredness, omission predicates, and CSS/Tailwind eligibility.",
+      "roughBuildCost": "2-4 engineer-days",
+      "sources": ["iterations/iteration-002.md:19"]
+    },
+    {
+      "id": "I002-F3",
+      "iteration": 2,
+      "question": "Q2",
+      "summary": "Token calibration should version category/value shapes and stratified ranges without enforcing median counts or filling absences.",
+      "roughBuildCost": "1-2 engineer-days",
+      "sources": ["iterations/iteration-002.md:21"]
+    },
+    {
+      "id": "I002-F4",
+      "iteration": 2,
+      "question": "Q2",
+      "summary": "Typography needs a stable semantic core-role normalizer plus namespaced validated extensions and preserved source labels.",
+      "roughBuildCost": "2-3 engineer-days",
+      "sources": ["iterations/iteration-002.md:23"]
+    },
+    {
+      "id": "I002-F5",
+      "iteration": 2,
+      "question": "Q2",
+      "summary": "Theme/capability variance and observed contract mismatches should drive stratified baselines and anomaly fixtures.",
+      "roughBuildCost": "2-3 engineer-days",
+      "sources": ["iterations/iteration-002.md:25"]
+    },
+    {
+      "id": "I003-F1",
+      "iteration": 3,
+      "question": "Q3",
+      "summary": "Select up to three eligible cards, then hydrate one same-bundle DESIGN.md plus design-tokens.json pair; never two styles.",
+      "roughBuildCost": "1-2 engineer-days",
+      "sources": ["iterations/iteration-003.md:17"]
+    },
+    {
+      "id": "I003-F2",
+      "iteration": 3,
+      "question": "Q3",
+      "summary": "Transform the selected pair into source-pointer-backed de-literalized observations with explicit prohibited reuse.",
+      "roughBuildCost": "2-3 engineer-days",
+      "sources": ["iterations/iteration-003.md:19"]
+    },
+    {
+      "id": "I003-F3",
+      "iteration": 3,
+      "question": "Q3",
+      "summary": "Bind STUDY to a target-facts digest and insert it after FACTS but before prose work, never in deterministic sections.",
+      "roughBuildCost": "1-2 engineer-days",
+      "sources": ["iterations/iteration-003.md:21"]
+    },
+    {
+      "id": "I003-F4",
+      "iteration": 3,
+      "question": "Q3",
+      "summary": "Use a fail-closed generation, provenance, rights/use-label, and prompt-injection envelope; raw corpus text never reaches the writer.",
+      "roughBuildCost": "1-2 engineer-days",
+      "sources": ["iterations/iteration-003.md:23"]
+    },
+    {
+      "id": "I003-F5",
+      "iteration": 3,
+      "question": "Q3",
+      "summary": "Run target-value and source-overlap leakage checks before normal validation with positive, negative, stale, rights, injection, mismatch, capability, copy, and false-positive fixtures.",
+      "roughBuildCost": "3-5 engineer-days",
+      "sources": ["iterations/iteration-003.md:25"]
+    },
+    {
+      "id": "I004-F1",
+      "iteration": 4,
+      "question": "Q4",
+      "summary": "One versioned manifest should own hard structure, capability predicates, Quick Start mappings, hashes, and target digests across emitter, prompt, and validator.",
+      "roughBuildCost": "2-4 engineer-days",
+      "sources": ["iterations/iteration-004.md:17"]
+    },
+    {
+      "id": "I004-F2",
+      "iteration": 4,
+      "question": "Q4",
+      "summary": "Existing validation should hard-fail target/schema/provenance violations while keeping corpus shape, vocabulary, density, and rarity as stratified warnings.",
+      "roughBuildCost": "3-5 engineer-days",
+      "sources": ["iterations/iteration-004.md:19"]
+    },
+    {
+      "id": "I004-F3",
+      "iteration": 4,
+      "question": "Q4",
+      "summary": "Generate a compact aggregate baseline and de-literalized fixture stream with explicit update/check commands and focused Vitest selectors.",
+      "roughBuildCost": "2-3 engineer-days",
+      "sources": ["iterations/iteration-004.md:21"]
+    },
+    {
+      "id": "I004-F4",
+      "iteration": 4,
+      "question": "Q4",
+      "summary": "Leak checks need hard source-only literal rules plus calibrated exact-span signals; source exclusivity alone is not copying evidence.",
+      "roughBuildCost": "3-5 engineer-days",
+      "sources": ["iterations/iteration-004.md:23"]
+    },
+    {
+      "id": "I004-F5",
+      "iteration": 4,
+      "question": "Q4",
+      "summary": "Extend the current runner in the order freshness, STUDY envelope, WRITE, leak check, validation, report, with mutation and staleness tests.",
+      "roughBuildCost": "2-3 engineer-days incremental",
+      "sources": ["iterations/iteration-004.md:25"]
+    },
+    {
+      "id": "I005-F1",
+      "iteration": 5,
+      "question": "Q5",
+      "summary": "The highest-value order is shared manifest/capability emission, compact fixtures, validator integration, semantic-role normalization, bounded STUDY, leak gate, counterfactual probes, diversity watchdog, then learned methods.",
+      "sources": ["iterations/iteration-005.md:18-28"]
+    },
+    {
+      "id": "I005-F2",
+      "iteration": 5,
+      "question": "Q5",
+      "summary": "The schema/fixture/validator MVP is 10-15 engineer-days and STUDY hardening adds 8-12; total through hardening is 18-27 days, or 23-35 if predecessor retrieval is absent.",
+      "sources": ["iterations/iteration-005.md:30"]
+    },
+    {
+      "id": "I005-F3",
+      "iteration": 5,
+      "question": "Q5",
+      "summary": "Schema-drift sentinels, counterfactual capability probes, and diversity-preserving calibration are the best beyond-retrieval controls.",
+      "sources": ["iterations/iteration-005.md:32"]
+    },
+    {
+      "id": "I005-F4",
+      "iteration": 5,
+      "question": "Q5",
+      "summary": "Raw/multi-style prompts, automatic fixture updates, uncalibrated fuzzy enforcement, vector replatforming, fine-tuning, and LLM-judge gates are rejected until deterministic controls leave a measured residual gap.",
+      "sources": ["iterations/iteration-005.md:34"]
+    },
+    {
+      "id": "I005-F5",
+      "iteration": 5,
+      "question": "Q5",
+      "summary": "All five key questions are evidence-backed and legal convergence is reached through all-questions-answered after the minimum floor and quality guards pass.",
+      "sources": ["iterations/iteration-005.md:36", ".opencode/commands/deep/assets/deep_research_auto.yaml:621-675"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Plain full-corpus loading or raw token averaging",
+      "reason": "Eliminated by predecessor research because it destroys coherence and increases context/copy risk.",
+      "source": ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:311-332"
+    }
+  ],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 25,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "uniqueEvidencePointers": 35,
+      "iterationFiles": 5,
+      "corpusWideScans": 2
+    }
+  },
+  "lastUpdated": "2026-07-18T13:09:26.000Z"
+}

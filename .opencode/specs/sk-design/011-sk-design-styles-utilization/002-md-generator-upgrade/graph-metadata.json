@@ -39,11 +39,12 @@
       "status"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "research/lineages/sol/research.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -78,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +98,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,8 +169,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "per-lever",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -186,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built The",
+        "name": "What Was Built An",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "The sk-design `design-md-generator` mode (backend `formatters-v3` + the DESIGN.md section schema at `.opencode/skills/sk-design/design-md-generator/`) generates design documents without any grounding in real, high-quality design systems",
     "created_at": "2026-07-18T12:23:41.357Z",
-    "last_save_at": "2026-07-18T12:25:54.868Z",
+    "last_save_at": "2026-07-18T13:23:26.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0645644274a14b86023cbde30dfb43e3baadead5f1250e905e8fc04670b86215",
+    "source_fingerprint": "sha256:60867800194fb907d94bcce1603dadc4cdce6df6288d996ce96531a9ad12e8db",
     "source_doc_hashes": {
-      "spec.md": "fd572fbce8044d4da1ee946d7aa0250560adfbb6868627d109771948a23edf99",
-      "plan.md": "635ecb27734c10c2fb28102b3c8f695aa9daaa9977848e0ea1e6b165ac0d7509",
-      "tasks.md": "40155c80fee29a92da04b4f9bff864ea9cddeb3bec7339e12280118ffc2b30b1",
-      "implementation-summary.md": "323ea7822e1219eb873611965c573f2f8d10b08f9e34bedbbcba1f7bca565d5a"
+      "spec.md": "5477a2b4047343981c93d585610381d2da404bda3da4e2fa7ddab397f054257a",
+      "plan.md": "6ba6ad3f7fcce9a16f978293a22dcd9384d7d8e7299187615edd09fb89c35d5b",
+      "tasks.md": "f21bdb986fd421d86d91bf684651d8d49175c88b24f3ad79fc3b9fd64b0788fe",
+      "implementation-summary.md": "f70c00fe702ee1b25a06cb1e9ea0ea1ea453aa70ad6f140a3988886abd8766a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

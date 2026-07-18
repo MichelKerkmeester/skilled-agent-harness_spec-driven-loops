@@ -61,8 +61,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the md-generator upgrade topic (`research/`).
-- [ ] T004 Iterate to convergence or the 10-iteration ceiling (`research/`).
+- [x] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the md-generator upgrade topic (`research/`). [EVIDENCE: job `b4bze2klj` ran to `exitCode 0`, status `fulfilled`.]
+- [x] T004 Iterate to convergence or the 10-iteration ceiling (`research/`). [EVIDENCE: 5 iterations in `deep-research-state.jsonl`; `stall_detected` stopped it below the ceiling.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,8 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Confirm `research/research.md` ranks md-generator upgrade levers with evidence + rough cost (`research/research.md`).
-- [ ] T006 Confirm each lever names a concrete md-generator integration point and states anti-slop discipline (`research/research.md`).
+- [x] T005 Confirm `research/research.md` ranks md-generator upgrade levers with evidence + rough cost (`research/research.md`). [EVIDENCE: `research.md` §9 ranks nine levers with per-lever cost (`4-7 days`, `2-3 days`).]
+- [x] T006 Confirm each lever names a concrete md-generator integration point and states anti-slop discipline (`research/research.md`). [EVIDENCE: `research.md` §11 names `emitQuickStart`/`validateDesignMd`/`buildWritePrompt`; §1 states the corpus-teaches-shape-not-values rule.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Loop converged (or ceiling reached); research.md written
-- [ ] Upgrade levers ranked with evidence + cost
-- [ ] Integration points named
+- [x] Loop converged (or ceiling reached); research.md written
+- [x] Upgrade levers ranked with evidence + cost
+- [x] Integration points named
 <!-- /ANCHOR:completion -->
 
 ---

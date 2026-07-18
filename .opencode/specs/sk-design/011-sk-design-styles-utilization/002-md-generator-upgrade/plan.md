@@ -61,9 +61,9 @@ A single SOL-xhigh cli-opencode lineage runs the deep-research loop for up to 10
 - [x] The executor and loop parameters are fixed
 
 ### Definition of Done
-- [ ] The loop converges (or hits the ceiling) and writes research.md
-- [ ] Upgrade levers are ranked with evidence and rough cost
-- [ ] Each lever names a concrete md-generator integration point
+- [x] The loop converges (or hits the ceiling) and writes research.md
+- [x] Upgrade levers are ranked with evidence and rough cost
+- [x] Each lever names a concrete md-generator integration point
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -96,13 +96,13 @@ Externalized-state research loop: a fresh SOL agent per iteration reads prior st
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Dispatch
-- [ ] Launch the SOL-xhigh research lineage with the md-generator upgrade topic
+- [x] Launch the SOL-xhigh research lineage with the md-generator upgrade topic
 
 ### Phase 2: Loop
-- [ ] Iterate to convergence or the 10-iteration ceiling
+- [x] Iterate to convergence or the 10-iteration ceiling
 
 ### Phase 3: Synthesize
-- [ ] Confirm research.md ranks upgrade levers with evidence + cost
+- [x] Confirm research.md ranks upgrade levers with evidence + cost
 <!-- /ANCHOR:phases -->
 
 ---

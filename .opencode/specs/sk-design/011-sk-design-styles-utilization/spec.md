@@ -100,7 +100,7 @@ Determine, with evidence, the smart ways to put the styles library to work acros
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-research-utilization/` | Deep-research: how to index, retrieve, and consume the styles library across sk-design + modes | Complete — 8 iters, ranked synthesis |
-| 2 | `002-md-generator-upgrade/` | Deep-research: how the library upgrades the design-md-generator mode (exemplars, schema calibration, token grounding, validation) | In Progress — loop dispatched |
+| 2 | `002-md-generator-upgrade/` | Deep-research: how the library upgrades the design-md-generator mode (exemplars, schema calibration, token grounding, validation) | Complete — 5 iters, ranked nine-lever synthesis |
 | 3 | `003-global-modes-utilization/` | Deep-research: how the library integrates globally across the hub + interface/foundations/motion/audit/open-design modes | In Progress — loop dispatched |
 | 4+ | `004-*` (planned) | Build the top-ranked strategies from 001/002/003 | Planned — pending research convergence |
 
