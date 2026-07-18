@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Shadow Compiler + mcp-code-mode N=1 Compile"
-description: "Phase 1 of the unified router refactor: build the pure, deterministic shadow compiler (authored sources -> CompiledPolicyV1, fail-closed on missing modes / unresolved leaves / authority contradictions), then compile ONLY mcp-code-mode as the degenerate N=1 case (candidateCount 1, empty selection/bundle/handoff collections, overlay null). Emit the three read-only projections plus legacy-gold compatibility fields and typed fixtures, run shadow parity against the legacy router with zero live authority, and prove one-generation fenced activation-manifest selection with byte-exact rollback. Smallest blast radius, fully reversible. Planning/design only."
+description: "Phase 1 of the unified router refactor: the pure, deterministic shadow compiler (authored sources -> CompiledPolicyV1, fail-closed on missing modes / unresolved leaves / authority contradictions) and mcp-code-mode as the degenerate N=1 case (candidateCount 1, empty selection/bundle/handoff collections, overlay null). Emits three read-only projections plus legacy-gold compatibility fields and typed fixtures, runs shadow parity against the legacy router with zero live authority, and proves one-generation fenced activation-manifest selection with byte-exact rollback. Smallest blast radius, fully reversible, shadow-only."
 trigger_phrases:
   - "shadow compiler n1 compile"
   - "mcp-code-mode degenerate compile"
@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored Phase 1 spec-core (shadow compiler + mcp-code-mode N=1)"
-    next_safe_action: "Run validate.sh --strict; generate description.json + graph-metadata.json"
+    recent_action: "Implemented and verified the shadow compiler and mcp-code-mode N=1 artifacts"
+    next_safe_action: "Run strict validation and metadata regeneration from the orchestrator"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ This phase builds the **pure shadow compiler** (authored sources → `CompiledPo
 
 **Critical dependency**: the canonical `CompiledPolicyV1` schema and deterministic serialization/hashing are authored in Phase 0 (`../000-contract-schemas/`) and consumed here; this phase does not define them.
 
-This spec is **planning/design only**. No live routing config, mode registry, hub router, benchmark scorer, or skill is modified by authoring or approving it.
+This implementation is **shadow-only**. No live routing config, mode registry, hub router, benchmark scorer, or skill was modified.
 
 ---
 
@@ -57,7 +57,7 @@ This spec is **planning/design only**. No live routing config, mode registry, hu
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Implemented and phase-locally verified |
 | **Created** | 2026-07-18 |
 | **Phase** | 001-compiler-n1-shadow (Phase 1 of 010-unified-refactor-implementation) |
 | **Migration stage owned** | Stage 1 Shadow compile (+ opens Stage 2 Dual-read fail-closed) |
@@ -108,17 +108,17 @@ Ship a pure shadow compiler that turns authored sources into a byte-stable `Comp
 
 ### Files to Change
 
-All emitted artifacts are **new, additive, and isolated** in a shadow tree; no live routing surface is modified. Proposed paths are flagged; the final shadow-tree root is resolved with Phase 0 (synthesis §11 Q4/Q5 leave serialization + ledger location open).
+All emitted artifacts are **new, additive, and isolated** in this phase folder; no live routing surface is modified. The resolved shadow root is the phase folder itself.
 
 | File / Artifact | Change Type | Description |
 |-----------------|-------------|-------------|
-| `<shadow-root>/compiler/` | Create (Proposed) | The pure `compile()` function + fail-closed guards; isolated from all live routing code |
-| `<shadow-root>/compiled/mcp-code-mode/policy.json` | Create (Proposed) | Emitted `CompiledPolicyV1` for the N=1 case (content-addressed) |
-| `<shadow-root>/compiled/mcp-code-mode/advisor-projection.json` | Create (Proposed) | `AdvisorProjectionV1` — omits paths/tools/fences/authority (synthesis §8.1) |
-| `<shadow-root>/compiled/mcp-code-mode/route-gold.typed.json` | Create (Proposed) | `TypedRouteGoldV1` fixtures + compatibility-projected legacy fields (synthesis §8.2) |
-| `<shadow-root>/compiled/mcp-code-mode/policy-card.md` | Create (Proposed) | `PolicyCardV1.md` generated from the same snapshot (synthesis §8.3) |
-| `<shadow-root>/activation/manifest.json` + retained prior generation | Create (Proposed) | `ActivationManifestV1` + byte-exact prior-generation retention for rollback (synthesis §9) |
-| `<shadow-root>/parity/` | Create (Proposed) | Read-only shadow parity harness (zero live authority) |
+| `<shadow-root>/compiler/` | Created | The pure `compile()` function + fail-closed guards; isolated from all live routing code |
+| `<shadow-root>/compiled/mcp-code-mode/policy.json` | Created | Emitted `CompiledPolicyV1` for the N=1 case (content-addressed) |
+| `<shadow-root>/compiled/mcp-code-mode/advisor-projection.json` | Created | `AdvisorProjectionV1` — omits paths/tools/fences/authority (synthesis §8.1) |
+| `<shadow-root>/compiled/mcp-code-mode/route-gold.typed.json` | Created | `TypedRouteGoldV1` fixtures + compatibility-projected legacy fields (synthesis §8.2) |
+| `<shadow-root>/compiled/mcp-code-mode/policy-card.md` | Created | `PolicyCardV1.md` generated from the same snapshot (synthesis §8.3) |
+| `<shadow-root>/activation/manifest.json` + retained prior generation | Created | `ActivationManifestV1` + byte-exact prior-generation retention for rollback (synthesis §9) |
+| `<shadow-root>/parity/` | Created | Read-only shadow parity harness (zero live authority) |
 | `.../mcp-code-mode/SKILL.md`, `.../mcp-code-mode/leaf-manifest.json` | Read-only source | Authored inputs to the compiler; never modified |
 | `.../mcp-code-mode/runtime/lib/mcp-route-guard.cjs` | Read-only source | Confirmed advisory (`allow`/`warn`, fails open); MUST NOT become destination VERIFY (synthesis §5.2) |
 | `.../system-skill-advisor/.../router-replay.cjs` (shared scorer) | Unchanged — MUST NOT touch | Hard constraint; a required scorer edit is a migration failure (synthesis §8.2, §10) |
@@ -139,7 +139,7 @@ All emitted artifacts are **new, additive, and isolated** in a shadow tree; no l
 | REQ-003 | Compile `mcp-code-mode` as the degenerate N=1 case (synthesis §5.1, §5.3) | Emitted policy has `candidateCount=1`, `selectionKinds={single}`, `crossTargetEdges=[]`, `bundleRules=[]`, `handoffEdges=[]`, `overlay=null`, `P=static`; a source grep proves there is **no** `skillId == "mcp-code-mode"` (or equivalent name) conditional anywhere in the compiler/evaluator path |
 | REQ-004 | Retain full N=1 admission + leaf routing — not a stub (synthesis §5.2) | Zero leaf signal ⇒ `defer(no-match)` (never default-to-self route); ambiguous leaf evidence ⇒ exactly one `clarify`; the 7 leaves, 6 selector classes, near-tie path, and zero-signal fallback all present in the compiled graph; `mcp-route-guard.cjs` stays advisory and is never wired as VERIFY |
 | REQ-005 | Emit the three projections from one compiled snapshot (synthesis §2.1, §8.1, §8.3) | `AdvisorProjectionV1` (no paths/tools/fences/handoff-leases/commit-authority), `TypedRouteGoldV1`, and `PolicyCardV1.md` are all generated from the same snapshot; each carries the `effectivePolicyHash` plus its own projection hash; the card is *generated from the snapshot*, not merely hash-matched to a hand-written view (synthesis §8.3) |
-| REQ-006 | Legacy-gold compatibility fields + typed fixtures without editing the scorer (synthesis §8.2, §10) | The compatibility projector maps positive routes → `observedIntents`/`observedResources`, and `clarify\|defer\|reject` → the existing empty-intent convention; `git diff` on `router-replay.cjs` is empty; the existing route-gold gate stays green with the projected fields |
+| REQ-006 | Legacy-gold compatibility fields + typed fixtures without editing the scorer (synthesis §8.2, §10) | The compatibility projector maps positive routes → `observedIntents`/`observedResources`, and `clarify\|defer\|reject` → the existing empty-intent convention; the protected `router-replay.cjs` checksum stays exact; the route-gold evaluator stays green with projected fields |
 | REQ-007 | Shadow parity with zero live authority (synthesis §9 Stage 1/3, §10) | The shadow lane runs against the legacy router while legacy stays serving-authoritative; the compiled policy emits **no** COMMIT/effect; mismatches are classified and the gold is **never** auto-updated; a scorer edit needed to pass is treated as a migration failure and blocks |
 | REQ-008 | One-generation fenced activation + byte-exact rollback (synthesis §9) | Activation is a fenced CAS on `ActivationManifestV1` (token lock + fencing epoch checked immediately before an atomic temp/fsync/rename); a request pins exactly one generation; the rollback drill swaps to the retained prior manifest and the restored bytes are hash-equal to the pre-activation manifest |
 
@@ -202,7 +202,7 @@ These are non-negotiable for this phase and every later phase (synthesis §10 co
 - **Determinism**: recompile ≥3×, hash-compare bodies and `effectivePolicyHash` (SC-001).
 - **Degeneracy**: assert the empty collections on the emitted policy; `rg -n "mcp-code-mode"` across the compiler/evaluator path returns zero *branching* uses (SC-002).
 - **Fail-closed**: run the three negative fixtures; assert typed error + no artifact written (SC-003).
-- **Scorer/gold**: `git diff --exit-code` on the scorer; run the existing route-gold gate green (SC-004).
+- **Scorer/gold**: compare the scorer and existing-gold SHA-256 baselines; run compatibility-projected rows through the protected route-gold evaluator and prove a deliberate falsifier goes red (SC-004).
 - **Parity**: run the shadow lane; assert no COMMIT/effect and legacy authority intact (SC-005).
 - **Activation/rollback**: run the fenced-CAS drill; hash-compare restored manifest to pre-activation bytes (SC-006).
 

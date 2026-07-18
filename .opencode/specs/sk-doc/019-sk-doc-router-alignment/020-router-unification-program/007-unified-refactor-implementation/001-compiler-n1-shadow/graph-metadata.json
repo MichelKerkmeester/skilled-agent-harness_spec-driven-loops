@@ -39,14 +39,34 @@
       "fenced"
     ],
     "importance_tier": "critical",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
+      "parity/shadow-parity.cjs",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md",
+      "harness/protected-baseline.json",
+      "harness/run-phase.cjs",
+      "compiler/compiler.cjs",
+      "compiler/projections.cjs",
+      "compiler/evaluator.cjs",
+      "harness/fingerprint.cjs"
     ],
     "entities": [
+      {
+        "name": "shadow-parity.cjs",
+        "kind": "file",
+        "path": "parity/shadow-parity.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,9 +86,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "protected-baseline.json",
+        "kind": "config",
+        "path": "harness/protected-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-phase.cjs",
+        "kind": "file",
+        "path": "harness/run-phase.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiler.cjs",
+        "kind": "file",
+        "path": "compiler/compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "projections.cjs",
+        "kind": "file",
+        "path": "compiler/projections.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "evaluator.cjs",
+        "kind": "file",
+        "path": "compiler/evaluator.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fingerprint.cjs",
+        "kind": "file",
+        "path": "harness/fingerprint.cjs",
         "source": "derived"
       },
       {
@@ -79,12 +135,6 @@
       },
       {
         "name": "Shadow Compiler",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,6 +153,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change All",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -132,65 +188,37 @@
         "source": "derived"
       },
       {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The fleet has no single, verifiable representation of routing policy",
     "created_at": "2026-07-18T13:13:16.652Z",
-    "last_save_at": "2026-07-18T14:47:40.529Z",
+    "last_save_at": "2026-07-18T19:04:23.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6c0f198a604cf2c472f0eefb1fc7d5ad6f62efa3b129f9c96a3ff5e7e080f15",
+    "source_fingerprint": "sha256:5ea7f52917b4d4d203268c92088faecbf3c908b61ea38ee620a0c17a7a9b56e9",
     "source_doc_hashes": {
-      "spec.md": "0eca41d7f1de787cc04ed2e06deb8bd0f75f6a3af42370bfe1bb38d9a88a3dd7",
-      "plan.md": "ea74f392eab1e1668cc0b5ab5ad4ac281320e70cf052fadb4ad47d3edc990475",
-      "tasks.md": "6aa6fa1fd2c7ca6d9e4b3bc5ca38e27058e76104273ec9b00799f9d29dd68ace",
-      "checklist.md": "7a4e3049e331d8b4d5d312ef9dbc7a87615ccd05e51b16166d309dd74d8e4561"
+      "spec.md": "ce90b8c28c091b8d3f0b6fa2a289e768eee69f42e3e31401bf3aad85cfd55647",
+      "plan.md": "ba7b0ac649c985d1a293da7b493fec1290f82cf1ba356b5cd5db5fab4e4aafb7",
+      "tasks.md": "f34e4d901acc8b2b2471bd09d0e88aa894ff7f886c1dcc862618d56383090505",
+      "checklist.md": "843628bece0b2ced5c967f328d1158e45f0942b89b8154dc44fd60d51c70f23c",
+      "implementation-summary.md": "010feddd51e779a2bab800e6184a6662c2bf051185a275d0cbdf711b091319b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

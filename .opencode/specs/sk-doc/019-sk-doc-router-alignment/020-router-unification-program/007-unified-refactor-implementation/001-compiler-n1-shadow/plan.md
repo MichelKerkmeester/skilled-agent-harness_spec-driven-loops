@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored Phase 1 build plan (compiler + N=1 + projections + activation)"
-    next_safe_action: "Sequence the build once Phase 0 schemas are frozen"
+    recent_action: "Completed the shadow compiler, N=1 projections, parity lane, and rollback drill"
+    next_safe_action: "Run strict validation and metadata regeneration from the orchestrator"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,10 +45,10 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Node.js / TypeScript (matches the existing `router-replay.cjs` + route-gold tooling surface) |
+| **Language/Stack** | Node.js / CommonJS using built-ins only, matching the protected scorer runtime |
 | **Framework** | None — a pure library function plus fixtures; no runtime service in this phase |
 | **Storage** | Content-addressed files in an isolated shadow tree; no database, no live state writes |
-| **Testing** | Vitest (route-gold gate already runs under Vitest); deterministic offline replay |
+| **Testing** | Zero-dependency Node driver plus the protected route-gold evaluator; deterministic offline replay |
 
 ### Overview
 
@@ -64,17 +64,17 @@ Build the compiler as a **total, side-effect-free function** that reads authored
 
 ### Definition of Ready
 
-- [ ] Phase 0 (`../000-contract-schemas/`) schema + deterministic serialization frozen and importable; else fail closed (spec REQ-002).
-- [ ] `mcp-code-mode` authored sources confirmed against synthesis §5 line references (SKILL.md, leaf-manifest.json, mcp-route-guard.cjs).
-- [ ] Legacy route-gold baseline captured and green *before* any shadow artifact exists (Stage 0 handshake with Phase 0).
+- [x] Phase 0 (`../000-contract-schemas/`) schema + deterministic serialization frozen and importable; else fail closed (spec REQ-002). Evidence: the Phase 0 harness passed 11/11 groups and the missing-schema path fails with `ENOENT` before emission.
+- [x] `mcp-code-mode` authored sources confirmed against synthesis §5 line references (SKILL.md, leaf-manifest.json, mcp-route-guard.cjs). Evidence: seven leaves, six selector classes, near-tie and zero-signal rules, and advisory guard behavior were parsed and asserted.
+- [x] Legacy route-gold baseline captured and green *before* any shadow artifact exists (Stage 0 handshake with Phase 0). Evidence: protected source/playbook checksums and the legacy exact/zero/setup replay outputs were captured in `harness/protected-baseline.json`.
 
 ### Definition of Done
 
-- [ ] All P0 requirements (REQ-001..008) met with evidence.
-- [ ] `git diff --exit-code` on `router-replay.cjs` is empty (scorer untouched).
-- [ ] Route-gold gate green with compatibility-projected fields; existing gold unchanged.
-- [ ] Determinism, fail-closed, degeneracy-grep, parity, and rollback drills all pass.
-- [ ] Migration Stage-1 gate (spec §6) satisfied so Phase 2 may activate.
+- [x] All P0 requirements (REQ-001..008) met with evidence in `harness/run-phase.cjs`, `checklist.md`, and `implementation-summary.md`.
+- [x] Protected checksum comparison on `router-replay.cjs` is exact (scorer untouched); git was not used per the execution constraint.
+- [x] Route-gold evaluator passes five compatibility-projected rows, its deliberate falsifier goes red, and protected playbook/gold checksums are unchanged.
+- [x] Determinism, fail-closed, degeneracy-grep, parity, and rollback drills all pass in the zero-dependency driver.
+- [x] Migration Stage-1 gate (spec §6) is satisfied for the shadow-only `mcp-code-mode` generation.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -135,18 +135,18 @@ Required inventories before implementation:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm Phase 0 schema + deterministic serialization is importable; capture the Stage-0 legacy route-gold baseline green.
-- [ ] Ingest `mcp-code-mode` authored sources read-only; verify against synthesis §5 confirmed line references.
-- [ ] Stand up the isolated `<shadow-root>/` tree (no live path); wire the append-only fixture location.
+- [x] Confirm Phase 0 schema + deterministic serialization is importable; capture the Stage-0 legacy route-gold baseline green.
+- [x] Ingest `mcp-code-mode` authored sources read-only; verify against synthesis §5 confirmed line references.
+- [x] Stand up the isolated `<shadow-root>/` tree (no live path); wire the append-only fixture location.
 
 ### Phase 2: Core Implementation
-- [ ] Implement `compile()` as a total, side-effect-free function producing `CompiledPolicyV1` with the three hashes; add the three fail-closed guards (synthesis §2.1; spec REQ-002).
-- [ ] Compile `mcp-code-mode`; confirm N=1 empties emerge by partial evaluation (no name branch); preserve the 7 leaves / 6 selector classes / near-tie / zero-signal fallback (synthesis §5.1–§5.2).
-- [ ] Generate the three projections from one snapshot; build the compatibility projector + typed fixtures (synthesis §8).
-- [ ] Implement the shadow parity harness and the fenced activation + byte-exact rollback drill (synthesis §9).
+- [x] Implement `compile()` as a total, side-effect-free function producing `CompiledPolicyV1` with the three hashes; add the three fail-closed guards (synthesis §2.1; spec REQ-002).
+- [x] Compile `mcp-code-mode`; confirm N=1 empties emerge by partial evaluation (no name branch); preserve the 7 leaves / 6 selector classes / near-tie / zero-signal fallback (synthesis §5.1–§5.2).
+- [x] Generate the three projections from one snapshot; build the compatibility projector + typed fixtures (synthesis §8).
+- [x] Implement the shadow parity harness and the fenced activation + byte-exact rollback drill (synthesis §9).
 
 ### Phase 3: Verification
-- [ ] Determinism (≥3× recompile hash-equal), degeneracy grep, three fail-closed negatives, scorer-diff-empty + gold-green, parity zero-authority, activation/rollback drill — all pass; Stage-1 gate satisfied (spec §5, §6).
+- [x] Determinism (≥3× recompile hash-equal), degeneracy grep, three fail-closed negatives, scorer-checksum-exact + gold-green, parity zero-authority, activation/rollback drill — all pass; Stage-1 gate satisfied (spec §5, §6).
 <!-- /ANCHOR:phases -->
 
 ---
@@ -158,10 +158,10 @@ Every success criterion is proven by a concrete check, not an assertion (synthes
 
 | Test Type | Scope | Tools / Evidence |
 |-----------|-------|------------------|
-| Unit (determinism) | Recompile ≥3×; compare `effectivePolicyHash` + body bytes (SC-001) | Vitest + hash compare |
-| Unit (degeneracy) | Assert emitted empty collections; `rg -n "mcp-code-mode"` shows no branching use (SC-002) | Vitest + ripgrep |
-| Unit (fail-closed) | Three negative fixtures → typed `CompileError`, zero artifacts written (SC-003) | Vitest negative cases |
-| Integration (scorer/gold) | `git diff --exit-code router-replay.cjs`; existing route-gold gate green (SC-004) | Existing route-gold gate |
+| Unit (determinism) | Recompile ≥3×; compare `effectivePolicyHash` + body bytes (SC-001) | Node driver + isolated-process hash compare |
+| Unit (degeneracy) | Assert emitted empty collections; multiline branch scan shows no skill-name conditional (SC-002) | Node driver + source scanner |
+| Unit (fail-closed) | Three negative fixtures → typed `CompileError`, zero artifacts written (SC-003) | Node driver negative matrix |
+| Integration (scorer/gold) | Protected scorer checksum exact; compatibility rows green and falsifier red (SC-004) | Protected `evaluateRouteGold` + SHA-256 baseline |
 | Integration (parity) | Shadow run: no COMMIT/effect; legacy authoritative (SC-005) | Shadow parity harness |
 | Integration (rollback) | Fenced-CAS drill; restored manifest hash == pre-activation hash (SC-006) | Activation drill |
 | Doc-only (standalone) | Route/clarify/defer/reject + `PREPARED_DRAFT` from `PolicyCardV1.md` alone (REQ-010) | Document-only replay lane |
@@ -174,7 +174,7 @@ Every success criterion is proven by a concrete check, not an assertion (synthes
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 0 canonical schemas + deterministic serialization (`../000-contract-schemas/`) | Internal | Yellow (in progress) | Compiler cannot emit byte-stable policy; Phase 1 fails closed and halts |
+| Phase 0 canonical schemas + deterministic serialization (`../000-contract-schemas/`) | Internal | Green (frozen and verified) | Compiler fails closed if the import or schema is absent |
 | `mcp-code-mode` authored sources (SKILL.md, leaf-manifest.json, mcp-route-guard.cjs) | Internal | Green (confirmed, synthesis §5) | Wrong inputs invalidate the N=1 degeneracy proof |
 | Existing route-gold gate + fixtures | Internal | Green | No baseline to compare shadow parity against |
 | Shared scorer `router-replay.cjs` | Internal (read-only) | Green — MUST NOT touch | A required edit is a migration failure, not a dependency to change (synthesis §8.2, §10) |
