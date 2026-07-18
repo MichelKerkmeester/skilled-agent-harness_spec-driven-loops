@@ -1,0 +1,420 @@
+[
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "confident-route-bypasses-ladder",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "route",
+    "selectionKind": "single",
+    "targetQualifiedIds": [
+      "router-local/implementation"
+    ],
+    "observedIntents": [
+      "implementation"
+    ],
+    "observedResources": [
+      {
+        "intent": "implementation",
+        "resource": "references/recovery-ladder.md"
+      }
+    ],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "d03120c71ab870fb949d6d7fdf83918d237b5d08f420eb5d49f8782a37b634ae"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "malformed-confident-negative-is-rejected",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "06a6ca2d8690b0858afa39cc0964068d4c082c1802b536368a972dfc69d7c95e"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "confident-defer-with-destination-id-is-rejected",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "f3489121412a9e3b120c439730b66739ddacb9510f72cdd15723a645762479f5"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "confident-route-with-nested-clarify-is-rejected",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "1c3aa74153c257a80a41ac4ac7f43618d02628047f165982ab3518a062989f41"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "nonconfident-exact-route",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "route",
+    "selectionKind": "single",
+    "targetQualifiedIds": [
+      "router-local/implementation"
+    ],
+    "observedIntents": [
+      "implementation"
+    ],
+    "observedResources": [
+      {
+        "intent": "implementation",
+        "resource": "references/recovery-ladder.md"
+      }
+    ],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "dbe5ec7dcb09c66e4d63a0cddaaac9e10ef2e8e9f42be7a0a22e763f3588e3d3"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "forbidden-rejected-before-ranking",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "9fb32352d5fb99fbd72c81dadeaf8d34506b5e1cfdfdd17768cf19879e37fc78"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "missing-gate-is-rejected-before-ranking",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "4b38c54294b6a238a75986a6a168cbdd9cb779d5e488db64c8a0a1607abfb165"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "partial-gate-defers-before-ranking",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "910f378dfe081fd0d254e1efdeabca85fcea0f6dbc1095b7c5b6fc315828b81e"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "missing-authority-dependency-defers",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "e24fd54467e9e01897d8f345673c2e3eed0579aa4a0ce42dccb8f61f448fc1ea"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "stale-policy-defers-before-ranking",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "b3aec112a0308ae2a728e24245a50487b51330186bf35fb6f1da6a6afc97d5d2"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "rank-without-certificate-clarifies",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "clarify",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 1,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "cffd668a78797370b2c115538bf0c3d1b8e9b53e3a332de8c350907789d340d3"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "accepted-clarification-rescores-once",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "route",
+    "selectionKind": "single",
+    "targetQualifiedIds": [
+      "router-local/implementation"
+    ],
+    "observedIntents": [
+      "implementation"
+    ],
+    "observedResources": [
+      {
+        "intent": "implementation",
+        "resource": "references/recovery-ladder.md"
+      }
+    ],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "644067523c0c5114d15d61826a553273162569651e7c67b548b93564124ce0b5"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "unthreaded-accepted-answer-is-rejected",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "4583028ff14bbd4d9cea0b4429ab822a400cedfc0759a7933e8b768c02b5153c"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "clarify-then-handoff-spends-one-budget",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "6b6f0cbc04e40d57453856a7cd0839de919a84a71ff8ed7869e3966b3bbb1cd4"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "nondiscriminating-ambiguity-defers",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "05d69150940974bd30ca07d7fecb514b168faef4c42f84573e1ce91597876a23"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "targetless-clarify-candidate-defers",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "9c6cb7ab7a3b79458e21061b96623a49929787a3b786ae3e06772e1af663400d"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "zero-signal-idle-no-default-union",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "c4461d1e00d8df76eb4a006a92c180986812ef43731631453767d69b26c88d27"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "handoff-needs-input-does-not-reopen-turn",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [
+        "destination:origin->destination:remote"
+      ],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "00184e7aa11cc2165a6bd405534577ed896675d290be0f5bf19d5e83b643a3e9"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "handoff-acceptance-transfers-ownership",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [
+        "destination:origin->destination:remote"
+      ],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "f1755cf3e4a77a45fdf406b6c9484cbad37e35cda441cadeefa0d22d4db43b81"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "second-handoff-hop-is-refused",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "24ddb64939888b2a21fc3b5fc91a08bfff14d5eb8d1e976923e30e232532100d"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "visited-handoff-destination-is-refused",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "05d358a157b26ffa856a0cfd89e86ebdc67eda5373e8701519b2a4cb0893b619"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "unnamed-handoff-candidate-is-refused",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "aa078588d6dd941b6ddf82067e8d52b837037d3c21c1873ce48971987561e7fb"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "evidence-unavailable-defers",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "defer",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "bdab5ac277adb1737a60fbe86de9cb39f7f5aec8ad879efdf99d999ae0cd7cf9"
+  },
+  {
+    "schemaVersion": "V1",
+    "scenarioId": "invalid-request-reaches-reject-rung",
+    "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+    "decisionAction": "reject",
+    "targetQualifiedIds": [],
+    "observedIntents": [],
+    "observedResources": [],
+    "receiptAttempts": [],
+    "assertions": {
+      "rankCalls": 0,
+      "handoffEdges": [],
+      "duplicateIdempotencyKeyProducesSingleReceipt": false
+    },
+    "projectionHash": "fbaf7dd4ed71d86c022d135ce2c7540280d6b89dd798620ac6ca90fb086a0273"
+  }
+]

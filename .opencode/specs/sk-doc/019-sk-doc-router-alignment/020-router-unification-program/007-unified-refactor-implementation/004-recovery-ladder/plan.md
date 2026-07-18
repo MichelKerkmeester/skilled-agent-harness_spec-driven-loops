@@ -13,6 +13,10 @@ contextType: "implementation"
 
 # Implementation Plan: Recovery Ladder
 
+**Implementation status**: Correctness-remediated inside this phase folder. Local deterministic replay,
+budget-finiteness, authority-withholding, bypass, and protected-byte checks pass; route-gold status
+is intentionally `shadow-partial` until per-hub activation exercises real hub scenarios.
+
 ## 1. SUMMARY
 
 ### Technical Context

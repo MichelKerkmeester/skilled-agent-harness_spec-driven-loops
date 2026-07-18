@@ -1,0 +1,1170 @@
+{
+  "schemaVersion": "V1",
+  "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+  "candidates": {
+    "local": {
+      "qualifiedId": "destination:local",
+      "viable": true,
+      "target": {
+        "destinationId": {
+          "skillId": "router-local",
+          "workflowMode": "implementation",
+          "packetId": "packet-local",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        "role": "actor",
+        "authorityRef": "authority:local",
+        "mutatesWorkspace": true
+      },
+      "compatibility": {
+        "intents": [
+          "implementation"
+        ],
+        "resources": [
+          "references/recovery-ladder.md"
+        ]
+      }
+    },
+    "remote": {
+      "qualifiedId": "destination:remote",
+      "viable": true,
+      "target": {
+        "destinationId": {
+          "skillId": "router-remote",
+          "workflowMode": "handoff-target",
+          "packetId": "packet-remote",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        "role": "actor",
+        "authorityRef": "authority:remote",
+        "mutatesWorkspace": false
+      },
+      "compatibility": {
+        "intents": [
+          "handoff-target"
+        ],
+        "resources": [
+          "references/handoff-target.md"
+        ]
+      }
+    }
+  },
+  "cases": [
+    {
+      "scenarioId": "confident-route-bypasses-ladder",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "confidentCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "implementation"
+        ],
+        "expectedResources": [
+          "references/recovery-ladder.md"
+        ]
+      },
+      "expected": {
+        "action": "route",
+        "rungInvocations": [],
+        "terminalRung": null,
+        "terminalReason": null,
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "malformed-confident-negative-is-rejected",
+      "input": {
+        "confidentDecision": {
+          "schemaVersion": "V1",
+          "action": "defer",
+          "defer": {
+            "reason": "idle",
+            "recovery": [],
+            "authority": "Granted",
+            "targets": [
+              {
+                "destinationId": "destination:smuggled"
+              }
+            ]
+          }
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [],
+        "terminalRung": null,
+        "terminalReason": "confident-decision-invalid",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "confident-defer-with-destination-id-is-rejected",
+      "input": {
+        "confidentDecision": {
+          "schemaVersion": "V1",
+          "action": "defer",
+          "defer": {
+            "reason": "idle",
+            "recovery": [],
+            "authority": "Withheld",
+            "destinationId": "destination:smuggled"
+          }
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [],
+        "terminalRung": null,
+        "terminalReason": "confident-decision-invalid",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "confident-route-with-nested-clarify-is-rejected",
+      "input": {
+        "confidentDecision": {
+          "schemaVersion": "V1",
+          "action": "route",
+          "route": {
+            "selectionKind": "single",
+            "targets": [
+              {
+                "destinationId": {
+                  "skillId": "x",
+                  "workflowMode": "m",
+                  "packetId": "p",
+                  "packetKind": "k",
+                  "backendKind": "b"
+                },
+                "role": "actor",
+                "authorityRef": "authority:x",
+                "mutatesWorkspace": false
+              }
+            ],
+            "basis": {
+              "kind": "signal"
+            },
+            "evidence": [],
+            "authority": "WithheldUntilVerify",
+            "clarify": {
+              "question": "smuggled recovery artifact"
+            }
+          }
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [],
+        "terminalRung": null,
+        "terminalReason": "confident-decision-invalid",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "nonconfident-exact-route",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "exactCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "implementation"
+        ],
+        "expectedResources": [
+          "references/recovery-ladder.md"
+        ]
+      },
+      "expected": {
+        "action": "route",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route"
+        ],
+        "terminalRung": "route-or-certificate-gated-auto-route",
+        "terminalReason": "deterministic-exact-route",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "forbidden-rejected-before-ranking",
+      "input": {
+        "gate": {
+          "eligible": false,
+          "denialReason": "forbidden"
+        },
+        "rankedCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "forbidden",
+        "rungInvocations": [
+          "eligibility-authority"
+        ],
+        "terminalRung": "eligibility-authority",
+        "terminalReason": "eligibility-forbidden",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "missing-gate-is-rejected-before-ranking",
+      "input": {
+        "rankedCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority"
+        ],
+        "terminalRung": "eligibility-authority",
+        "terminalReason": "eligibility-unproven",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "partial-gate-defers-before-ranking",
+      "input": {
+        "gate": {
+          "eligible": true
+        },
+        "rankedCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "evidence-unavailable",
+        "rungInvocations": [
+          "eligibility-authority"
+        ],
+        "terminalRung": "eligibility-authority",
+        "terminalReason": "authority-dependency-unproven",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "missing-authority-dependency-defers",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": false
+        },
+        "rankedCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "dependency-failure",
+        "rungInvocations": [
+          "eligibility-authority"
+        ],
+        "terminalRung": "eligibility-authority",
+        "terminalReason": "authority-dependency-missing",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "stale-policy-defers-before-ranking",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": false
+        },
+        "rankedCandidateRef": "local"
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "stale-policy",
+        "rungInvocations": [
+          "eligibility-authority"
+        ],
+        "terminalRung": "eligibility-authority",
+        "terminalReason": "policy-stale",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "rank-without-certificate-clarifies",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "rankedCandidateRef": "local",
+        "riskCertificate": null,
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "clarify",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify"
+        ],
+        "terminalRung": "clarify",
+        "terminalReason": "clarification-requested",
+        "rankCalls": 1,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "accepted-clarification-rescores-once",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "continuationInput": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "acceptedAnswer": "implementation",
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "firstExpected": {
+        "action": "clarify",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify"
+        ],
+        "terminalRung": "clarify",
+        "terminalReason": "clarification-requested",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      },
+      "gold": {
+        "expectedIntents": [
+          "implementation"
+        ],
+        "expectedResources": [
+          "references/recovery-ladder.md"
+        ]
+      },
+      "expected": {
+        "action": "route",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify"
+        ],
+        "terminalRung": "clarify",
+        "terminalReason": "clarification-resolved-local-route",
+        "rankCalls": 0,
+        "rescoreCalls": 1,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "unthreaded-accepted-answer-is-rejected",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "acceptedAnswer": "implementation",
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify"
+        ],
+        "terminalRung": "clarify",
+        "terminalReason": "clarification-budget-state-required",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "clarify-then-handoff-spends-one-budget",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "continuationInput": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which legal local route matches the request?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "legalLocalCandidateRef": "local"
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": "remote",
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "firstExpected": {
+        "action": "clarify",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify"
+        ],
+        "terminalRung": "clarify",
+        "terminalReason": "clarification-requested",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-shared-budget-exhausted",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "nondiscriminating-ambiguity-defers",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which route matches?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation",
+            "inspection"
+          ],
+          "legalLocalCandidateRef": "local"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "no-match",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff",
+          "defer"
+        ],
+        "terminalRung": "defer",
+        "terminalReason": "defer-no-match",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "targetless-clarify-candidate-defers",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "clarify": {
+          "question": "Which route matches?",
+          "routeOptions": [
+            "implementation",
+            "inspection"
+          ],
+          "discriminatingAnswers": [
+            "implementation"
+          ],
+          "legalLocalCandidate": {}
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "no-match",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff",
+          "defer"
+        ],
+        "terminalRung": "defer",
+        "terminalReason": "defer-no-match",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "zero-signal-idle-no-default-union",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "idle",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff",
+          "defer"
+        ],
+        "terminalRung": "defer",
+        "terminalReason": "defer-idle",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "handoff-needs-input-does-not-reopen-turn",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": "remote",
+          "policyPermits": true,
+          "downstreamStatus": "NEEDS_INPUT"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "evidence-unavailable",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "downstream-needs-input-no-new-turn",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 1,
+        "ownershipTransfers": 1,
+        "downstreamNeedsInputAttempts": 1,
+        "ownerId": "destination:remote"
+      }
+    },
+    {
+      "scenarioId": "handoff-acceptance-transfers-ownership",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": "remote",
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "handoff-required",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-ownership-transferred",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 1,
+        "ownershipTransfers": 1,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:remote"
+      }
+    },
+    {
+      "scenarioId": "second-handoff-hop-is-refused",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": "remote",
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "continuationInput": {
+        "currentDestinationId": "destination:remote",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:local",
+          "candidateRef": "local",
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "firstExpected": {
+        "action": "defer",
+        "decisionReason": "handoff-required",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-ownership-transferred",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 1,
+        "ownershipTransfers": 1,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:remote"
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-hop-limit",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 1,
+        "handoffHopsUsed": 1,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:remote"
+      }
+    },
+    {
+      "scenarioId": "visited-handoff-destination-is-refused",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "budgetState": {
+          "requestId": "visited-handoff-destination-is-refused",
+          "contract": {
+            "schemaVersion": "V1",
+            "budgetId": "budget:visited-handoff-destination-is-refused",
+            "userTurns": 1,
+            "handoffHops": 1,
+            "visited": [
+              "destination:remote"
+            ]
+          },
+          "userTurnsUsed": 0,
+          "handoffHopsUsed": 0,
+          "visited": [
+            "destination:remote"
+          ],
+          "clarification": null
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": "remote",
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-visited-destination",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "unnamed-handoff-candidate-is-refused",
+      "input": {
+        "currentDestinationId": "destination:origin",
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "handoff": {
+          "sourceReason": "handoff-required",
+          "namedCandidateId": "destination:remote",
+          "candidateRef": null,
+          "policyPermits": true,
+          "downstreamStatus": "ACCEPTED"
+        }
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff"
+        ],
+        "terminalRung": "handoff",
+        "terminalReason": "handoff-candidate-not-distinct-viable",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 1,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": "destination:origin"
+      }
+    },
+    {
+      "scenarioId": "evidence-unavailable-defers",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "deferReason": "evidence-unavailable"
+      },
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "defer",
+        "decisionReason": "evidence-unavailable",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff",
+          "defer"
+        ],
+        "terminalRung": "defer",
+        "terminalReason": "defer-evidence-unavailable",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    },
+    {
+      "scenarioId": "invalid-request-reaches-reject-rung",
+      "input": {
+        "gate": {
+          "eligible": true,
+          "authorityDependencyAvailable": true,
+          "policyFresh": true
+        },
+        "invalid": true
+      },
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      },
+      "expected": {
+        "action": "reject",
+        "decisionReason": "invalid",
+        "rungInvocations": [
+          "eligibility-authority",
+          "route-or-certificate-gated-auto-route",
+          "clarify",
+          "handoff",
+          "defer",
+          "reject"
+        ],
+        "terminalRung": "reject",
+        "terminalReason": "request-invalid",
+        "rankCalls": 0,
+        "rescoreCalls": 0,
+        "handoffAttempts": 0,
+        "userTurnsUsed": 0,
+        "handoffHopsUsed": 0,
+        "ownershipTransfers": 0,
+        "downstreamNeedsInputAttempts": 0,
+        "ownerId": null
+      }
+    }
+  ]
+}

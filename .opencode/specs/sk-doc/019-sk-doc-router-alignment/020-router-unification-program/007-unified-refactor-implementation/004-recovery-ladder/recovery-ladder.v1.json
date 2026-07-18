@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "V1",
+  "contractKind": "ordered-negative-branch",
+  "routeDecisionSchemaSha256": "6b776b2fbdaf43996511d2d096bcc172d287d5a86609dd6c9dcd4013f481f5a7",
+  "uncertaintyBudgetSchemaSha256": "353a9cee567fc6e612e1c3f17088eb2bf30a88bbcf745923552361b136539b2c",
+  "rungs": [
+    "eligibility-authority",
+    "route-or-certificate-gated-auto-route",
+    "clarify",
+    "handoff",
+    "defer",
+    "reject"
+  ],
+  "budget": {
+    "schemaVersion": "V1",
+    "userTurns": 1,
+    "handoffHops": 1,
+    "sharedBy": [
+      "clarify",
+      "handoff"
+    ],
+    "downstreamNeedsInputReopensTurn": false,
+    "continuationField": "budgetState",
+    "threadingContract": "The caller passes the returned budgetState unchanged on re-entry under the same requestId.",
+    "threadedCountersMonotonic": true,
+    "unthreadedAcceptedAnswer": "reject-invalid"
+  },
+  "negativeContract": {
+    "actions": [
+      "clarify",
+      "defer",
+      "reject"
+    ],
+    "targetFree": true,
+    "authority": "Withheld"
+  },
+  "autoRoute": {
+    "rankIsEvidenceOnly": true,
+    "requiresPinnedValidatedRiskCertificate": true,
+    "certificateValidatorAvailable": false,
+    "withoutValidator": "fall-through"
+  }
+}

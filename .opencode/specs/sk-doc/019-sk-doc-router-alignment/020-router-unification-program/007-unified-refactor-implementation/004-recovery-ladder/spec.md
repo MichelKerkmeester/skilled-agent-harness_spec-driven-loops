@@ -13,6 +13,11 @@ contextType: "implementation"
 
 # Recovery Ladder — One Ordered Ladder on One Shared Uncertainty Budget
 
+**Implementation status**: Correctness-remediated and phase-locally verified as `shadow-partial`. The approved
+execution brief superseded this packet's planning-only delivery boundary while preserving its ban
+on live routing, registry, scorer, and skill changes. Strict spec validation remains
+orchestrator-owned and was not run here.
+
 ## EXECUTIVE SUMMARY
 
 This phase builds the **recovery plane** of the unified router: the single ordered ladder that fuses "no-wrong-door handoff" (Idea 4) and "calibrated negotiation" (Idea 5) into two rungs of one ladder drawing from **one** `UncertaintyBudgetV1 { userTurns: 1 }` (synthesis §2.1, §4 Seam B). The design decision this phase implements is the council's closure of Seam B: independent clarify and handoff budgets permit duplicate user turns and unbounded recovery loops, so both rungs share a single budget and recovery becomes **provably finite** (synthesis §4, Seam B row; §6 "Independent clarify + handoff budgets" eliminated).
