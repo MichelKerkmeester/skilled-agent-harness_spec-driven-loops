@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program",
+  "children_ids": [
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/003-typed-no-destination",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/004-no-wrong-door-handoff",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/005-calibrated-negotiation",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/007-proof-carrying-commit",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "out-of-box routing idea deep dives",
+      "per-idea routing research",
+      "routing idea presentations"
+    ],
+    "key_topics": [
+      "out-of-box",
+      "routing",
+      "idea",
+      "deep",
+      "dives",
+      "per-idea",
+      "research",
+      "presentations",
+      "sub-phase",
+      "parent",
+      "housing",
+      "eight"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Box Routing Idea Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sub-phase parent housing eight per-idea presentation docs plus a dedicated 5-iteration SOL xhigh-fast deep-research lineage for each lateral routing direction surfaced by the sol-oob out-of-box research: compiled-policy collapse, replayable correction overlay, typed no-destination, no-wrong-door handoff, calibrated negotiation, minimal typed contract, proof-carrying commit, and the (T,R,P) decomposition candidate. This is the exploration layer of the router-unification program; its eight directions were fused into the unified refactor design in sibling phase 006.",
+    "created_at": "2026-07-18T14:47:44.955Z",
+    "last_save_at": "2026-07-18T14:47:44.955Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2e0e0029e47f1b1a7e2c84fd97f7d55c8fbfac744cde70586e3292e3e6fd4864",
+    "source_doc_hashes": {
+      "spec.md": "5352c31e3ec26a2bd6590e0819fe31c6ec33e673138e613e1776382bc2208919"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program",
+  "description": "The fleet router-unification program: from making every skill's router consistent (3-tier standard), through the defaultMode policy question and its",
+  "keywords": [
+    "fleet",
+    "router-unification",
+    "program",
+    "every",
+    "skill",
+    "router",
+    "consistent",
+    "3-tier",
+    "standard",
+    "defaultmode",
+    "policy",
+    "question"
+  ],
+  "lastUpdated": "2026-07-18T14:58:05.299Z",
+  "specId": "020",
+  "folderSlug": "router-unification-program",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

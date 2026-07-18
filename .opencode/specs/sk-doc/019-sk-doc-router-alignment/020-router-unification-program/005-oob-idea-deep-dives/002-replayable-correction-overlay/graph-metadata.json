@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "replayable correction overlay deep dive",
+      "two-plane routing learning",
+      "hash-addressed routing overlay"
+    ],
+    "key_topics": [
+      "replayable",
+      "correction",
+      "overlay",
+      "deep",
+      "dive",
+      "two-plane",
+      "routing",
+      "learning",
+      "hash-addressed",
+      "five-iteration",
+      "sol",
+      "xhigh-fast"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replayable Correction Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "NEITHER",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXECUTIVE SUMMARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on a two-plane learning system for routing: an immutable content-addressed base policy served in production, plus a hash-addressed candidate overlay learned from correction telemetry in a separate plane, gated by shadow evaluation and held-out validation, promoted only by explicit governance, and rolled back by selecting a prior overlay hash — so routing can adapt without ever making offline replay irreproducible.",
+    "created_at": "2026-07-18T04:39:05.018Z",
+    "last_save_at": "2026-07-18T14:47:43.376Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0aa883defaec9df03f7f9577e75b2581792c5a8fc9d40d8ecbc3f9d94225195f",
+    "source_doc_hashes": {
+      "spec.md": "0a9a11e01a552bde324a7df7e378b1af31c231302eb22e7d608962d208fc4be6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

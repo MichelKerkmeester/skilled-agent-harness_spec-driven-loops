@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
+  "description": "Candidate 8th idea (from the GLM-5.2 parallel lineage): decompose routing policy into three orthogonal knobs — Threshold (how much evidence to",
+  "keywords": [
+    "candidate",
+    "8th",
+    "idea",
+    "glm-5",
+    "parallel",
+    "lineage",
+    "decompose",
+    "routing",
+    "policy",
+    "three",
+    "orthogonal",
+    "knobs",
+    "threshold",
+    "much",
+    "evidence"
+  ],
+  "lastUpdated": "2026-07-18T14:35:23.301Z",
+  "specId": "008",
+  "folderSlug": "trp-decomposition",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "005-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

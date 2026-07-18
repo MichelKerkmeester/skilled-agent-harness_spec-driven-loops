@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit",
+  "description": "A route decision is not an effect",
+  "keywords": [
+    "route",
+    "decision",
+    "effect"
+  ],
+  "lastUpdated": "2026-07-18T14:35:23.293Z",
+  "specId": "003",
+  "folderSlug": "execution-verify-commit",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

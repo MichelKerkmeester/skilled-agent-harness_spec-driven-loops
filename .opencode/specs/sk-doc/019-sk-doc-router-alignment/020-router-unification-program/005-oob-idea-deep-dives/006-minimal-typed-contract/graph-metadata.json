@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "minimal typed router contract deep dive",
+      "route request compiled policy route decision",
+      "defaultMode commitment smell"
+    ],
+    "key_topics": [
+      "minimal",
+      "typed",
+      "router",
+      "contract",
+      "deep",
+      "dive",
+      "route",
+      "request",
+      "compiled",
+      "policy",
+      "decision",
+      "defaultmode"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Minimal Typed Router Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "NEITHER",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on the smallest information-preserving router contract — RouteRequest facts + content-addressed CompiledPolicy + typed RouteDecision (single/orderedBundle/surfaceBundle/clarify/defer/reject) — that collapses the parallel INTENT_SIGNALS and RESOURCE_MAP declarations into compiled detectors and registry/leaf selectors while a policy-pinned modeId derives packet, backend, authority, and default resources, falsified against dissimilar hubs so no field can be removed without losing bundle roles, same-packet public modes, or the evidence-producing",
+    "created_at": "2026-07-18T04:39:05.620Z",
+    "last_save_at": "2026-07-18T14:47:41.952Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:389978969e3ba690f8f96b39aedf1c6d5b0cb4e086a8d38e250bd84b8710ce6c",
+    "source_doc_hashes": {
+      "spec.md": "62d6081ffed9e68c08e0a67309bce61b67e1df8aba75f624a4a4041c183d33a7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

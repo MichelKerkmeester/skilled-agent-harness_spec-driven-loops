@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
+  "description": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
+  "keywords": [
+    "pre-refactor",
+    "model",
+    "destination",
+    "addressed",
+    "workflowmode",
+    "name",
+    "packet",
+    "path"
+  ],
+  "lastUpdated": "2026-07-18T14:44:18.848Z",
+  "specId": "002",
+  "folderSlug": "system-deep-loop",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "006-parent-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

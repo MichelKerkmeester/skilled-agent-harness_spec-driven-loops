@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing policy deep dive",
+      "collapse intent signals resource map",
+      "registry-derived routing policy"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "policy",
+      "deep",
+      "dive",
+      "collapse",
+      "intent",
+      "signals",
+      "resource",
+      "map",
+      "registry-derived",
+      "five-iteration"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Policy Collapse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "NEITHER",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXECUTIVE SUMMARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on collapsing the two hand-authored routing maps (INTENT_SIGNALS + RESOURCE_MAP + hub-router.json + mode-registry.json) into one immutable, content-addressed, registry-derived compiled policy that Layer 0 and offline route-gold both read, backed by a thin packet-local resolver that validates, loads, and enforces.",
+    "created_at": "2026-07-18T04:39:04.885Z",
+    "last_save_at": "2026-07-18T14:47:43.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:05ee2862c51bb2a1535973d3335b2199960f71accac2876abef0c50db7fdab02",
+    "source_doc_hashes": {
+      "spec.md": "841c5d894cca3d396adabe4b1f283458d4cbf379c8ede7425c9fbf5d3eb01216"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

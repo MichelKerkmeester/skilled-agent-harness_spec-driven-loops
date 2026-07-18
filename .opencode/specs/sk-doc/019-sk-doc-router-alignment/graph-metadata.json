@@ -22,7 +22,8 @@
     "sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research",
     "sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research",
     "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research",
-    "sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research"
+    "sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program"
   ],
   "manual": {
     "depends_on": [],
@@ -107,7 +108,7 @@
     ],
     "causal_summary": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-17T06:10:32.124Z",
+    "last_save_at": "2026-07-18T14:50:02.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

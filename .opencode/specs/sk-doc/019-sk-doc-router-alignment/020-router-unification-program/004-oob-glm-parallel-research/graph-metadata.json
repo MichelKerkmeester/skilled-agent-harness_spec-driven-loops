@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/004-oob-glm-parallel-research",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/004-oob-glm-parallel-research",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "out-of-box routing glm parallel",
+      "glm-5.2 lateral routing ideas",
+      "glm parent hub routing synthesis",
+      "typed handoff routing",
+      "threshold recovery provenance routing"
+    ],
+    "key_topics": [
+      "out-of-box",
+      "routing",
+      "glm",
+      "parallel",
+      "glm-5",
+      "lateral",
+      "ideas",
+      "parent",
+      "hub",
+      "synthesis",
+      "typed",
+      "handoff"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Box Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Lineage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated Research Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Routing Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Scope",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Method Each",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Handoff The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in packet 021, so two models explore radical routing rethinks concurrently. Findings merge into the 021 defaultMode synthesis.",
+    "created_at": "2026-07-18T14:47:45.373Z",
+    "last_save_at": "2026-07-18T14:47:45.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:1d05c3b12c84a9c50e0418cf1a5d24aa05f7fb87e909a5a51c9d2c06eee47537",
+    "source_doc_hashes": {
+      "spec.md": "d56c78caa985959e2e5ee549aca947f079bff9c4e4cd164fecc8618f69240b85",
+      "research/research.md": "3e3ef5843f777dd08f41316c42424f7efd2c7e84f08a088bf9166efd3707dbbb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

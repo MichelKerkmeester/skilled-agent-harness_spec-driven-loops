@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/005-calibration/002-rank-vs-calibrated-contract",
+  "description": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
+  "keywords": [
+    "compiled",
+    "evaluator",
+    "already",
+    "carries",
+    "rankscore",
+    "scoremargin",
+    "evidence",
+    "inside",
+    "route",
+    "decision",
+    "synthesis"
+  ],
+  "lastUpdated": "2026-07-18T14:35:23.296Z",
+  "specId": "002",
+  "folderSlug": "rank-vs-calibrated-contract",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "005-calibration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

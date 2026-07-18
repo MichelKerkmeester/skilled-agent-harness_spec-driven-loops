@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/003-typed-no-destination",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives/003-typed-no-destination",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typed no-destination deep dive",
+      "no route control outcomes",
+      "typed defer instead of null"
+    ],
+    "key_topics": [
+      "typed",
+      "no-destination",
+      "deep",
+      "dive",
+      "route",
+      "control",
+      "outcomes",
+      "defer",
+      "instead",
+      "null",
+      "five-iteration",
+      "sol"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Destination Outcomes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy-versioned",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on replacing the undifferentiated null / silent-default zero-signal case with a typed router-owned control result (idle / no-match / dependency-failure / degraded-fallback / handoff-required plus defer / clarify), borrowing state distinctions from OS idle, IP no-route, DNS NXDOMAIN/NODATA, load-balancer fail-open, and no-wrong-door intake, with policy-versioned negative caching and a fail-open posture that is visible and forbidden for mutation-capable requests.",
+    "created_at": "2026-07-18T04:39:05.144Z",
+    "last_save_at": "2026-07-18T14:47:42.963Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8295664478ec427099cbbd1e57f75e1684f690bbb87db99258a48ff8b1317e32",
+    "source_doc_hashes": {
+      "spec.md": "e501355a350e944cde4615c4ade3db6d926625ef963663f13f0a0032836f7b74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

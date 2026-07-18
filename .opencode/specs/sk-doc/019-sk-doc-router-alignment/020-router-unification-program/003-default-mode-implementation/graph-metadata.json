@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/003-default-mode-implementation",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/003-default-mode-implementation",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "default mode implementation",
+      "flip hubs to null default",
+      "sk-design hub-identity over-emission fix",
+      "default mode implementation summary",
+      "hubs flipped to null default done",
+      "sk-design over-emission fixed"
+    ],
+    "key_topics": [
+      "default",
+      "mode",
+      "implementation",
+      "flip",
+      "hubs",
+      "null",
+      "sk-design",
+      "hub-identity",
+      "over-emission",
+      "summary",
+      "flipped",
+      "done"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Applied",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reversibility Originals",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implement the vetted defaultMode recs from 021 research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
+    "created_at": "2026-07-18T14:47:45.777Z",
+    "last_save_at": "2026-07-18T14:47:45.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:73646814c80355f1a88700d454a93025e2a32243da65f4760d0b358fdf83e257",
+    "source_doc_hashes": {
+      "spec.md": "37a0846ad2b25e1184d846bab07c47cd1d1463b99b3b327dfa73659f040f45ba",
+      "implementation-summary.md": "d480cfe99a4cb466677dd5e418cf99a1d17ab30e0e30e26c6d2804996e973353"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

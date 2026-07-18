@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/008-fleet-cleanup",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/008-fleet-cleanup",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fleet cleanup dual-read retirement",
+      "per-skill deletion gate router refactor",
+      "remove compatibility aliases hot card",
+      "fleet cleanup build plan",
+      "per-skill deletion driver plan",
+      "dual-read retirement approach",
+      "fleet cleanup tasks",
+      "per-skill deletion checklist",
+      "dual-read retirement tasks"
+    ],
+    "key_topics": [
+      "fleet",
+      "cleanup",
+      "dual-read",
+      "retirement",
+      "per-skill",
+      "deletion",
+      "gate",
+      "router",
+      "refactor",
+      "remove",
+      "compatibility",
+      "aliases"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Dual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Stage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Retire",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Preflight",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
+    "created_at": "2026-07-18T13:13:20.991Z",
+    "last_save_at": "2026-07-18T14:47:38.061Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:3f6145f1e34011d7a4e87793f9abd112537965af8d37af86c7f2b60b627f82ac",
+    "source_doc_hashes": {
+      "spec.md": "b2f4f6d4679a5c16b61e93ae185e4608947f239e0585ce2dfe2a9717bae8f1f2",
+      "plan.md": "260f630845decb2e0bd382c8ded2c7be96912722a7516844b05bd062c38de173",
+      "tasks.md": "89a53c31586e08264d7ff27f605e8f41eaa0399f9d91bd8a576c58c0988dc9f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/004-oob-glm-parallel-research",
+  "description": "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in packet 021, so two",
+  "keywords": [
+    "parallel",
+    "glm-5",
+    "2-max",
+    "out-of-box",
+    "research",
+    "lineage",
+    "iterations",
+    "non-converge",
+    "lateral",
+    "run",
+    "alongside",
+    "sol-ultra",
+    "packet",
+    "two"
+  ],
+  "lastUpdated": "2026-07-18T14:35:23.290Z",
+  "specId": "004",
+  "folderSlug": "oob-glm-parallel-research",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
