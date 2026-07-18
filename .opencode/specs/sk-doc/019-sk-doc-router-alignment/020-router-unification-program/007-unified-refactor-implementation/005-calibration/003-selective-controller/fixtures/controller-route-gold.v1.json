@@ -1,0 +1,465 @@
+{
+  "schemaVersion": "SelectiveControllerFixtureSetV1",
+  "base": {
+    "request": {
+      "requestId": "selective-controller-shadow-001",
+      "hubId": "sk-code",
+      "pinnedActivationGeneration": {
+        "generation": 1,
+        "effectivePolicyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d"
+      },
+      "riskSlice": "actor:mutating:single",
+      "policyPosture": {
+        "thresholdPolicy": "selective"
+      },
+      "evidence": []
+    },
+    "rankedCandidates": {
+      "candidateCount": 2,
+      "selectionKind": "single",
+      "rankingInvoked": true,
+      "candidates": [
+        {
+          "target": {
+            "destinationId": {
+              "skillId": "sk-code",
+              "workflowMode": "quality",
+              "packetId": "code-quality",
+              "packetKind": "workflow",
+              "backendKind": "surface-router"
+            },
+            "role": "actor",
+            "authorityRef": "sk-code:quality:verify",
+            "mutatesWorkspace": true
+          },
+          "localLegal": true,
+          "exactSignal": false
+        },
+        {
+          "target": {
+            "destinationId": {
+              "skillId": "sk-code",
+              "workflowMode": "code-review",
+              "packetId": "code-review",
+              "packetKind": "workflow",
+              "backendKind": "review-cache"
+            },
+            "role": "actor",
+            "authorityRef": "sk-code:code-review:verify",
+            "mutatesWorkspace": false
+          },
+          "localLegal": true,
+          "exactSignal": false
+        }
+      ],
+      "rankEvidence": {
+        "source": "compiled-policy",
+        "rankScore": {
+          "value": "0.870000",
+          "nonAuthority": true
+        },
+        "scoreMargin": {
+          "value": "0.190000",
+          "nonAuthority": true
+        },
+        "advisor": {
+          "trust": "absent"
+        }
+      },
+      "clarification": {
+        "question": "Is this an author-side quality gate or a findings-first review?",
+        "decisionCard": "Choose the one local workflow that matches the requested outcome.",
+        "options": [
+          {
+            "id": "quality",
+            "label": "Author-side quality gate",
+            "candidateIndex": 0
+          },
+          {
+            "id": "code-review",
+            "label": "Findings-first review",
+            "candidateIndex": 1
+          }
+        ]
+      },
+      "interaction": {
+        "attempt": 1,
+        "userTurnsUsed": 0
+      }
+    },
+    "certificateHandle": {
+      "state": "live",
+      "activeCertificateId": "de8f49083fb5df1150da09ae78a93efda6535cf52585449edca833850d106aca",
+      "certificate": {
+        "certificateId": "de8f49083fb5df1150da09ae78a93efda6535cf52585449edca833850d106aca",
+        "schemaVersion": "V1",
+        "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+        "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+        "method": "selective-classification-threshold",
+        "methodParams": {
+          "abstentionThreshold": "0.720000",
+          "coverageTarget": "0.750000"
+        },
+        "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+        "riskSlice": "actor:mutating:single",
+        "evaluationWindow": {
+          "corpusVersion": "V1",
+          "sampleCount": 1
+        },
+        "metrics": {
+          "expectedCalibrationError": "0.030000",
+          "selectiveRisk": "0.080000",
+          "coverage": "0.750000",
+          "sampleCount": 1
+        },
+        "status": "validated",
+        "generation": 1,
+        "validatedAt": "2026-07-18T10:30:00.000Z",
+        "validatedBy": "independent-calibration-validator",
+        "certHash": "62a3c54b53c86a13eccfcbb638d76aeb44274c1ba4bfa796a8f16d3182f18995"
+      }
+    },
+    "uncertaintyBudget": {
+      "schemaVersion": "V1",
+      "budgetId": "budget:selective-controller-shadow-001",
+      "userTurns": 1,
+      "handoffHops": 1,
+      "visited": []
+    },
+    "projection": {
+      "hubId": "sk-code",
+      "pinnedActivationGeneration": {
+        "generation": 1,
+        "effectivePolicyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d"
+      },
+      "leafPairs": [
+        {
+          "workflowMode": "quality",
+          "leafResourceId": "quality-skill"
+        }
+      ],
+      "manifestResources": [
+        {
+          "workflowMode": "quality",
+          "leafResourceId": "quality-skill",
+          "resource": "code-quality/SKILL.md"
+        },
+        {
+          "workflowMode": "code-review",
+          "leafResourceId": "review-skill",
+          "resource": "code-review/SKILL.md"
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "certified-signal-route",
+      "variant": "base",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/quality"],
+        "observedIntents": ["quality"],
+        "observedResources": ["code-quality/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "certified-signal-route",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "rankCalls": 1,
+        "thresholdCalls": 1,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "certified-bounded-default",
+      "variant": "bounded-default",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/code-review"],
+        "observedIntents": ["code-review"],
+        "observedResources": ["code-review/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "certified-bounded-default",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "rankCalls": 1,
+        "thresholdCalls": 1,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "absent-certificate-clarifies",
+      "variant": "certificate-absent",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_ABSENT",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "stale-certificate-clarifies",
+      "variant": "certificate-stale",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_STALE",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "policy-mismatch-clarifies",
+      "variant": "request-policy-mismatch",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_POLICY_MISMATCH",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "risk-slice-mismatch-clarifies",
+      "variant": "request-risk-mismatch",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_RISK_SLICE_MISMATCH",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "rank-only-never-routes",
+      "variant": "certificate-absent",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_ABSENT",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "accepted-answer-rescores-once",
+      "variant": "accepted-answer",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/quality"],
+        "observedIntents": ["quality"],
+        "observedResources": ["code-quality/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "accepted-answer-certified-route",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "rankCalls": 1,
+        "thresholdCalls": 1,
+        "rescoreCalls": 1
+      }
+    },
+    {
+      "id": "none-of-these-defers-no-match",
+      "variant": "accepted-none-of-these",
+      "typedGold": {
+        "decisionAction": "defer",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedDecisionReason": "no-match",
+      "expectedTrace": {
+        "branch": "accepted-answer-no-match",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 1
+      }
+    },
+    {
+      "id": "exhausted-attempt-defers",
+      "variant": "attempt-exhausted",
+      "typedGold": {
+        "decisionAction": "defer",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "bounded-abstention",
+        "certificateReason": "CERTIFICATE_ABSENT",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "zero-signal-defers",
+      "variant": "zero-signal",
+      "typedGold": {
+        "decisionAction": "defer",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "bounded-abstention",
+        "certificateReason": "CERTIFICATE_ABSENT",
+        "rankCalls": 0,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "zero-signal-valid-certificate-defers",
+      "variant": "zero-signal-valid-certificate",
+      "typedGold": {
+        "decisionAction": "defer",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedDecisionReason": "no-match",
+      "expectedTrace": {
+        "branch": "bounded-abstention",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "rankCalls": 0,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "spent-turn-cannot-clarify",
+      "variant": "spent-turn-clarification",
+      "typedGold": {
+        "decisionAction": "defer",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedDecisionReason": "evidence-unavailable",
+      "expectedTrace": {
+        "branch": "bounded-abstention",
+        "certificateReason": "CERTIFICATE_ABSENT",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0,
+        "userTurns": 1
+      }
+    },
+    {
+      "id": "malformed-certificate-threshold-abstains",
+      "variant": "malformed-certificate-threshold",
+      "typedGold": {
+        "decisionAction": "clarify",
+        "targetQualifiedIds": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "expectedTrace": {
+        "branch": "certificate-gated-clarify",
+        "certificateReason": "CERTIFICATE_THRESHOLD_INVALID",
+        "rankCalls": 1,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "advisor-stale-compiled-policy-parity",
+      "variant": "advisor-stale-combined",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/quality"],
+        "observedIntents": ["quality"],
+        "observedResources": ["code-quality/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "certified-signal-route",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "advisorReason": "ADVISOR_STALE_ANNOTATION_ONLY",
+        "rankCalls": 1,
+        "thresholdCalls": 1,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "advisor-absent-compiled-policy-parity",
+      "variant": "advisor-absent-combined",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/quality"],
+        "observedIntents": ["quality"],
+        "observedResources": ["code-quality/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "certified-signal-route",
+        "certificateReason": "CERTIFICATE_BOUND",
+        "advisorReason": "ADVISOR_ZERO_EVIDENCE",
+        "rankCalls": 1,
+        "thresholdCalls": 1,
+        "rescoreCalls": 0
+      }
+    },
+    {
+      "id": "singular-exact-signal",
+      "variant": "singular-exact",
+      "typedGold": {
+        "decisionAction": "route",
+        "selectionKind": "single",
+        "targetQualifiedIds": ["sk-code/quality"],
+        "observedIntents": ["quality"],
+        "observedResources": ["code-quality/SKILL.md"]
+      },
+      "expectedTrace": {
+        "branch": "singular-exact-signal",
+        "rankCalls": 0,
+        "thresholdCalls": 0,
+        "rescoreCalls": 0
+      }
+    }
+  ],
+  "hardFailureCases": [
+    { "id": "second-user-turn", "mutation": "second-user-turn" },
+    { "id": "fourth-candidate-option", "mutation": "fourth-candidate-option" },
+    { "id": "third-attempt", "mutation": "third-attempt" },
+    { "id": "two-hundred-fifty-seventh-card-token", "mutation": "card-257-tokens" },
+    { "id": "singular-ranking-invocation", "mutation": "singular-ranking" },
+    { "id": "singular-bundle-hard-block", "mutation": "singular-ordered-bundle" }
+  ]
+}

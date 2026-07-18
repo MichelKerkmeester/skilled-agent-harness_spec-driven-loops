@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "SelectiveControllerPromotionMetricsV1",
+  "corpusAuthority": {
+    "artifact": "CalibrationCorpusV1",
+    "slice": "Records from the immutable held-out corpus whose hubId, effectivePolicyHash, generation, and riskSlice.id equal the certificate candidate bindings.",
+    "thresholdRule": "A score-to-risk threshold may be promoted only from risk and coverage measured on this bound held-out slice. Fleet-wide constants and in-sample router output are inadmissible."
+  },
+  "metrics": [
+    {
+      "name": "coverage",
+      "numerator": "Bound slice records on which the candidate threshold emits route.",
+      "denominator": "All admissible records in the bound held-out slice.",
+      "unit": "ratio"
+    },
+    {
+      "name": "selectiveRisk",
+      "numerator": "Incorrect route decisions among bound slice records on which the candidate threshold emits route.",
+      "denominator": "Bound slice records on which the candidate threshold emits route; undefined when coverage is zero and therefore not promotable.",
+      "unit": "ratio"
+    },
+    {
+      "name": "optionRecall",
+      "numerator": "Clarify-eligible bound slice records whose gold legal local target appears among the emitted candidate options.",
+      "denominator": "Bound slice records whose gold action is clarify and whose label identifies a legal local target.",
+      "unit": "ratio"
+    },
+    {
+      "name": "clarificationResolution",
+      "numerator": "Clarified bound slice records whose single accepted answer resolves after exactly one rescore to the labeled route or labeled no-match.",
+      "denominator": "Bound slice records on which clarify is emitted and an answer is accepted or none_of_these is selected.",
+      "unit": "ratio"
+    },
+    {
+      "name": "cancelDecline",
+      "numerator": "Clarified bound slice records answered with none_of_these, explicit decline, or cancellation.",
+      "denominator": "Bound slice records on which clarify is emitted.",
+      "unit": "ratio"
+    },
+    {
+      "name": "addedTurns",
+      "numerator": "Sum of user turns introduced by the controller across the bound slice.",
+      "denominator": "All admissible records in the bound held-out slice.",
+      "unit": "mean turns per record",
+      "hardMaximumPerRecord": 1
+    },
+    {
+      "name": "cardSize",
+      "numerator": "Sum of deterministic contract-token counts for emitted decision cards across the bound slice.",
+      "denominator": "Bound slice records on which a decision card is emitted.",
+      "unit": "mean contract tokens per emitted card",
+      "hardMaximumPerCard": 256
+    }
+  ]
+}

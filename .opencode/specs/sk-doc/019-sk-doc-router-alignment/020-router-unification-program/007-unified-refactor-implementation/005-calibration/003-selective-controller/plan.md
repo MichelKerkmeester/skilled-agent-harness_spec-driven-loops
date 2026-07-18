@@ -7,6 +7,7 @@ trigger_phrases:
   - "friction budget assertions plan"
 importance_tier: "critical"
 contextType: "implementation"
+status: "shadow-partial"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -32,18 +33,22 @@ Specify `SelectiveControllerV1` as the terminal arbiter that consumes ranked can
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `spec.md` REQ-001..REQ-010 are stable and scope is frozen.
-- [ ] Upstream handles exist as contracts: `005/001` corpus shape, `005/002` certificate schema, `002` algebra, `004` budget.
-- [ ] The four friction bounds and seven promotion metrics are enumerated and unambiguous.
+- [x] `spec.md` REQ-001..REQ-010 are stable and scope is frozen.
+- [x] Upstream handles exist as contracts: `005/001` corpus shape, `005/002` certificate schema, `002` algebra, `004` budget.
+- [x] The four friction bounds and seven promotion metrics are enumerated and unambiguous.
 
 ### Definition of Done
-- [ ] `SelectiveControllerV1` contract fully specified (inputs, output, purity, ladder).
-- [ ] Certificate gate specified: absent/stale/mismatch ⇒ auto-route structurally unavailable.
-- [ ] Friction budget written as four replayable assertions.
-- [ ] Seven promotion metrics defined with counting rule + corpus slice; threshold-ships-only-from-held-out-evidence stated.
-- [ ] Typed route-gold fixture families authored (projector-mapped); scorer untouched.
-- [ ] Migration gate named (Stage 3 satisfied; Stage 4 certificate published).
+- [x] `SelectiveControllerV1` contract fully specified (inputs, output, purity, ladder).
+- [x] Certificate gate specified: absent/stale/mismatch ⇒ auto-route structurally unavailable.
+- [x] Friction budget written as four replayable assertions.
+- [x] Seven promotion metrics defined with counting rule + corpus slice; threshold-ships-only-from-held-out-evidence stated.
+- [x] Typed route-gold fixture families authored (projector-mapped); scorer untouched.
+- [x] Migration gate named (Stage 3 shadow evidence published; Stage 4 certificate hand-off specified).
 - [ ] `validate.sh --strict` clean after sibling metadata backfill.
+
+**Evidence:** `node harness/validate-selective-controller.cjs` exits 0 with 17
+route-gold rows, five new edge falsifiers, byte-invisible projection, and the
+three frozen scorer digests unchanged; strict packet validation was prohibited.
 
 ## 3. ARCHITECTURE
 
@@ -97,30 +102,37 @@ Design-only phase; no runtime surface is mutated. The table records the *contrac
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Contract definition
-- [ ] Write the `SelectiveControllerV1` signature and field provenance table.
-- [ ] State purity, determinism, and the "no field grants authority" invariant (synthesis §2.3, §10).
-- [ ] Fix the reachable action set and the target-free/authority-withheld rule for non-`route` branches.
+- [x] Write the `SelectiveControllerV1` signature and field provenance table.
+- [x] State purity, determinism, and the "no field grants authority" invariant (synthesis §2.3, §10).
+- [x] Fix the reachable action set and the target-free/authority-withheld rule for non-`route` branches.
 
 ### Phase 2: Certificate gate + abstention ladder
-- [ ] Specify certificate identity validation against the pinned policy tuple + risk slice.
-- [ ] Specify the `absent | stale | mismatch ⇒ auto-route unavailable` fall-through to `clarify`/`defer` (never silent `bounded-default`) (synthesis §8.1).
-- [ ] Encode the terminal ladder (rung 2 auto-route → rung 3 clarify → rescore → defer/reject) drawing from the single budget (synthesis §4).
-- [ ] Specify the bounded, read-only, visible-before-run rescore (synthesis §2.3 `degraded-fallback` discipline).
+- [x] Specify certificate identity validation against the pinned policy tuple + risk slice.
+- [x] Specify the `absent | stale | mismatch ⇒ auto-route unavailable` fall-through to `clarify`/`defer` (never silent `bounded-default`) (synthesis §8.1).
+- [x] Encode the terminal ladder (rung 2 auto-route → rung 3 clarify → rescore → defer/reject) drawing from the single budget (synthesis §4).
+- [x] Specify the bounded, read-only, visible-before-run rescore (synthesis §2.3 `degraded-fallback` discipline).
 
 ### Phase 3: Friction budget + promotion metrics
-- [ ] Write the four friction assertions (1 turn; ≤3 + `none_of_these`; ≤2 attempts; ≤256-token card) as replay-checkable predicates.
-- [ ] Define the seven promotion metrics (coverage, selectiveRisk, optionRecall, clarificationResolution, cancel/decline, added-turns, card size) with counting rule + corpus slice.
-- [ ] State the promotion rule: threshold ships only from `005/001` held-out risk/coverage evidence, never a fleet-wide constant (synthesis §8.1, §11 Q2, §12).
+- [x] Write the four friction assertions (1 turn; ≤3 + `none_of_these`; ≤2 attempts; ≤256-token card) as replay-checkable predicates.
+- [x] Define the seven promotion metrics (coverage, selectiveRisk, optionRecall, clarificationResolution, cancel/decline, added-turns, card size) with counting rule + corpus slice.
+- [x] State the promotion rule: threshold ships only from `005/001` held-out risk/coverage evidence, never a fleet-wide constant (synthesis §8.1, §11 Q2, §12).
 
 ### Phase 4: Fixtures + degeneracy + advisor read
-- [ ] Author `TypedRouteGoldV1` controller fixture families: certified auto-route; certificate-absent fallback to clarify; one-turn clarify with `none_of_these`; budget-exhaustion → defer; forbidden auto-route on stale certificate → reject; N=1 zero-threshold path; stale/absent advisor parity.
-- [ ] Assert every fixture projects through the existing compatibility projector with the scorer untouched (synthesis §8.2).
-- [ ] Specify the N=1 constant-fold (no calibration/threshold call at `mcp-code-mode`) and the advisor evidence-only read (synthesis §5.1, §8.1).
+- [x] Author `TypedRouteGoldV1` controller fixture families: certified auto-route; certificate-absent fallback to clarify; one-turn clarify with `none_of_these`; budget-exhaustion → defer; forbidden auto-route on stale certificate → reject; N=1 zero-threshold path; stale/absent advisor parity.
+- [x] Assert every fixture projects through the existing compatibility projector with the scorer untouched (synthesis §8.2).
+- [x] Specify the N=1 constant-fold (no calibration/threshold call at `mcp-code-mode`) and the advisor evidence-only read (synthesis §5.1, §8.1).
+
+**Evidence:** The fixture lane now covers sentinel no-match, certified
+zero-signal, spent-turn clarification, singular bundle rejection, and malformed
+certificate abstention with branch-specific reasons.
 
 ### Phase 5: Verification + gate closeout
-- [ ] Confirm Stage 3 gate language (deterministic typed replay, projector parity, gold never auto-updates).
-- [ ] Confirm the Stage 4 certificate hand-off is specified for `006/*`.
+- [x] Confirm Stage 3 gate language (deterministic typed replay, projector parity, gold never auto-updates).
+- [x] Confirm the Stage 4 certificate hand-off is specified for `006/*`.
 - [ ] Run `validate.sh --strict` after sibling metadata backfill.
+
+**Evidence:** Targeted Stage-3 validation is green; strict packet validation
+remains intentionally unchecked under the explicit no-`validate.sh` constraint.
 
 ## 5. TESTING STRATEGY
 
@@ -169,9 +181,9 @@ Phase 3 (Friction budget + metrics) ─┘────────────�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-authoring checklist
-- [ ] Confirmed upstream sibling contracts are read, not assumed.
-- [ ] Confirmed no fixture forces a scorer edit.
-- [ ] Confirmed no numeric threshold value is being fixed in this phase.
+- [x] Confirmed upstream sibling contracts are read, not assumed.
+- [x] Confirmed no fixture forces a scorer edit.
+- [x] Confirmed no numeric threshold value is being fixed in this phase.
 
 ### Rollback procedure
 1. Revert the three authored docs in this folder.

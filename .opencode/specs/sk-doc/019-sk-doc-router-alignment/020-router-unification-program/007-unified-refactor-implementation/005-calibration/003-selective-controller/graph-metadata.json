@@ -36,13 +36,23 @@
       "certificate"
     ],
     "importance_tier": "critical",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
+      "lib/selective-controller.cjs",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "spec.md",
+      "fixtures/controller-route-gold.v1.json",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "selective-controller.cjs",
+        "kind": "file",
+        "path": "lib/selective-controller.cjs",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -59,6 +69,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "controller-route-gold.v1.json",
+        "kind": "config",
+        "path": "fixtures/controller-route-gold.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -152,27 +180,37 @@
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The evaluator (`002`) can already emit the closed four-action algebra, and the recovery ladder (`004`) already orders `clarify → handoff → defer/reject` on one budget",
     "created_at": "2026-07-18T13:13:18.777Z",
-    "last_save_at": "2026-07-18T14:47:37.000Z",
+    "last_save_at": "2026-07-18T23:07:30.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9be8ee44749932a9c76225d6c81512a176c5d1965a711f58629a7a2b4e89be2",
+    "source_fingerprint": "sha256:5fdc9293ae220a3b770a4b901c2a51dbdcbd5d8338dc572bfa116b59109c36f0",
     "source_doc_hashes": {
-      "spec.md": "af5c9e6f41164c1ad1df769f8a4f00092090d6e1f8a6e98388edde08121b404e",
-      "plan.md": "ea2d6f68f3d58d4a0ce21b50b3203d4efdeb452031c9bee75c5c26c2c8d5fb06",
-      "tasks.md": "1ed8954e0900a008c24ef525f7bf019f44f06c6fda0904487df2f38e24046d9c"
+      "spec.md": "dc55c0df26010c6eba49fbfc34861c91eb45c7cbde86fcc76f975ba0d9f96db9",
+      "plan.md": "f7ff88c7e09dd3efbc0f7cc21f4c919a21003d0388c7136d64ffc9f5e70e1014",
+      "tasks.md": "43ab4aa23708f8878c53d702b07183bf002ff9998ffb41acc22d1c378a768e06",
+      "checklist.md": "4e983f8138fe427dfa0d9b5ac534badd89097bf519b962bc5d703d221cad8017",
+      "implementation-summary.md": "84b6fd3fd0c2692ee679d7b27869bfd1f59531e264e031effeed491a4b732ab1"
     },
     "last_active_child_id": null,
     "last_active_at": null
