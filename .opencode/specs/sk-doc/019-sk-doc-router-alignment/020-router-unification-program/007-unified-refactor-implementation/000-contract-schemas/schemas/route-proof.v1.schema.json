@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/route-proof.v1.schema.json",
+  "title": "RouteProofV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "destinationId", "readSet", "epoch", "expiresAtEpoch", "idempotencyKey", "attestation", "proofHash"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "destinationId": { "$ref": "#/$defs/destinationId" },
+    "readSet": { "type": "array", "items": { "$ref": "#/$defs/readEntry" } },
+    "epoch": { "type": "integer", "minimum": 0 },
+    "expiresAtEpoch": { "type": "integer", "minimum": 0 },
+    "idempotencyKey": { "type": "string", "minLength": 1 },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issuer", "statementHash"],
+      "properties": {
+        "issuer": { "type": "string", "minLength": 1 },
+        "statementHash": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "proofHash": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "destinationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
+      "properties": {
+        "skillId": { "type": "string", "minLength": 1 },
+        "workflowMode": { "type": "string", "minLength": 1 },
+        "packetId": { "type": "string", "minLength": 1 },
+        "packetKind": { "type": "string", "minLength": 1 },
+        "backendKind": { "type": "string", "minLength": 1 },
+        "runtimeDiscriminator": { "type": "string", "minLength": 1 }
+      }
+    },
+    "readEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resourceId", "digest"],
+      "properties": {
+        "resourceId": { "type": "string", "minLength": 1 },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    }
+  }
+}

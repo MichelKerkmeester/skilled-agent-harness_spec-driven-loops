@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "V1",
+  "hubId": "sk-code",
+  "aliases": [
+    "code",
+    "implementation"
+  ],
+  "eligibleModes": [
+    {
+      "qualifiedId": "sk-code/implementation",
+      "publicMode": "implementation",
+      "routingClass": "actor"
+    },
+    {
+      "qualifiedId": "sk-code/context",
+      "publicMode": "context",
+      "routingClass": "evidence"
+    }
+  ],
+  "admissionLabels": [
+    "code-change",
+    "code-context"
+  ],
+  "effectivePolicyHash": "d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f",
+  "projectionHash": "702da1a35bc2a8eda878fbb2278b3767deecd57dd7f8bd658f5251c12ebb0719"
+}

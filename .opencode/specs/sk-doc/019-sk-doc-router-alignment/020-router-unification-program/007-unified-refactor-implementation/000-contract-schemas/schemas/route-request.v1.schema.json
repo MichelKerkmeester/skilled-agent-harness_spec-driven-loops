@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/route-request.v1.schema.json",
+  "title": "RouteRequestV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "requestFactsHash", "observations", "evidence", "pinnedActivationGeneration"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "requestFactsHash": { "$ref": "#/$defs/digest" },
+    "explicitMode": { "type": "string", "minLength": 1 },
+    "observations": { "type": "array", "items": { "$ref": "#/$defs/observation" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "pinnedActivationGeneration": { "type": "integer", "minimum": 0 }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "enum": ["intent", "resource", "command", "constraint"] },
+        "value": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "value", "provenance", "trust"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["advisor", "authored", "runtime", "compatibility"] },
+        "value": { "type": "string" },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "capturedAtEpoch"],
+          "properties": {
+            "source": { "type": "string", "minLength": 1 },
+            "capturedAtEpoch": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "trust": { "enum": ["live", "stale", "absent", "unavailable"] }
+      }
+    }
+  }
+}

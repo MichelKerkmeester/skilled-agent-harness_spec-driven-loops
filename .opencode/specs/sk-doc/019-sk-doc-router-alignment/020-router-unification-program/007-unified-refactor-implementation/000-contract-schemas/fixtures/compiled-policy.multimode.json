@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 7,
+  "destinations": [
+    {
+      "id": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "role": "actor",
+      "authorityRef": "authority:sk-code",
+      "mutatesWorkspace": true
+    },
+    {
+      "id": {
+        "skillId": "system-code-graph",
+        "workflowMode": "context",
+        "packetId": "packet-code-graph",
+        "packetKind": "evidence",
+        "backendKind": "mcp"
+      },
+      "role": "evidence",
+      "authorityRef": "authority:read-only",
+      "mutatesWorkspace": false
+    },
+    {
+      "id": {
+        "skillId": "mcp-tooling",
+        "workflowMode": "figma",
+        "packetId": "packet-figma",
+        "packetKind": "transport",
+        "backendKind": "remote",
+        "runtimeDiscriminator": "plugin-api"
+      },
+      "role": "transport",
+      "authorityRef": "authority:figma-transport",
+      "mutatesWorkspace": true
+    }
+  ],
+  "detectors": [
+    {
+      "id": "detector:implementation",
+      "kind": "exact",
+      "value": "implement"
+    },
+    {
+      "id": "detector:figma",
+      "kind": "resource",
+      "value": "figma"
+    }
+  ],
+  "selectors": [
+    {
+      "id": "selector:implementation",
+      "destinationId": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "detectorIds": [
+        "detector:implementation"
+      ]
+    },
+    {
+      "id": "selector:figma",
+      "destinationId": {
+        "skillId": "mcp-tooling",
+        "workflowMode": "figma",
+        "packetId": "packet-figma",
+        "packetKind": "transport",
+        "backendKind": "remote",
+        "runtimeDiscriminator": "plugin-api"
+      },
+      "detectorIds": [
+        "detector:figma"
+      ]
+    }
+  ],
+  "compositionRules": [
+    {
+      "kind": "surfaceBundle",
+      "targetIds": [
+        {
+          "skillId": "sk-code",
+          "workflowMode": "implementation",
+          "packetId": "packet-impl",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        {
+          "skillId": "system-code-graph",
+          "workflowMode": "context",
+          "packetId": "packet-code-graph",
+          "packetKind": "evidence",
+          "backendKind": "mcp"
+        }
+      ]
+    },
+    {
+      "kind": "orderedBundle",
+      "targetIds": [
+        {
+          "skillId": "sk-code",
+          "workflowMode": "implementation",
+          "packetId": "packet-impl",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        {
+          "skillId": "mcp-tooling",
+          "workflowMode": "figma",
+          "packetId": "packet-figma",
+          "packetKind": "transport",
+          "backendKind": "remote",
+          "runtimeDiscriminator": "plugin-api"
+        }
+      ]
+    }
+  ],
+  "authorityGraph": [
+    {
+      "fromAuthorityRef": "authority:sk-code",
+      "toDestinationId": {
+        "skillId": "mcp-tooling",
+        "workflowMode": "figma",
+        "packetId": "packet-figma",
+        "packetKind": "transport",
+        "backendKind": "remote",
+        "runtimeDiscriminator": "plugin-api"
+      },
+      "relation": "approveBeforeCommit"
+    },
+    {
+      "fromAuthorityRef": "authority:read-only",
+      "toDestinationId": {
+        "skillId": "system-code-graph",
+        "workflowMode": "context",
+        "packetId": "packet-code-graph",
+        "packetKind": "evidence",
+        "backendKind": "mcp"
+      },
+      "relation": "evidenceOnly"
+    }
+  ],
+  "thresholdPolicy": {
+    "kind": "calibrated",
+    "thresholds": [
+      "0.80",
+      "0.15"
+    ]
+  },
+  "recoveryPolicy": {
+    "ladder": [
+      "clarify",
+      "handoff",
+      "defer",
+      "reject"
+    ],
+    "userTurns": 1,
+    "handoffHops": 1
+  },
+  "provenancePolicy": {
+    "kind": "offline-learned",
+    "sourceHashes": [
+      "fe8d8fcd8347e9cc5b83be769c4ffa952bc6573690f133312542f9d81b14f037"
+    ]
+  },
+  "basePolicyHash": "d8181caacfb1a60f76a6ab5c3bf0264fca055ebbce7a22a2c99a98c237995d1d",
+  "overlayHash": "183d53b1091a5c89a6565241c91751a062d249420cd6e0ead41883e05e20cc52",
+  "effectivePolicyHash": "d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f"
+}

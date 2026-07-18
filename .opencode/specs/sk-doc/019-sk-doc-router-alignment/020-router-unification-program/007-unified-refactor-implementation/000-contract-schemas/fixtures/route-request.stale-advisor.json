@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "V1",
+  "observations": [
+    {
+      "kind": "intent",
+      "value": "implement contract schemas"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "advisor:stale",
+      "kind": "advisor",
+      "value": "annotation-only",
+      "provenance": {
+        "source": "advisor-projection",
+        "capturedAtEpoch": 7
+      },
+      "trust": "stale"
+    }
+  ],
+  "pinnedActivationGeneration": 7,
+  "requestFactsHash": "28b35e167447007206c6d04ba2ff9a6d15f0598d8e6a46904583242e048f172c"
+}

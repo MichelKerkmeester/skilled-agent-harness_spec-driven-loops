@@ -33,7 +33,7 @@ It also resolves **synthesis open-question 4** — "Canonical JSON serialization
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Implemented — local harness green; strict packet validation delegated to orchestrator |
 | **Created** | 2026-07-18 |
 | **Branch** | `000-contract-schemas` |
 | **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |

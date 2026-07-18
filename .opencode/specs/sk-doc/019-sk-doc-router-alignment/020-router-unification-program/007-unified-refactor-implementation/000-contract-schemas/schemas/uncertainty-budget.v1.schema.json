@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/uncertainty-budget.v1.schema.json",
+  "title": "UncertaintyBudgetV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "budgetId", "userTurns", "handoffHops", "visited"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "budgetId": { "type": "string", "minLength": 1 },
+    "userTurns": { "const": 1 },
+    "handoffHops": { "const": 1 },
+    "visited": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  }
+}

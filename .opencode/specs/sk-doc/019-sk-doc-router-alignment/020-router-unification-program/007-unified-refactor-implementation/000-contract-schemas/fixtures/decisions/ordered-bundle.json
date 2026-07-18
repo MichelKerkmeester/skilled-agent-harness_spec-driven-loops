@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "V1",
+  "action": "route",
+  "route": {
+    "selectionKind": "orderedBundle",
+    "targets": [
+      {
+        "destinationId": {
+          "skillId": "sk-code",
+          "workflowMode": "implementation",
+          "packetId": "packet-impl",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        "role": "judgment",
+        "authorityRef": "authority:sk-code",
+        "mutatesWorkspace": true
+      },
+      {
+        "destinationId": {
+          "skillId": "mcp-tooling",
+          "workflowMode": "figma",
+          "packetId": "packet-figma",
+          "packetKind": "transport",
+          "backendKind": "remote",
+          "runtimeDiscriminator": "plugin-api"
+        },
+        "role": "transport",
+        "authorityRef": "authority:figma-transport",
+        "mutatesWorkspace": true
+      }
+    ],
+    "basis": {
+      "kind": "signal"
+    },
+    "evidence": [
+      {
+        "kind": "rankScore",
+        "value": "9",
+        "nonAuthority": true
+      }
+    ],
+    "authority": "WithheldUntilVerify"
+  }
+}

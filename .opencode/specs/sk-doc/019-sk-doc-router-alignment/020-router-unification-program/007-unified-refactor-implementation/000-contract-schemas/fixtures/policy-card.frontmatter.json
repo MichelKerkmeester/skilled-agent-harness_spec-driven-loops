@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "V1",
+  "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+  "hubId": "mcp-code-mode",
+  "admission": [
+    "exact leaf admission",
+    "zero signal defers"
+  ],
+  "qualifiedRoles": [
+    "mcp-code-mode/code-mode:actor"
+  ],
+  "bundleGrammar": [
+    "single"
+  ],
+  "thresholdPolicy": "exact-admission",
+  "recoveryBudget": "one clarify turn; no handoff candidate at N=1",
+  "negativeReasons": [
+    "no-match",
+    "forbidden"
+  ],
+  "authorityEdges": [],
+  "lifecycleChecklist": [
+    "prepare",
+    "verify",
+    "commit",
+    "receipt"
+  ],
+  "limitations": [
+    "DOCUMENT_ONLY_UNATTESTED",
+    "PREPARED_DRAFT"
+  ],
+  "humanViewHash": "1fb5ce06700c07d8f401c8c9e4bd9a7fffd6039b7d7eff173c5fa123527e2080"
+}

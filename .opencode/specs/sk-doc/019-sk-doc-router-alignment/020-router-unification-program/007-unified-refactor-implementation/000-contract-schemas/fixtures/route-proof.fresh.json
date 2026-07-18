@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "V1",
+  "destinationId": {
+    "skillId": "sk-code",
+    "workflowMode": "implementation",
+    "packetId": "packet-impl",
+    "packetKind": "workflow",
+    "backendKind": "native"
+  },
+  "readSet": [
+    {
+      "resourceId": "policy:active",
+      "digest": "d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f"
+    }
+  ],
+  "epoch": 7,
+  "expiresAtEpoch": 9,
+  "idempotencyKey": "request-7:actor",
+  "attestation": {
+    "issuer": "destination-verify",
+    "statementHash": "4360fbec64064531da98ef98a941c5c4825be89d0c1a2a642dfbbac30cd9b1bb"
+  },
+  "proofHash": "f77fb5b8a2fc3338d7908a728be1a10fe42ed6b488ed5ea375a126691943d76b"
+}

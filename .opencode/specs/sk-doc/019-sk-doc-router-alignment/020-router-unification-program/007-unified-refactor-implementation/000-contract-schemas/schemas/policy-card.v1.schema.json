@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/policy-card.v1.schema.json",
+  "title": "PolicyCardV1",
+  "description": "Schema for generated Markdown front matter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "effectivePolicyHash", "humanViewHash", "hubId", "admission", "qualifiedRoles", "bundleGrammar", "thresholdPolicy", "recoveryBudget", "negativeReasons", "authorityEdges", "lifecycleChecklist", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" },
+    "humanViewHash": { "$ref": "#/$defs/digest" },
+    "hubId": { "type": "string", "minLength": 1 },
+    "admission": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "qualifiedRoles": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "bundleGrammar": { "type": "array", "items": { "enum": ["single", "orderedBundle", "surfaceBundle"] } },
+    "thresholdPolicy": { "type": "string", "minLength": 1 },
+    "recoveryBudget": { "type": "string", "minLength": 1 },
+    "negativeReasons": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "authorityEdges": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "lifecycleChecklist": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

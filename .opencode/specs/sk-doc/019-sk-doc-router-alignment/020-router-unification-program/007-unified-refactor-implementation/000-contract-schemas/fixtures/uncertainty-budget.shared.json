@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "V1",
+  "budgetId": "budget:request-1",
+  "userTurns": 1,
+  "handoffHops": 1,
+  "visited": [
+    "sk-code/implementation"
+  ]
+}

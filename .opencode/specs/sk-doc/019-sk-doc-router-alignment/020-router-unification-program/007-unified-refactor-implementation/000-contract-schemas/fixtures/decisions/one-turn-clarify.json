@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "V1",
+  "action": "clarify",
+  "clarify": {
+    "question": "Which local route matches the request?",
+    "budgetRef": "budget:request-1",
+    "alternatives": [
+      "implementation",
+      "inspection",
+      "none_of_these"
+    ],
+    "authority": "Withheld"
+  }
+}

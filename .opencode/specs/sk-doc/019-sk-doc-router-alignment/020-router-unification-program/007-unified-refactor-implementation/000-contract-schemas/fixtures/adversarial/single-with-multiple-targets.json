@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "V1",
+  "action": "route",
+  "route": {
+    "selectionKind": "single",
+    "targets": [
+      {
+        "destinationId": {
+          "skillId": "mcp-code-mode",
+          "workflowMode": "code-mode",
+          "packetId": "packet-code-mode",
+          "packetKind": "standalone",
+          "backendKind": "utcp"
+        },
+        "role": "actor",
+        "authorityRef": "authority:mcp-code-mode",
+        "mutatesWorkspace": false
+      },
+      {
+        "destinationId": {
+          "skillId": "sk-code",
+          "workflowMode": "implementation",
+          "packetId": "packet-impl",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        "role": "actor",
+        "authorityRef": "authority:sk-code",
+        "mutatesWorkspace": true
+      }
+    ],
+    "basis": {
+      "kind": "signal"
+    },
+    "evidence": [],
+    "authority": "WithheldUntilVerify"
+  }
+}

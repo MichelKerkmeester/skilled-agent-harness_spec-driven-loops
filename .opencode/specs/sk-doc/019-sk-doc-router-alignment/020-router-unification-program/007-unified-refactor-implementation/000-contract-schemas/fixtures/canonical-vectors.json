@@ -1,0 +1,52 @@
+[
+  {
+    "input": {
+      "2": 2,
+      "10": 1
+    },
+    "expectedCanonicalBytes": "{\"10\":1,\"2\":2}"
+  },
+  {
+    "input": {
+      "outer": {
+        "z": 0,
+        "a": {
+          "b": 2,
+          "a": 1
+        }
+      },
+      "a": "first"
+    },
+    "expectedCanonicalBytes": "{\"a\":\"first\",\"outer\":{\"a\":{\"a\":1,\"b\":2},\"z\":0}}"
+  },
+  {
+    "input": [
+      {
+        "b": 2,
+        "a": 1
+      },
+      {
+        "2": 2,
+        "10": 10
+      }
+    ],
+    "expectedCanonicalBytes": "[{\"a\":1,\"b\":2},{\"10\":10,\"2\":2}]"
+  },
+  {
+    "input": {
+      "nothing": null,
+      "items": [],
+      "flag": true,
+      "empty": {}
+    },
+    "expectedCanonicalBytes": "{\"empty\":{},\"flag\":true,\"items\":[],\"nothing\":null}"
+  },
+  {
+    "input": {
+      "😀": "astral",
+      "é": "composed",
+      "a": "ascii"
+    },
+    "expectedCanonicalBytes": "{\"a\":\"ascii\",\"é\":\"composed\",\"😀\":\"astral\"}"
+  }
+]

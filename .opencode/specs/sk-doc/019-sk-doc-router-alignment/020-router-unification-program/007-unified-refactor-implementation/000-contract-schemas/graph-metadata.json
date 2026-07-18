@@ -19,7 +19,10 @@
       "schema validation harness plan",
       "contract schemas tasks",
       "canonical json hashing tasks",
-      "schema validation harness tasks"
+      "schema validation harness tasks",
+      "contract schema verification",
+      "router hashing harness",
+      "stage zero contract baseline"
     ],
     "key_topics": [
       "router",
@@ -36,17 +39,49 @@
       "hashing"
     ],
     "importance_tier": "critical",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "plan.md",
+      "lib/canonical.cjs",
+      "fixtures/build-fixtures.cjs",
+      "harness/validate-contracts.cjs",
+      "checklist.md",
       "tasks.md",
-      "spec.md"
+      "plan.md",
+      "spec.md",
+      "schemas/compiled-policy.v1.schema.json",
+      "schemas/route-decision.v1.schema.json",
+      "schemas/route-request.v1.schema.json",
+      "schemas/correction-overlay.v1.schema.json",
+      "schemas/uncertainty-budget.v1.schema.json",
+      "schemas/route-proof.v1.schema.json",
+      "fixtures/compiled-policy.multimode.json",
+      "fixtures/compiled-policy.n1.json",
+      "implementation-summary.md",
+      "fixtures/canonical-vectors.json"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "canonical.cjs",
+        "kind": "file",
+        "path": "lib/canonical.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-fixtures.cjs",
+        "kind": "file",
+        "path": "fixtures/build-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-contracts.cjs",
+        "kind": "file",
+        "path": "harness/validate-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -56,9 +91,75 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-policy.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/compiled-policy.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-decision.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/route-decision.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-request.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/route-request.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "correction-overlay.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/correction-overlay.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-budget.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/uncertainty-budget.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-proof.v1.schema.json",
+        "kind": "config",
+        "path": "schemas/route-proof.v1.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-policy.multimode.json",
+        "kind": "config",
+        "path": "fixtures/compiled-policy.multimode.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-policy.n1.json",
+        "kind": "config",
+        "path": "fixtures/compiled-policy.n1.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-vectors.json",
+        "kind": "config",
+        "path": "fixtures/canonical-vectors.json",
         "source": "derived"
       },
       {
@@ -102,71 +203,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Canonical Family",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Build",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Marked Proposed",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Record Stage",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Dependency Notes",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on content-addressed identity: a request pins one `effectivePolicyHash`, replay recompiles to byte-identical policy bodies, and rollback swaps to a byte-identical prior manifest [synthesis §1, §9]",
     "created_at": "2026-07-18T13:13:16.347Z",
-    "last_save_at": "2026-07-18T14:46:37.920Z",
+    "last_save_at": "2026-07-18T17:17:44.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bd9c5d1ec343be3760d8dd3b2dfd69d00bba927e4501b5dfa674042dcac9a43",
+    "source_fingerprint": "sha256:667ee344c9e19c8cb4fa38294cff74668faabed28e481a908db4b1e72ec0ab9d",
     "source_doc_hashes": {
-      "spec.md": "7f080b7002f9edadd5fb9b823f562ed5f499ca4e2f51c9411714afb9c49e82e2",
-      "plan.md": "523f7fac2689a86d641487960da46767ab40cdfea0381f5e1f0b55541b2d4d20",
-      "tasks.md": "3be7ca5e6738b1a5b14e47033679a798b723db211939bd212151ed134c13419f"
+      "spec.md": "9f58dfa6c993f7b983b0235538a547503b277c83b908de7613e23e70610339ab",
+      "plan.md": "ab9f73d05e726fc5789b6a3f7f3f898001f4e6eada814fedd09af597558631ba",
+      "tasks.md": "a64b5304be1034612ffadea6600cc36894fa57607993da6454f5330596d45963",
+      "checklist.md": "d8ace5e4aad0ffb7e7460b0e6478ba225d04625c5a3acdf8d38d134856bf3220",
+      "implementation-summary.md": "e6bc330717163f7b1f6c98ba0e94953ffc440ec4e583113e27fdc064694cd23e"
     },
     "last_active_child_id": null,
     "last_active_at": null

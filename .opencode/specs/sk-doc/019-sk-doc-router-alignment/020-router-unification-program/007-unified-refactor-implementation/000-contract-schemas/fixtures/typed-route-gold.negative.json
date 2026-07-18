@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "V1",
+  "scenarioId": "negative-empty-compatibility-shape",
+  "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+  "decisionAction": "defer",
+  "targetQualifiedIds": [],
+  "observedIntents": [],
+  "observedResources": [],
+  "receiptAttempts": [],
+  "assertions": {
+    "rankCalls": 0,
+    "handoffEdges": [],
+    "duplicateIdempotencyKeyProducesSingleReceipt": false
+  },
+  "projectionHash": "0b91f38ea4f314b935a1f77831a98d2249e504cb8f545296dd72d3465533a3bf"
+}

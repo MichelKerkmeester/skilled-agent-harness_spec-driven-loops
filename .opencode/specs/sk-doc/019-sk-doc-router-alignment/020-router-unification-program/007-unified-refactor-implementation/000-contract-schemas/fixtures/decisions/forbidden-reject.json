@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "V1",
+  "action": "reject",
+  "reject": {
+    "reason": "forbidden",
+    "authority": "Withheld"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "V1",
+  "action": "defer",
+  "defer": {
+    "reason": "no-match",
+    "recovery": [],
+    "authority": "Withheld",
+    "targets": [
+      {
+        "destinationId": {
+          "skillId": "mcp-code-mode",
+          "workflowMode": "code-mode",
+          "packetId": "packet-code-mode",
+          "packetKind": "standalone",
+          "backendKind": "utcp"
+        },
+        "role": "actor",
+        "authorityRef": "authority:mcp-code-mode",
+        "mutatesWorkspace": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/correction-overlay.v1.schema.json",
+  "title": "CorrectionOverlayV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "basePolicyHash", "adjustments", "promotionProvenance", "overlayHash"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "basePolicyHash": { "$ref": "#/$defs/digest" },
+    "adjustments": { "type": "array", "items": { "$ref": "#/$defs/adjustment" } },
+    "promotionProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidateId", "approvedBy", "replayHash"],
+      "properties": {
+        "candidateId": { "type": "string", "minLength": 1 },
+        "approvedBy": { "type": "string", "minLength": 1 },
+        "replayHash": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "overlayHash": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "destinationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
+      "properties": {
+        "skillId": { "type": "string", "minLength": 1 },
+        "workflowMode": { "type": "string", "minLength": 1 },
+        "packetId": { "type": "string", "minLength": 1 },
+        "packetKind": { "type": "string", "minLength": 1 },
+        "backendKind": { "type": "string", "minLength": 1 },
+        "runtimeDiscriminator": { "type": "string", "minLength": 1 }
+      }
+    },
+    "adjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vocabulary", "destinationId"],
+      "properties": {
+        "vocabulary": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "destinationId": { "$ref": "#/$defs/destinationId" }
+      }
+    }
+  }
+}

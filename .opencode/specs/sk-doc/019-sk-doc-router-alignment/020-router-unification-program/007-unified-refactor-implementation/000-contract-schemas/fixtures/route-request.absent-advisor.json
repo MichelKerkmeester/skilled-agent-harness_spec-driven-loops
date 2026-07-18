@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "V1",
+  "observations": [
+    {
+      "kind": "intent",
+      "value": "implement contract schemas"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "advisor:absent",
+      "kind": "advisor",
+      "value": "",
+      "provenance": {
+        "source": "advisor-projection",
+        "capturedAtEpoch": 7
+      },
+      "trust": "absent"
+    }
+  ],
+  "pinnedActivationGeneration": 7,
+  "requestFactsHash": "f4419214f0ae5a6a4ed1956eb19562edbaee29fce1081207f8a62fdc93250d8c"
+}

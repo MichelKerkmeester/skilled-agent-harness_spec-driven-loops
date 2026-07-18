@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 1,
+  "destinations": [
+    {
+      "id": {
+        "skillId": "mcp-code-mode",
+        "workflowMode": "code-mode",
+        "packetId": "packet-code-mode",
+        "packetKind": "standalone",
+        "backendKind": "utcp"
+      },
+      "role": "actor",
+      "authorityRef": "authority:mcp-code-mode",
+      "mutatesWorkspace": false
+    }
+  ],
+  "detectors": [
+    {
+      "id": "detector:leaf",
+      "kind": "resource",
+      "value": "canonical-leaf"
+    }
+  ],
+  "selectors": [
+    {
+      "id": "selector:leaf",
+      "destinationId": {
+        "skillId": "undeclared-skill",
+        "workflowMode": "missing",
+        "packetId": "packet-missing",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "detectorIds": [
+        "detector:leaf"
+      ]
+    }
+  ],
+  "compositionRules": [],
+  "authorityGraph": [],
+  "thresholdPolicy": {
+    "kind": "exact-admission",
+    "thresholds": []
+  },
+  "recoveryPolicy": {
+    "ladder": [
+      "clarify",
+      "defer",
+      "reject"
+    ],
+    "userTurns": 1,
+    "handoffHops": 0
+  },
+  "provenancePolicy": {
+    "kind": "static",
+    "sourceHashes": [
+      "2d90794aaa4235159a1bb85658c054a775ad754656960262a82deecdcd1e57fc"
+    ]
+  },
+  "basePolicyHash": "4739743f44394341ba223715670f3d55b13a1f4538f38d0fc363ad65e31773ff",
+  "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167"
+}

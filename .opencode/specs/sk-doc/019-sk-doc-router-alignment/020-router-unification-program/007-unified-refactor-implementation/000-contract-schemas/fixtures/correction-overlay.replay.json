@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "V1",
+  "basePolicyHash": "d8181caacfb1a60f76a6ab5c3bf0264fca055ebbce7a22a2c99a98c237995d1d",
+  "adjustments": [
+    {
+      "vocabulary": [
+        "design in figma",
+        "push screen"
+      ],
+      "destinationId": {
+        "skillId": "mcp-tooling",
+        "workflowMode": "figma",
+        "packetId": "packet-figma",
+        "packetKind": "transport",
+        "backendKind": "remote",
+        "runtimeDiscriminator": "plugin-api"
+      }
+    }
+  ],
+  "promotionProvenance": {
+    "candidateId": "candidate:overlay-1",
+    "approvedBy": "independent-review",
+    "replayHash": "97aac2da2432b8e9b21518ccd07bab81f3ca612a32afc9ff82da519028510d3b"
+  },
+  "overlayHash": "183d53b1091a5c89a6565241c91751a062d249420cd6e0ead41883e05e20cc52"
+}

@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/route-decision.v1.schema.json",
+  "title": "RouteDecisionV1",
+  "oneOf": [
+    { "$ref": "#/$defs/routeDecision" },
+    { "$ref": "#/$defs/clarifyDecision" },
+    { "$ref": "#/$defs/deferDecision" },
+    { "$ref": "#/$defs/rejectDecision" }
+  ],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "evidenceReference": {
+      "type": "string",
+      "pattern": "^(advisor|authored|runtime|compatibility):\\S(?:.*\\S)?$"
+    },
+    "displayOnly": {
+      "type": "string",
+      "pattern": "^(?!\\s*(?:[Aa][Uu][Tt][Hh][Oo][Rr][Ii][Tt][Yy]|[Cc][Aa][Pp][Aa][Bb][Ii][Ll][Ii][Tt][Yy]):).*\\S.*$"
+    },
+    "destinationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
+      "properties": {
+        "skillId": { "$ref": "#/$defs/nonEmpty" },
+        "workflowMode": { "$ref": "#/$defs/nonEmpty" },
+        "packetId": { "$ref": "#/$defs/nonEmpty" },
+        "packetKind": { "$ref": "#/$defs/nonEmpty" },
+        "backendKind": { "$ref": "#/$defs/nonEmpty" },
+        "runtimeDiscriminator": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["destinationId", "role", "authorityRef", "mutatesWorkspace"],
+      "properties": {
+        "destinationId": { "$ref": "#/$defs/destinationId" },
+        "role": { "enum": ["actor", "evidence", "transport", "judgment"] },
+        "authorityRef": { "$ref": "#/$defs/nonEmpty" },
+        "mutatesWorkspace": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "role": { "const": "evidence" } }, "required": ["role"] },
+          "then": {
+            "properties": {
+              "mutatesWorkspace": { "const": false },
+              "authorityRef": {
+                "pattern": "^(?!.*[:._-][Cc][Oo][Mm][Mm][Ii][Tt](?:$|[:._-]))(?![Cc][Oo][Mm][Mm][Ii][Tt](?:$|[:._-])).+$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "rankEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "nonAuthority"],
+      "properties": {
+        "kind": { "enum": ["rankScore", "scoreMargin"] },
+        "value": { "type": "string", "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$" },
+        "nonAuthority": { "const": true }
+      }
+    },
+    "basis": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": { "kind": { "enum": ["signal", "bounded-default"] } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "unavailableEvidence"],
+          "properties": {
+            "kind": { "const": "degraded-fallback" },
+            "unavailableEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/evidenceReference" } }
+          }
+        }
+      ]
+    },
+    "routeDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "action", "route"],
+      "properties": {
+        "schemaVersion": { "const": "V1" },
+        "action": { "const": "route" },
+        "route": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["selectionKind", "targets", "basis", "evidence", "authority"],
+          "properties": {
+            "selectionKind": { "enum": ["single", "orderedBundle", "surfaceBundle"] },
+            "targets": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/target" } },
+            "basis": { "$ref": "#/$defs/basis" },
+            "evidence": { "type": "array", "items": { "$ref": "#/$defs/rankEvidence" } },
+            "authority": { "const": "WithheldUntilVerify" }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "selectionKind": { "const": "single" } }, "required": ["selectionKind"] },
+              "then": { "properties": { "targets": { "maxItems": 1 } } }
+            },
+            {
+              "if": { "properties": { "selectionKind": { "enum": ["orderedBundle", "surfaceBundle"] } }, "required": ["selectionKind"] },
+              "then": { "properties": { "targets": { "minItems": 2 } } }
+            }
+          ]
+        }
+      }
+    },
+    "clarifyDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "action", "clarify"],
+      "properties": {
+        "schemaVersion": { "const": "V1" },
+        "action": { "const": "clarify" },
+        "clarify": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["question", "budgetRef", "alternatives", "authority"],
+          "properties": {
+            "question": { "$ref": "#/$defs/nonEmpty" },
+            "budgetRef": { "$ref": "#/$defs/nonEmpty" },
+            "alternatives": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "$ref": "#/$defs/displayOnly" } },
+            "authority": { "const": "Withheld" }
+          }
+        }
+      }
+    },
+    "deferDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "action", "defer"],
+      "properties": {
+        "schemaVersion": { "const": "V1" },
+        "action": { "const": "defer" },
+        "defer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reason", "recovery", "authority"],
+          "properties": {
+            "reason": { "enum": ["idle", "no-match", "dependency-failure", "handoff-required", "stale-policy", "evidence-unavailable"] },
+            "recovery": { "type": "array", "items": { "enum": ["clarify", "handoff", "defer", "reject"] } },
+            "authority": { "const": "Withheld" }
+          }
+        }
+      }
+    },
+    "rejectDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "action", "reject"],
+      "properties": {
+        "schemaVersion": { "const": "V1" },
+        "action": { "const": "reject" },
+        "reject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reason", "authority"],
+          "properties": {
+            "reason": { "enum": ["invalid", "forbidden"] },
+            "authority": { "const": "Withheld" }
+          }
+        }
+      }
+    }
+  }
+}

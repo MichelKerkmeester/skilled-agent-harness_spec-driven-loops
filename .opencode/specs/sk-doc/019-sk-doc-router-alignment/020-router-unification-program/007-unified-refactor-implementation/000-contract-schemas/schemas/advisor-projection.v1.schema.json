@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/advisor-projection.v1.schema.json",
+  "title": "AdvisorProjectionV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "hubId", "aliases", "eligibleModes", "admissionLabels", "effectivePolicyHash", "projectionHash"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "hubId": { "type": "string", "minLength": 1 },
+    "aliases": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "eligibleModes": { "type": "array", "items": { "$ref": "#/$defs/mode" } },
+    "admissionLabels": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" },
+    "projectionHash": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["qualifiedId", "publicMode", "routingClass"],
+      "properties": {
+        "qualifiedId": { "type": "string", "minLength": 1 },
+        "publicMode": { "type": "string", "minLength": 1 },
+        "routingClass": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

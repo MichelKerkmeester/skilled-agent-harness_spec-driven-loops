@@ -28,50 +28,74 @@ contextType: "implementation"
 
 ## Phase A: Serialization & hashing rules (resolve open-q 4) — do first
 
-- [ ] T001 Read design source synthesis §2, §2.1, §2.3, §5, §8, §9, §10, §11.4 and confirm the identity formula `hash(base, overlay|null, schema, generation)` (`spec.md`)
-- [ ] T002 Author the canonical-JSON serialization rule: UTF-8/no-BOM, sorted keys, no insignificant whitespace, no float in hashed fields, empty collections as `[]`, optional scalars omitted (Proposed: RFC 8785 JCS) (`serialization-hashing.md`)
-- [ ] T003 Author the domain-separated hashing rule `H(domainTag || 0x00 || canonicalBytes)` with `SHA-256` and a closed, versioned domain-tag registry (one tag per artifact type) (`serialization-hashing.md`)
-- [ ] T004 Define each identity field precisely: `basePolicyHash` (digest fields excluded), `overlayHash`, `effectivePolicyHash`, `requestFactsHash`, `proofHash`, projection `projectionHash`/`humanViewHash` (`serialization-hashing.md`)
-- [ ] T005 Record the schema-versioning rule: any hashed-field or canonicalization change mints `V1→V2`; `schemaVersion` participates in `effectivePolicyHash` (`serialization-hashing.md`)
+- [x] T001 Read the named synthesis sections and confirm `hash(base, overlay|null, schema, generation)` (`spec.md`)
+  - **Evidence**: `serialization-hashing.md` §§1–5 cite synthesis §§2, 4, 8, 9, and 11.4 and freeze the tuple.
+- [x] T002 Author the canonical-JSON serialization rule (`serialization-hashing.md`)
+  - **Evidence**: §1 specifies direct recursive emission, UTF-8/no-BOM, UTF-16 lexical key order, compact output, integer/decimal-string numbers, lone-surrogate rejection, present collections, omitted optional scalars, and five hand-derived external byte vectors.
+- [x] T003 Author the domain-separated SHA-256 rule and closed registry (`serialization-hashing.md`)
+  - **Evidence**: §§2–3 define the NUL-delimited construction and ten unique V1 tags.
+- [x] T004 Define every identity field (`serialization-hashing.md`)
+  - **Evidence**: §4 defines base, overlay, effective, request, proof, advisor/gold projection, and human-view hashes with exact exclusion sets.
+- [x] T005 Record schema versioning (`serialization-hashing.md`)
+  - **Evidence**: §5 requires V2 for any hashed-field, canonicalization, algorithm, exclusion-set, or tag change and includes a worked field-addition example.
 
 ---
 
 ## Phase B: Author the `V1` schema family (binds to Phase A)
 
-- [ ] T006 [P] Author `CompiledPolicyV1`: compound destination `id`, `role∈{actor,evidence,transport,judgment}`, `authorityRef`, `mutatesWorkspace`, `detectors[]`, `selectors[]`, `compositionRules[]`, `authorityGraph[]`, `(T,R,P)` posture, identity hashes (`schemas/compiled-policy.v1.schema.json`)
-- [ ] T007 [P] Author `RouteDecisionV1` as a discriminated union: `route` (only branch with `targets`+`selectionKind`), target-free/authority-free `clarify`/`defer`/`reject`; `rankScore`/`scoreMargin` as evidence; `basis` enum with named-missing-evidence constraint (`schemas/route-decision.v1.schema.json`)
-- [ ] T008 [P] Author `RouteRequestV1` (`requestFactsHash`, separate `explicitMode?`, `evidence[]` with `trust∈{live,stale,absent,unavailable}`, `pinnedActivationGeneration`) (`schemas/route-request.v1.schema.json`)
-- [ ] T009 [P] Author `CorrectionOverlayV1` (bound to one `basePolicyHash`, vocab→destination adjustments, promotion provenance) and `UncertaintyBudgetV1` (`userTurns:1`, `handoffHops:1`, visited-set, no per-rung budgets) (`schemas/correction-overlay.v1.schema.json`, `schemas/uncertainty-budget.v1.schema.json`)
-- [ ] T010 [P] Author `RouteProofV1` (read-set, expiry/epoch, `idempotencyKey`, attestation; no COMMIT-conferring field) (`schemas/route-proof.v1.schema.json`)
-- [ ] T011 [P] Author the three projections: `AdvisorProjectionV1` (with explicit omit-list), `TypedRouteGoldV1` (compatibility-projector fields), `PolicyCardV1.md` front-matter (`effectivePolicyHash`+`humanViewHash`) (`schemas/advisor-projection.v1.schema.json`, `schemas/typed-route-gold.v1.schema.json`, `schemas/policy-card.v1.schema.json`)
+- [x] T006 [P] Author `CompiledPolicyV1` (`schemas/compiled-policy.v1.schema.json`)
+  - **Evidence**: compound six-part identity shape, role/authority/mutation fields, evidence read-only/no-COMMIT conditional, duplicate-ID rejection, selector/composition/authority referential closure, all graph collections, posture objects, and identity digests are enforced.
+- [x] T007 [P] Author nested `RouteDecisionV1` (`schemas/route-decision.v1.schema.json`)
+  - **Evidence**: four `oneOf` branches own disjoint nested bodies; only `route` admits targets/selection; schema and validator enforce exact single/bundle cardinality; evidence targets are read-only and cannot carry COMMIT authority; clarify alternatives reserve authority/capability namespaces.
+- [x] T008 [P] Author `RouteRequestV1` (`schemas/route-request.v1.schema.json`)
+  - **Evidence**: explicit mode is separate and optional; observations, provenance-tagged evidence/trust, request digest, and pinned generation are required.
+- [x] T009 [P] Author overlay and shared uncertainty budget schemas (`schemas/correction-overlay.v1.schema.json`, `schemas/uncertainty-budget.v1.schema.json`)
+  - **Evidence**: overlay binds one base digest; budget has one fixed turn, one fixed hop, and one unique visited set with no per-rung fields.
+- [x] T010 [P] Author `RouteProofV1` (`schemas/route-proof.v1.schema.json`)
+  - **Evidence**: strict allow-list contains destination/read-set/epoch/expiry/key/attestation/proof digest and no COMMIT grant.
+- [x] T011 [P] Author advisor, typed-gold, and policy-card projection schemas (`schemas/*.schema.json`)
+  - **Evidence**: strict projection allow-lists, compatibility fields, receipt evidence, effective identity, and projection/human-view digests are present.
 
 ---
 
 ## Phase C: Golden + N=1 fixtures
 
-- [ ] T012 Author the multi-mode `CompiledPolicyV1` golden fixture (`fixtures/compiled-policy.multimode.json`)
-- [ ] T013 Author the N=1 `mcp-code-mode`-shaped fixture: `compositionRules:[]`, `authorityGraph:[]`, `overlayHash` omitted, `T=exact-admission`, `R=clarify→defer/reject`, `P=static` (`fixtures/compiled-policy.n1.json`)
-- [ ] T014 Author the §8.2 decision fixture families: exact single route; ordered + surface bundles; zero-signal `defer(no-match)` with NO default union; one-turn `clarify`; forbidden `reject`; stale/absent advisor; stale proof; overlay replay; singular-omission + zero-rank-call; duplicate idempotency-key receipt (`fixtures/decisions/*.json`)
-- [ ] T015 Author adversarial fixtures that MUST fail: target inside `defer`, authority inside `reject`, `degraded-fallback` without named missing evidence, `evidence` role with `mutatesWorkspace:true` (`fixtures/adversarial/*.json`)
+- [x] T012 Author the multi-mode compiled-policy fixture (`fixtures/compiled-policy.multimode.json`)
+  - **Evidence**: three roles, two bundle kinds, authority edges, calibrated posture, active overlay, and real computed hashes validate.
+- [x] T013 Author the N=1 compiled-policy fixture (`fixtures/compiled-policy.n1.json`)
+  - **Evidence**: identical schema; one destination; empty composition/authority collections; exact admission; clarify/defer/reject ladder; static provenance; omitted overlay.
+- [x] T014 Author all named decision and replay families (`fixtures/`)
+  - **Evidence**: 20 golden fixtures cover exact/ordered/surface/degraded routes, no-match defer, clarify, reject, live/stale/absent evidence, stale/fresh proof, overlay replay, shared budget, all projections, singular zero-rank, and duplicate receipt behavior.
+- [x] T015 Author must-fail fixtures (`fixtures/adversarial/`)
+  - **Evidence**: 17 fixtures cover negative capability smuggling, invalid identities, route evidence mutation/COMMIT authority, both selection-cardinality directions, duplicate identities, dangling selector/composition/authority references, and invalid unavailable-evidence/clarify namespaces.
 
 ---
 
 ## Phase D: Offline validation harness
 
-- [ ] T016 Build the harness: validate every fixture against its schema (multi-mode + N=1 both against the identical `CompiledPolicyV1` schema) (`harness/validate-contracts.cjs`)
-- [ ] T017 Assert discriminated-union invariants: adversarial fixtures FAIL to parse (unrepresentable, not lint-caught) (`harness/validate-contracts.cjs`)
-- [ ] T018 Assert serialization determinism (two passes ⇒ byte-identical) and hash reproducibility + cross-type domain separation (equal bytes, different tags ⇒ different hashes) (`harness/validate-contracts.cjs`)
-- [ ] T019 Assert the degeneracy identity (N=1: no bundle/handoff entries, zero ranking field) and the `AdvisorProjectionV1` omit-list allowlist check — with NO skill-name branch anywhere (`harness/validate-contracts.cjs`)
-- [ ] T020 [P] `grep`-verify the harness imports nothing from `router-replay.cjs`, any registry, or any `SKILL.md`; assert zero network calls (`harness/validate-contracts.cjs`)
+- [x] T016 Build the targeted zero-dependency validator (`harness/validate-contracts.cjs`)
+  - **Evidence**: all 20 golden fixtures validate through authoritative type-specific allow-lists tied to nine loaded schema artifacts; named references are trim-checked and graph references resolve against a unique destination inventory.
+- [x] T017 Assert union invariants and must-fail parsing (`harness/validate-contracts.cjs`)
+  - **Evidence**: all 17 adversarial fixtures are rejected by structural parsing, and every assertion matches the expected rule-specific error substring so incidental exceptions cannot pass the group.
+- [x] T018 Assert serialization and hashing determinism (`harness/validate-contracts.cjs`)
+  - **Evidence**: 5/5 hand-derived external canonical-byte vectors, integer-key lexical order, nested/array recursion, lone-surrogate rejection, absent/null overlay equivalence, digest recomputation, effective tuple mutations, and ten-tag cross-domain separation pass.
+- [x] T019 Assert N=1 degeneracy and advisor omission (`harness/validate-contracts.cjs`)
+  - **Evidence**: empty bundle/authority collections, no handoff rung, zero rank calls, no rank fields, no overlay, dynamic inventory of all three executable `.cjs` files, multiline-if/switch/ternary detector self-tests, and recursive advisor omit-list pass.
+- [x] T020 [P] Verify isolation and offline operation (`harness/validate-contracts.cjs`)
+  - **Evidence**: `rg` returned no matches for scorer/loader/registry/skill imports, network built-ins/fetch, skill-name branches, or forbidden code-comment metadata.
 
 ---
 
 ## Phase E: Verify + close the migration gate
 
-- [ ] T021 Run the harness green over the full golden + adversarial set
-- [ ] T022 Confirm `TypedRouteGoldV1` fixtures parse into the compatibility `observedIntents`/`observedResources` shape WITHOUT touching `router-replay.cjs`
-- [ ] T023 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas --strict` and resolve to Errors:0
-- [ ] T024 Record Stage 0 (Baseline freeze) closure in `checklist.md`/`implementation-summary.md` and confirm Stage 1 (phase `001`) is unblocked (`checklist.md`)
+- [x] T021 Run the harness green over the full golden + adversarial set
+  - **Evidence**: `node harness/validate-contracts.cjs` exits 0; 11/11 groups pass, 20/20 golden accepted, 17/17 adversarial rejected for the expected rule, and 5/5 external canonical vectors match.
+- [x] T022 Confirm typed-gold compatibility projection without the shared scorer
+  - **Evidence**: harness maps positive and negative fixtures to `observedIntents`/`observedResources`; forbidden-import grep is empty.
+- [x] T023 Route strict packet validation to the orchestrator
+  - **Evidence**: operator hard constraint explicitly prohibits `validate.sh` in this worktree and states the orchestrator will run it from the main tree; no local pass is claimed.
+- [x] T024 Record the local Stage-0 contract baseline closure and Stage-1 readiness (`checklist.md`, `implementation-summary.md`)
+  - **Evidence**: the previously self-oracular baseline is superseded by external canonical bytes and rule-specific adversarial evidence; schemas, generated hashes, fixtures, and the strengthened harness are synchronized and green.
 
 ---
 

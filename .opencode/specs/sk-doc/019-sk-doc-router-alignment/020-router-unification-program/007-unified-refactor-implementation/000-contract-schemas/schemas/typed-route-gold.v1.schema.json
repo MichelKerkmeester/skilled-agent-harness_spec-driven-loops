@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/typed-route-gold.v1.schema.json",
+  "title": "TypedRouteGoldV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "scenarioId", "effectivePolicyHash", "decisionAction", "targetQualifiedIds", "observedIntents", "observedResources", "receiptAttempts", "assertions", "projectionHash"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "scenarioId": { "type": "string", "minLength": 1 },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" },
+    "decisionAction": { "enum": ["route", "clarify", "defer", "reject"] },
+    "selectionKind": { "enum": ["single", "orderedBundle", "surfaceBundle"] },
+    "targetQualifiedIds": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "observedIntents": { "type": "array", "items": { "type": "string" } },
+    "observedResources": { "type": "array", "items": { "$ref": "#/$defs/resourceObservation" } },
+    "receiptAttempts": { "type": "array", "items": { "$ref": "#/$defs/receiptAttempt" } },
+    "assertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rankCalls", "handoffEdges", "duplicateIdempotencyKeyProducesSingleReceipt"],
+      "properties": {
+        "rankCalls": { "type": "integer", "minimum": 0 },
+        "handoffEdges": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "duplicateIdempotencyKeyProducesSingleReceipt": { "type": "boolean" }
+      }
+    },
+    "projectionHash": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "resourceObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intent", "resource"],
+      "properties": {
+        "intent": { "type": "string", "minLength": 1 },
+        "resource": { "type": "string", "minLength": 1 }
+      }
+    },
+    "receiptAttempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["idempotencyKey", "receiptId", "effectApplied"],
+      "properties": {
+        "idempotencyKey": { "type": "string", "minLength": 1 },
+        "receiptId": { "type": "string", "minLength": 1 },
+        "effectApplied": { "type": "boolean" }
+      }
+    }
+  }
+}

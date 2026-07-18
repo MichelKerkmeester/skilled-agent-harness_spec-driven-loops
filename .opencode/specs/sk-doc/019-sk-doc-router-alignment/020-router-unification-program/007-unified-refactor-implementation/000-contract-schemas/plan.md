@@ -35,16 +35,16 @@ Build the foundation the whole refactor binds to, in a strict dependency order: 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Design source read: synthesis §2, §2.1, §2.3, §5, §8, §9, §10, §11.4.
-- [ ] Master-plan phase map + shared migration-gate model read (Stage 0 / Stage 1 ownership confirmed).
-- [ ] Template/marker shape confirmed against a sibling spec.
+- [x] Design source read: synthesis §2, §2.1, §2.3, §5, §8, §9, §10, §11.4.
+- [x] Master-plan phase map + shared migration-gate model read (Stage 0 / Stage 1 ownership confirmed).
+- [x] Template/marker shape confirmed against a sibling spec.
 
 ### Definition of Done
-- [ ] Every schema validates its golden fixture AND the N=1 fixture (no skill-name branch).
-- [ ] Harness passes: determinism, domain separation, algebra invariants, degeneracy, no-over-emission.
-- [ ] Serialization/hashing reference is precise enough for cross-implementation reproduction.
-- [ ] Nothing imports from `router-replay.cjs`, the registry, or any `SKILL.md`.
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` clean.
+- [x] Every schema validates its golden fixture AND the N=1 fixture (no skill-name branch).
+- [x] Harness passes: determinism, domain separation, algebra invariants, degeneracy, no-over-emission.
+- [x] Serialization/hashing reference includes an exact reproduction vector and closed tag registry.
+- [x] Nothing imports from `router-replay.cjs`, the registry, or any `SKILL.md`.
+- [x] Strict spec validation is explicitly delegated to the orchestrator; the operator prohibited running it in this worktree.
 
 ---
 
@@ -95,7 +95,7 @@ A Node harness that: validates every fixture against its schema; asserts the dis
 
 ### Step 6 — Verify + record the migration gate closure
 
-Run the harness green; run spec-kit strict validation on this folder; confirm the Stage 0 freeze conditions and that `TypedRouteGoldV1` fixtures parse into the compatibility shape without touching `router-replay.cjs`. Record that Stage 1 (phase `001`) is now unblocked.
+Run the harness green; hand strict spec validation to the orchestrator as required by the operator constraint; confirm the Stage 0 freeze conditions and that `TypedRouteGoldV1` fixtures parse into the compatibility shape without touching `router-replay.cjs`. Record that Stage 1 (phase `001`) is technically unblocked, with strict packet validation remaining an external administrative gate.
 
 ---
 
@@ -123,7 +123,7 @@ Run the harness green; run spec-kit strict validation on this folder; confirm th
 | Degeneracy | N=1 fixture: empty `compositionRules`/`authorityGraph`, omitted `overlayHash`, zero ranking/bundle fields; no skill-name branch in harness |
 | No over-emission | Zero-signal fixture is target-free `defer(no-match)`; no default union present |
 | Scope hygiene | `grep`-verify the harness imports nothing from scorer/registry/skills |
-| Spec discipline | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
+| Spec discipline | Orchestrator runs `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`; local execution prohibited by operator |
 
 ---
 
