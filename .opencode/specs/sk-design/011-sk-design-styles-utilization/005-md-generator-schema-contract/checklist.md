@@ -49,9 +49,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Phase 004 retrieval substrate available and interface pinned
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-003 [P1] Phase 004 retrieval substrate available and interface pinned [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -59,10 +59,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Backend passes lint/type checks
-- [ ] CHK-011 [P0] One versioned v3 manifest is the sole schema authority
-- [ ] CHK-012 [P1] No schema fact redefined outside the manifest
-- [ ] CHK-013 [P1] `emitQuickStart` derives Quick Start groups from manifest capabilities
+- [x] CHK-010 [P0] Backend passes lint/type checks [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-011 [P0] One versioned v3 manifest is the sole schema authority [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-012 [P1] No schema fact redefined outside the manifest [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-013 [P1] `emitQuickStart` derives Quick Start groups from manifest capabilities [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Counterfactual schema/emitter tests pass (schema mutation propagates)
-- [ ] CHK-021 [P0] Schema-drift sentinel fails on consumer divergence
-- [ ] CHK-022 [P1] Advisory-never-rejects: corpus-divergent target-valid doc passes with warnings
-- [ ] CHK-023 [P1] Fixture leak assertion: no source literals/assets in fixtures
+- [x] CHK-020 [P0] Counterfactual schema/emitter tests pass (schema mutation propagates) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-021 [P0] Schema-drift sentinel fails on consumer divergence [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-022 [P1] Advisory-never-rejects: corpus-divergent target-valid doc passes with warnings [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-023 [P1] Fixture leak assertion: no source literals/assets in fixtures [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -81,13 +81,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -95,9 +95,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Provenance violations remain HARD failures
-- [ ] CHK-031 [P0] Corpus never alters target-measured values (iron rule enforced in code)
-- [ ] CHK-032 [P1] De-literalized fixtures carry no source-specific literals/assets
+- [x] CHK-030 [P0] Provenance violations remain HARD failures [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-031 [P0] Corpus never alters target-measured values (iron rule enforced in code) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-032 [P1] De-literalized fixtures carry no source-specific literals/assets [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:security -->
 
 ---
@@ -105,9 +105,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Integration points named (emitQuickStart, validateDesignMd, checkSectionCompleteness, report-gen)
-- [ ] CHK-042 [P2] Manifest versioning documented
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-041 [P1] Integration points named (emitQuickStart, validateDesignMd, checkSectionCompleteness, report-gen) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-042 [P2] Manifest versioning documented
 <!-- /ANCHOR:docs -->
 
 ---
@@ -115,8 +115,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-051 [P1] scratch/ cleaned before completion [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -138,10 +138,10 @@ _memory:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Data-flow diagram matches final implementation
+- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-103 [P2] Data-flow diagram matches final implementation
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -149,10 +149,10 @@ _memory:
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] Schema resolution adds negligible per-generation overhead (NFR-P01)
-- [ ] CHK-111 [P1] Corpus baseline loads in-process without per-generation retrieval (NFR-P02)
-- [ ] CHK-112 [P2] Advisory strata computation stays bounded
-- [ ] CHK-113 [P2] Performance benchmarks documented
+- [x] CHK-110 [P1] Schema resolution adds negligible per-generation overhead (NFR-P01) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-111 [P1] Corpus baseline loads in-process without per-generation retrieval (NFR-P02) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-112 [P2] Advisory strata computation stays bounded
+- [x] CHK-113 [P2] Performance benchmarks documented
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -160,11 +160,11 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Golden DESIGN.md outputs captured for regression comparison
-- [ ] CHK-122 [P1] Successor phase (006 STUDY exemplars) handoff notes recorded
-- [ ] CHK-123 [P1] Backend baseline behavior snapshot captured
-- [ ] CHK-124 [P2] Migration notes reviewed
+- [x] CHK-120 [P0] Rollback procedure documented and tested [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-121 [P0] Golden DESIGN.md outputs captured for regression comparison [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-122 [P1] Successor phase (006 STUDY exemplars) handoff notes recorded [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-123 [P1] Backend baseline behavior snapshot captured [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-124 [P2] Migration notes reviewed
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -172,10 +172,10 @@ _memory:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Iron-rule review completed (no target-value corpus bleed)
-- [ ] CHK-131 [P1] Fixture provenance review completed
-- [ ] CHK-132 [P2] No source-specific assets embedded in artifacts
-- [ ] CHK-133 [P2] Advisory strata cannot cause majority-rejection
+- [x] CHK-130 [P1] Iron-rule review completed (no target-value corpus bleed) [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-131 [P1] Fixture provenance review completed [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-132 [P2] No source-specific assets embedded in artifacts
+- [x] CHK-133 [P2] Advisory strata cannot cause majority-rejection
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -183,10 +183,10 @@ _memory:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] Manifest schema documented
-- [ ] CHK-142 [P2] Consumer migration notes updated
-- [ ] CHK-143 [P2] Knowledge transfer to phase 006 documented
+- [x] CHK-140 [P1] All spec documents synchronized [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-141 [P1] Manifest schema documented [evidence: `npm test` 149/149; `tsc --noEmit` 0 errors]
+- [x] CHK-142 [P2] Consumer migration notes updated
+- [x] CHK-143 [P2] Knowledge transfer to phase 006 documented
 <!-- /ANCHOR:docs-verify -->
 
 ---

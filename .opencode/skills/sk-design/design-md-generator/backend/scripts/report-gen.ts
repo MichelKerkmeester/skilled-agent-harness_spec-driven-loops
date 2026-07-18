@@ -211,6 +211,31 @@ function proofLabel(p: number): string {
   return 'Needs Work';
 }
 
+function renderHardFailures(validation: ValidationResult): string {
+  if (validation.failures.length === 0) {
+    return '<div class="check-item"><span class="badge badge--pass">PASS</span> No hard failures</div>';
+  }
+  return validation.failures.map((failure) => (
+    `<div class="check-item"><span class="badge badge--fail">HARD · ${esc(failure.category)}</span> ${esc(failure.type)}: ${esc(failure.message)}</div>`
+  )).join('\n');
+}
+
+function renderAdvisoryWarnings(validation: ValidationResult): string {
+  if (validation.warnings.length === 0) {
+    return '<div class="check-item"><span class="badge badge--pass">CLEAR</span> No corpus advisories</div>';
+  }
+  return validation.advisoryStrata.map((stratum) => {
+    const warnings = validation.warnings.filter((warning) => warning.category === stratum);
+    if (warnings.length === 0) return '';
+    return [
+      `<div class="color-section-label">${stratum} (${warnings.length})</div>`,
+      ...warnings.map((warning) => (
+        `<div class="check-item"><span class="badge badge--warn">ADVISORY · ${esc(warning.tier ?? 'notice')}</span> ${esc(warning.type)}: ${esc(warning.message)}</div>`
+      )),
+    ].join('\n');
+  }).join('\n');
+}
+
 // ────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
 // ────────────────────────────────────────────────────────────────
@@ -249,6 +274,12 @@ function generateReportHtml(
   const score = validation?.score ?? null;
   const checksPassed = validation?.passed?.length ?? 0;
   const totalChecks = checksPassed + (validation?.failures?.length ?? 0) + (validation?.warnings?.length ?? 0);
+  const hardFailureCount = validation?.failures.length ?? 0;
+  const advisoryCount = validation?.warnings.length ?? 0;
+  const qualityColor = hardFailureCount > 0 ? '#ef4444' : score === null ? '#6b7280' : valScoreColor(score);
+  const qualityLabel = hardFailureCount > 0 ? 'Hard Fail' : score === null ? 'Not Run' : valScoreLabel(score);
+  const hardCategoryNames = validation?.hardCategories.join(', ') ?? '';
+  const advisoryStratumNames = validation?.advisoryStrata.join(', ') ?? '';
 
   const googleFontsLinks: string[] = (tokens.fontInfo as { googleFontsLinks?: string[] })?.googleFontsLinks ?? [];
   const uniqueFamilies = [...new Set(typo.map((t) => t.fontFamily))].filter((f) => f !== 'system-ui');
@@ -441,7 +472,8 @@ ${googleFontsTag}
       <div class="stat"><strong>${tokens.meta?.totalPages ?? '?'}</strong><span>Pages</span></div>
       <div class="stat"><strong>${tokens.meta?.totalElements ?? '?'}</strong><span>Elements</span></div>
       ${proofData ? `<div class="stat" style="border-color:${proofColor(proofData.coverage)}40;"><strong style="color:${proofColor(proofData.coverage)}">${(proofData.coverage * 100).toFixed(1)}%</strong><span>Fidelity</span></div>` : ''}
-      ${score !== null ? `<div class="stat" style="border-color:${valScoreColor(score)}40;"><strong style="color:${valScoreColor(score)}">${score}</strong><span>Quality</span></div>` : ''}
+      ${score !== null ? `<div class="stat" style="border-color:${qualityColor}40;"><strong style="color:${qualityColor}">${score}</strong><span>Quality</span></div>` : ''}
+      ${validation ? `<div class="stat"><strong>${hardFailureCount}</strong><span>Hard failures</span></div><div class="stat"><strong>${advisoryCount}</strong><span>Advisories</span></div>` : ''}
     </div>
   </div>
 </header>
@@ -454,22 +486,26 @@ ${score !== null ? `
   <div class="card">
     <h2>📊 Quality Score</h2>
     <div style="display:flex;align-items:center;gap:1.5rem;">
-      <div class="score-ring" style="background:conic-gradient(${valScoreColor(score)} ${score * 3.6}deg, var(--border) 0deg);flex-shrink:0;">
-        <span class="score-num" style="color:${valScoreColor(score)}">${score}</span>
-        <span class="score-label">${valScoreLabel(score)}</span>
+      <div class="score-ring" style="background:conic-gradient(${qualityColor} ${score * 3.6}deg, var(--border) 0deg);flex-shrink:0;">
+        <span class="score-num" style="color:${qualityColor}">${score}</span>
+        <span class="score-label">${qualityLabel}</span>
       </div>
       <div style="font-size:0.8rem;color:var(--text-muted);">${checksPassed}/${totalChecks} checks passed</div>
     </div>
     <div class="methodology">
-      <strong>How this score is calculated:</strong> Start at 100. Each <strong>failure</strong> (phantom color, wrong hex format, missing section) costs <strong>5 points</strong>. Each <strong>warning</strong> (unknown font, low color count) costs <strong>1 point</strong>. Minimum passing score: 80.
+      <strong>How this score is calculated:</strong> Start at 100. Each ${esc(hardCategoryNames)} <strong>hard failure</strong> costs <strong>5 points</strong> and blocks validation. Corpus ${esc(advisoryStratumNames)} advisories are diagnostic and never reduce the score or reject a target-valid document.
     </div>
   </div>
   <div class="card">
-    <h2>✅ Validation Details</h2>
+    <h2>⛔ Hard Validation</h2>
     ${validation!.passed.map((p) => `<div class="check-item"><span class="badge badge--pass">PASS</span> ${esc(p)}</div>`).join('\n')}
-    ${validation!.failures.map((f) => `<div class="check-item"><span class="badge badge--fail">FAIL</span> ${esc(f.type)}: ${esc(f.message)}</div>`).join('\n')}
-    ${validation!.warnings.map((w) => `<div class="check-item"><span class="badge badge--warn">WARN</span> ${esc(w.type)}: ${esc(w.message)}</div>`).join('\n')}
+    ${renderHardFailures(validation!)}
   </div>
+</div>
+<div class="card">
+  <h2>⚠️ Corpus Advisory Warnings</h2>
+  <div class="methodology" style="margin-top:0;padding-top:0;border-top:none;">These warnings compare structure and vocabulary with the checked corpus baseline. They do not supply values and cannot fail validation.</div>
+  ${renderAdvisoryWarnings(validation!)}
 </div>
 ` : ''}
 
@@ -669,7 +705,7 @@ export function generateReport(
   console.log(`  Generated report.html → ${outPath}`);
 
   if (validation) {
-    console.log(`  Quality score: ${validation.score}/100 (${validation.passed.length} passed, ${validation.failures.length} failures, ${validation.warnings.length} warnings)`);
+    console.log(`  Quality score: ${validation.score}/100 (${validation.passed.length} passed, ${validation.failures.length} hard failures, ${validation.warnings.length} corpus advisories)`);
   }
 }
 

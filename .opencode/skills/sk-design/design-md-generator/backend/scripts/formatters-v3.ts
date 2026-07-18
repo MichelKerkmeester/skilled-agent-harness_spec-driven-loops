@@ -10,7 +10,23 @@
 // mutually consistent without an AI naming pass. The AI's job downstream is prose only:
 // intro voice, component descriptions, do/don't, similar brands — never a value.
 
-import type { ColorToken, DesignTokens } from './types';
+import {
+  createSchemaConsumerContract,
+  resolveQuickStartGroups,
+  resolveSchemaSections,
+  schemaSectionForEmitter,
+  V3_SCHEMA,
+} from './schema-v3';
+import { normalizeTypographyScale } from './typography-role-v3';
+
+import type {
+  QuickStartGroup,
+  QuickStartTargetId,
+  SchemaConsumerContract,
+  SchemaSection,
+  StyleReferenceSchema,
+} from './schema-v3';
+import type { ColorToken, DesignTokens, TypographyLevel } from './types';
 
 // ── colour space ────────────────────────────────────────────────
 function hexToRgb(hex: string): [number, number, number] {
@@ -115,7 +131,11 @@ export function nameColors(tokens: DesignTokens): NamedColor[] {
 }
 
 // ── §3 Tokens — Colors ──────────────────────────────────────────
-export function formatColorsV3(tokens: DesignTokens): string {
+export function formatColorsV3(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  section: SchemaSection = schemaSectionForEmitter('colors', schema),
+): string {
   const named = nameColors(tokens);
   // Anything not explicitly campaign or content lands in the main table — a token whose
   // stability layer never got classified must not silently vanish from the palette.
@@ -123,20 +143,24 @@ export function formatColorsV3(tokens: DesignTokens): string {
   const campaign = named.filter((n) => n.layer === 'campaign');
   const row = (n: NamedColor) => `| ${n.name} | \`${n.hex}\` | \`${n.token}\` | ${n.role} |`;
   const header = '| Name | Value | Token | Role |\n|------|-------|-------|------|\n';
-  let out = '## Tokens — Colors\n\n';
+  let out = `${section.heading}\n\n`;
   out += main.length ? header + main.map(row).join('\n') + '\n' : '_No L1/L2 system colours were extracted._\n';
   if (campaign.length) out += '\n### Current Campaign Colors (Subject to change)\n\n' + header + campaign.map(row).join('\n') + '\n';
   return out;
 }
 
 // ── §5 Tokens — Spacing & Shapes (values VERBATIM, incl. max-width) ──
-export function formatSpacingShapesV3(tokens: DesignTokens): string {
+export function formatSpacingShapesV3(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  section: SchemaSection = schemaSectionForEmitter('spacing-shapes', schema),
+): string {
   const sp = (tokens as unknown as { spacingSystem?: { baseUnit?: number; scale?: number[]; maxContentWidth?: string | null } }).spacingSystem;
   const radii = (tokens as unknown as { radiusTokens?: { value: string; frequency: number; typicalElements: string[] }[] }).radiusTokens ?? [];
   const shadows = tokens.shadowTokens ?? [];
   const scale = sp?.scale ?? [];
 
-  let out = '## Tokens — Spacing & Shapes\n\n';
+  let out = `${section.heading}\n\n`;
   if (sp?.baseUnit) out += `**Base unit:** ${sp.baseUnit}px\n`;
   // Density from how large the gaps run relative to the base unit.
   const maxGap = scale.length ? Math.max(...scale) : 0;
@@ -167,7 +191,11 @@ export function formatSpacingShapesV3(tokens: DesignTokens): string {
 }
 
 // ── §8 Surfaces (background colours actually used) ──────────────
-export function formatSurfacesV3(tokens: DesignTokens): string {
+export function formatSurfacesV3(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  section: SchemaSection = schemaSectionForEmitter('surfaces', schema),
+): string {
   const named = nameColors(tokens);
   const bgs = named
     .filter((n) => {
@@ -177,63 +205,142 @@ export function formatSurfacesV3(tokens: DesignTokens): string {
     .sort((a, b) => rgbToHsl(...hexToRgb(a.hex)).l - rgbToHsl(...hexToRgb(b.hex)).l) // dark→light? canvas usually lightest
     .reverse()
     .slice(0, 4);
-  let out = '## Surfaces\n\n';
+  let out = `${section.heading}\n\n`;
   if (!bgs.length) return out + '_No background-surface colours were extracted._\n';
   out += '| Level | Name | Value | Purpose |\n|-------|------|-------|---------|\n';
   out += bgs.map((n, i) => `| ${i} | ${i === 0 ? 'Canvas' : n.name} | \`${n.hex}\` | ${i === 0 ? 'Full-bleed page background' : 'Surface / panel'} |`).join('\n') + '\n';
   return out;
 }
 
-// ── §14 Quick Start (CSS + Tailwind) — slugs match the colour table ──
-export function emitQuickStart(tokens: DesignTokens): string {
-  const named = nameColors(tokens).filter((n) => n.layer !== 'content'); // L4 excluded
-  const stable = named.filter((n) => n.layer !== 'campaign'); // campaign excluded from the stable token set
-  const sp = (tokens as unknown as { spacingSystem?: { scale?: number[]; maxContentWidth?: string | null } }).spacingSystem;
-  const radii = (tokens as unknown as { radiusTokens?: { value: string; typicalElements: string[] }[] }).radiusTokens ?? [];
-  const levels = [...tokens.typographyLevels].sort((a, b) => parseFloat(a.fontSize) - parseFloat(b.fontSize));
+// ── Quick Start (CSS + Tailwind) — schema groups own the emitted surface ──
+function fontValue(value: string): string {
+  return /\s/.test(value) ? `'${value.replace(/'/g, "\\'")}'` : value;
+}
 
-  const colorLines = stable.map((n) => `  ${n.token}: ${n.hex};`).join('\n');
-  const typeLines = levels.map((t, i) => {
-    const role = (t.typicalTags ?? [])[0] && /^h[1-6]$/.test((t.typicalTags ?? [])[0]) ? (t.typicalTags ?? [])[0] : `t${i}`;
-    return `  --text-${role}: ${t.fontSize};\n  --leading-${role}: ${t.lineHeight};`;
-  }).join('\n');
-  const spaceLines = (sp?.scale ?? []).map((n) => `  --spacing-${n}: ${n}px;`).join('\n');
-  const radiusLines = radii.map((r) => `  --radius-${slug((r.typicalElements ?? [])[0] ?? 'base')}: ${r.value};`).join('\n');
-  const layoutLine = sp?.maxContentWidth ? `  --page-max-width: ${sp.maxContentWidth};` : '';
+function typographyEntries(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): readonly { level: TypographyLevel; role: string }[] {
+  const levels = [...(tokens.typographyLevels ?? [])]
+    .sort((left, right) => parseFloat(left.fontSize) - parseFloat(right.fontSize));
+  const roles = normalizeTypographyScale(levels, schema);
+  return levels.map((level, index) => ({
+    level,
+    role: roles[index].normalizedRole.replace(':', '-'),
+  }));
+}
 
-  const cssBody = [
-    '  /* Colors */', colorLines,
-    '  /* Typography — Scale */', typeLines,
-    '  /* Spacing */', spaceLines,
-    '  /* Layout */', layoutLine,
-    '  /* Border Radius */', radiusLines,
-  ].filter((s) => s.trim()).join('\n');
+function emitQuickStartGroup(
+  group: QuickStartGroup,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): readonly string[] {
+  const named = nameColors(tokens)
+    .filter((color) => color.layer !== 'content' && color.layer !== 'campaign');
+  const spacing = (tokens as unknown as {
+    spacingSystem?: { scale?: number[]; maxContentWidth?: string | null };
+  }).spacingSystem;
+  const entries = typographyEntries(tokens, schema);
+  switch (group.emitKind) {
+    case 'colors':
+      return named.map((color) => `${color.token}: ${color.hex};`);
+    case 'font-family': {
+      const seen = new Set<string>();
+      return entries.flatMap(({ level, role }) => {
+        if (seen.has(level.fontFamily)) return [];
+        seen.add(level.fontFamily);
+        return [`--font-${role}: ${fontValue(level.fontFamily)};`];
+      });
+    }
+    case 'font-size':
+      return entries.map(({ level, role }) => `--text-${role}: ${level.fontSize};`);
+    case 'line-height':
+      return entries.map(({ level, role }) => `--leading-${role}: ${level.lineHeight};`);
+    case 'font-weight':
+      return entries.map(({ level, role }) => `--weight-${role}: ${level.fontWeight};`);
+    case 'letter-spacing':
+      return entries.map(({ level, role }) => `--tracking-${role}: ${level.letterSpacing};`);
+    case 'spacing':
+      return (spacing?.scale ?? []).map((value) => `--spacing-${value}: ${value}px;`);
+    case 'layout':
+      return spacing?.maxContentWidth
+        ? [`--page-max-width: ${spacing.maxContentWidth};`]
+        : [];
+    case 'radius':
+      return (tokens.radiusTokens ?? []).map((radius) => (
+        `--radius-${slug((radius.typicalElements ?? [])[0] ?? 'base')}: ${radius.value};`
+      ));
+    case 'shadow':
+      return (tokens.shadowTokens ?? []).map((shadow, index) => (
+        `--shadow-${index + 1}: ${shadow.value};`
+      ));
+  }
+}
 
-  const themeBody = [
-    '  /* Colors */', colorLines,
-    '  /* Typography — Scale */', typeLines,
-    '  /* Spacing */', spaceLines,
-    '  /* Border Radius */', radiusLines,
-  ].filter((s) => s.trim()).join('\n');
+function quickStartBody(
+  target: QuickStartTargetId,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): string {
+  const blocks = resolveQuickStartGroups(tokens, target, schema)
+    .map((group) => {
+      const lines = emitQuickStartGroup(group, tokens, schema);
+      return [`  /* ${group.label} */`, ...lines.map((line) => `  ${line}`)].join('\n');
+    });
+  return blocks.join('\n');
+}
 
+export function emitQuickStart(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  section: SchemaSection = schemaSectionForEmitter('quick-start', schema),
+): string {
   return [
-    '## Quick Start',
+    section.heading,
     '',
-    '### CSS Custom Properties',
-    '',
-    '```css',
-    ':root {',
-    cssBody,
-    '}',
-    '```',
-    '',
-    '### Tailwind v4',
-    '',
-    '```css',
-    '@theme {',
-    themeBody,
-    '}',
-    '```',
-    '',
+    ...schema.quickStartTargets.flatMap((target) => [
+      target.heading,
+      '',
+      `\`\`\`${target.fenceLanguage}`,
+      target.wrapperOpen,
+      quickStartBody(target.id, tokens, schema),
+      target.wrapperClose,
+      '```',
+      '',
+    ]),
   ].join('\n');
+}
+
+/** Render one deterministic schema section using its schema-owned identity. */
+export function formatSchemaSectionV3(
+  section: SchemaSection,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+): string {
+  switch (section.emitter) {
+    case 'colors': return formatColorsV3(tokens, schema, section);
+    case 'spacing-shapes': return formatSpacingShapesV3(tokens, schema, section);
+    case 'surfaces': return formatSurfacesV3(tokens, schema, section);
+    case 'quick-start': return emitQuickStart(tokens, schema, section);
+    case undefined: throw new Error(`Schema section ${section.id} has no deterministic emitter.`);
+  }
+}
+
+/** Render every active deterministic section in schema order. */
+export function formatSchemaValueSectionsV3(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+): string {
+  return resolveSchemaSections(tokens, schema)
+    .filter((section): section is SchemaSection & { emitter: NonNullable<SchemaSection['emitter']> } => (
+      section.emitter !== undefined
+    ))
+    .map((section) => formatSchemaSectionV3(section, tokens, schema))
+    .join('\n\n');
+}
+
+export function getFormatterSchemaContract(
+  schema: StyleReferenceSchema = V3_SCHEMA,
+): SchemaConsumerContract {
+  return createSchemaConsumerContract('formatter', schema);
 }

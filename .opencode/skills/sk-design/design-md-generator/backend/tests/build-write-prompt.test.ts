@@ -29,7 +29,8 @@ describe('buildWritePrompt (v3 Style Reference)', () => {
     expect(p).toContain('@theme'); // Tailwind block
     expect(p).toContain('PASTE THEM UNCHANGED');
     expect(p).toContain('FACTS'); // facts block present
-    expect(p).toContain('FLAT'); // 0 shadows -> elevation must be flat, never gradient-as-depth
+    expect(p).toContain('No shadow capability was detected');
+    expect(p).not.toContain('## Elevation');
   });
 
   it('states focus honesty in the facts (captured but not consistent → do not call it consistent)', () => {

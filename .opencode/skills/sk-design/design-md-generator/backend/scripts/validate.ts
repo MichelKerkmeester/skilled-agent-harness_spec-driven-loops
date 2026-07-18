@@ -7,6 +7,27 @@
 // ────────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
+import { CORPUS_BASELINE_V3 } from './corpus-baseline-v3';
+import {
+  assertSchemaIntegrity,
+  createSchemaConsumerContract,
+  isSchemaDocument,
+  resolveCapabilities,
+  resolveQuickStartGroups,
+  resolveSchemaSections,
+  resolveValidationPolicy,
+  schemaSection,
+  V3_SCHEMA,
+} from './schema-v3';
+
+import type { CorpusBaselineV3 } from './corpus-baseline-v3';
+import type {
+  AdvisoryStratum,
+  AdvisoryTier,
+  HardFailureCategory,
+  SchemaConsumerContract,
+  StyleReferenceSchema,
+} from './schema-v3';
 import type { DesignTokens } from './types';
 
 // ─── Result Types ────────────────────────────────────────────────────────────
@@ -15,10 +36,16 @@ import type { DesignTokens } from './types';
 // 2. TYPE DEFINITIONS
 // ────────────────────────────────────────────────────────────────
 
-interface ValidationIssue {
+interface RawValidationIssue {
   type: string;
   value: string;
   message: string;
+}
+
+export interface ValidationIssue extends RawValidationIssue {
+  severity: 'hard' | 'advisory';
+  category: HardFailureCategory | AdvisoryStratum;
+  tier?: AdvisoryTier;
 }
 
 export interface ValidationResult {
@@ -31,6 +58,9 @@ export interface ValidationResult {
   // fabrication + filled-but-empty sections).
   valuesScore: number;
   claimsScore: number;
+  schemaVersion: string;
+  hardCategories: readonly HardFailureCategory[];
+  advisoryStrata: readonly AdvisoryStratum[];
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -59,7 +89,7 @@ function stripHtmlComments(md: string): string {
 
 // ─── Checks ──────────────────────────────────────────────────────────────────
 
-function checkPhantomColors(md: string, tokens: DesignTokens): { passed: boolean; failures: ValidationIssue[] } {
+function checkPhantomColors(md: string, tokens: DesignTokens): { passed: boolean; failures: RawValidationIssue[] } {
   const cleaned = stripHtmlComments(md);
   const hexPattern = /#[0-9a-fA-F]{3,8}\b/g;
   const matches = cleaned.match(hexPattern) ?? [];
@@ -82,7 +112,7 @@ function checkPhantomColors(md: string, tokens: DesignTokens): { passed: boolean
       }
     }
   }
-  const failures: ValidationIssue[] = [];
+  const failures: RawValidationIssue[] = [];
   const seen = new Set<string>();
 
   for (const raw of matches) {
@@ -102,7 +132,7 @@ function checkPhantomColors(md: string, tokens: DesignTokens): { passed: boolean
 // entirely. A content-layer hex appearing anywhere in DESIGN.md is a gating
 // violation that hex-tracing alone (checkPhantomColors) cannot catch — the color is
 // real, it just must not be presented as a design token.
-function checkStabilityGating(md: string, tokens: DesignTokens): { passed: boolean; failures: ValidationIssue[] } {
+function checkStabilityGating(md: string, tokens: DesignTokens): { passed: boolean; failures: RawValidationIssue[] } {
   const cleaned = stripHtmlComments(md);
   const matches = cleaned.match(/#[0-9a-fA-F]{3,8}\b/g) ?? [];
   const layerByHex = new Map<string, string>();
@@ -110,7 +140,7 @@ function checkStabilityGating(md: string, tokens: DesignTokens): { passed: boole
     const layer = (c as unknown as { stability?: { layer?: string } }).stability?.layer;
     if (layer) layerByHex.set(normalizeHex(c.hex), layer);
   }
-  const failures: ValidationIssue[] = [];
+  const failures: RawValidationIssue[] = [];
   const seen = new Set<string>();
   for (const raw of matches) {
     const normalized = normalizeHex(raw);
@@ -127,7 +157,7 @@ function checkStabilityGating(md: string, tokens: DesignTokens): { passed: boole
   return { passed: failures.length === 0, failures };
 }
 
-function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
+function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean; warnings: RawValidationIssue[] } {
   const backtickPattern = /`([^`]+)`/g;
   const knownFonts = new Set<string>();
   for (const face of tokens.fontInfo.fontFaces) {
@@ -137,7 +167,7 @@ function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean;
     knownFonts.add(loaded.family.toLowerCase().replace(/['"]/g, ''));
   }
 
-  const warnings: ValidationIssue[] = [];
+  const warnings: RawValidationIssue[] = [];
   const seen = new Set<string>();
   let match: RegExpExecArray | null;
 
@@ -185,8 +215,8 @@ function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean;
   return { passed: warnings.length === 0, warnings };
 }
 
-function checkFormatConsistency(md: string): { passed: boolean; failures: ValidationIssue[] } {
-  const failures: ValidationIssue[] = [];
+function checkFormatConsistency(md: string): { passed: boolean; failures: RawValidationIssue[] } {
+  const failures: RawValidationIssue[] = [];
 
   // Hex format: should be 6-digit lowercase
   const hexPattern = /#[0-9a-fA-F]{3,8}\b/g;
@@ -245,7 +275,11 @@ function checkFormatConsistency(md: string): { passed: boolean; failures: Valida
   return { passed: failures.length === 0, failures };
 }
 
-function checkSectionCompleteness(md: string): { passed: boolean; failures: ValidationIssue[] } {
+export function checkSectionCompleteness(
+  md: string,
+  tokens?: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+): { passed: boolean; failures: RawValidationIssue[] } {
   // Required v2 core sections. Section 2.5 (Dark Mode) is conditional on a
   // detected dark palette, and 14-17 are optional, so they are not required here.
   const v2Sections = [
@@ -276,34 +310,22 @@ function checkSectionCompleteness(md: string): { passed: boolean; failures: Vali
     '## 8. Responsive Behavior',
     '## 9. Agent Prompt Guide',
   ];
-  // v3 Style Reference is a different schema (named token tables + Quick Start), not the
-  // numbered v2 sections.
-  const v3Sections = [
-    '## Tokens — Colors',
-    '## Tokens — Typography',
-    '## Tokens — Spacing & Shapes',
-    '## Components',
-    "## Do's and Don'ts",
-    '## Surfaces',
-    '## Elevation',
-    '## Layout',
-    '## Agent Prompt Guide',
-    '## Similar Brands',
-    '## Quick Start',
-  ];
-  // Detect format version. v3 carries the "Style Reference" header + "## Tokens — Colors".
-  const isV3 = md.includes('## Tokens — Colors') || md.toLowerCase().includes('— style reference');
+  const isV3 = isSchemaDocument(md, schema);
   const isV2 = md.toLowerCase().includes('## 0. brand context');
-  const requiredSections = isV3 ? v3Sections : isV2 ? v2Sections : v1Sections;
+  const requiredSections = isV3 && tokens
+    ? resolveSchemaSections(tokens, schema).map((section) => section.heading)
+    : isV2
+      ? v2Sections
+      : v1Sections;
 
   const mdLower = md.toLowerCase();
-  const failures: ValidationIssue[] = [];
+  const failures: RawValidationIssue[] = [];
 
   for (const section of requiredSections) {
     // Anchor the heading to line-start (and require a word boundary after it) so a deeper
     // heading like "### Layout" cannot satisfy a "## Layout" requirement via substring match.
     const escaped = section.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const headingRe = new RegExp(`(?:^|\\n)${escaped}(?=\\s|$)`);
+    const headingRe = new RegExp(`(?:^|\\n)${escaped}[ \\t]*(?=\\r?\\n|$)`);
     if (!headingRe.test(mdLower)) {
       failures.push({ type: 'missing-section', value: section, message: `Required section "${section}" not found` });
     }
@@ -311,8 +333,8 @@ function checkSectionCompleteness(md: string): { passed: boolean; failures: Vali
   return { passed: failures.length === 0, failures };
 }
 
-function checkContent(md: string): { passed: boolean; warnings: ValidationIssue[] } {
-  const warnings: ValidationIssue[] = [];
+function checkContent(md: string): { passed: boolean; warnings: RawValidationIssue[] } {
+  const warnings: RawValidationIssue[] = [];
 
   // Typography table check
   const typoSection = md.match(/##\s*3\.\s*Typography Rules[\s\S]*?(?=##\s*4\.|$)/i);
@@ -342,17 +364,16 @@ function checkContent(md: string): { passed: boolean; warnings: ValidationIssue[
 // 4. CORE LOGIC
 // ────────────────────────────────────────────────────────────────
 
-// Interpretive-fabrication prose patterns. WARNING-tier only (never a hard fail) — these
-// specific phrases are inherently ungrounded: tokens.json carries no data about other
-// systems, and the depth/focus claims are the two known hallucinations.
+// These phrases are inherently ungrounded: target tokens carry no evidence about other
+// systems, and the depth/focus claims are known fabrication paths.
 const PROSE_FABRICATION_PATTERNS: { re: RegExp; label: string }[] = [
   { re: /\b(unlike most|most systems|where others|the typical approach|the conventional|departs? from convention|refuses? to)\b/i, label: 'comparison to other/most systems / convention (no token data about other systems)' },
   { re: /gradient[\s-]?as[\s-]?depth|replaces?\s+(the\s+)?shadow\s+elevation/i, label: 'gradient-as-depth / replaces-shadow-elevation claim' },
 ];
 
-function checkProseDiscipline(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
+function checkProseDiscipline(md: string, tokens: DesignTokens): { passed: boolean; warnings: RawValidationIssue[] } {
   const cleaned = stripHtmlComments(md);
-  const warnings: ValidationIssue[] = [];
+  const warnings: RawValidationIssue[] = [];
   for (const { re, label } of PROSE_FABRICATION_PATTERNS) {
     const m = cleaned.match(re);
     if (m) warnings.push({ type: 'prose-fabrication', value: m[0], message: `Interpretive fabrication risk: ${label}` });
@@ -370,7 +391,7 @@ function checkProseDiscipline(md: string, tokens: DesignTokens): { passed: boole
 
 // Flags a high-risk section that is present in the doc while its backing tokens are empty
 // and it was not stamped ABSENT — the mechanical signature of an invented section.
-function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
+function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boolean; warnings: RawValidationIssue[] } {
   const t = tokens as unknown as Record<string, unknown>;
   const isEmpty = (x: unknown) => !x || (Array.isArray(x) ? x.length === 0 : (typeof x === 'object' ? Object.keys(x as object).length === 0 : !x));
   const motion = (t.motionSystem as { durationScale?: unknown[] } | undefined)?.durationScale;
@@ -381,7 +402,7 @@ function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boole
     { section: /^##\s*6\.5\.?\s+Motion/im, empty: isEmpty(motion), field: 'motionSystem' },
     { section: /^##\s*12\.?\s+Icon/im, empty: !icons, field: 'iconSystem' },
   ];
-  const warnings: ValidationIssue[] = [];
+  const warnings: RawValidationIssue[] = [];
   for (const c of checks) {
     if (c.empty && c.section.test(md) && !absent) {
       warnings.push({ type: 'section-coverage', value: c.field, message: `Section present but backing ${c.field} is empty — stamp ABSENT instead of inventing content` });
@@ -390,15 +411,66 @@ function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boole
   return { passed: warnings.length === 0, warnings };
 }
 
-// The Quick Start (CSS + Tailwind) is the ship-ready surface — every value in it must
-// trace to tokens. This is the precise backstop for the value-fabrication class: a
-// phantom hex is critical, and a --page-max-width that disagrees with tokens (the "100rem
-// where tokens say 100%" case) is flagged.
-function checkQuickStartFidelity(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[]; failures: ValidationIssue[] } {
-  const warnings: ValidationIssue[] = [];
-  const failures: ValidationIssue[] = [];
-  const qs = md.split(/##\s*Quick Start/i)[1];
-  if (!qs) return { passed: true, warnings, failures };
+function markdownBlock(markdown: string, heading: string, headingLevel: number): string | undefined {
+  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const start = new RegExp(`(?:^|\\n)${escaped}[ \\t]*(?:\\r?\\n|$)`, 'i').exec(markdown);
+  if (!start) return undefined;
+  const contentStart = start.index + start[0].length;
+  const nextHeading = new RegExp(`^#{1,${headingLevel}}\\s+`, 'm').exec(markdown.slice(contentStart));
+  return nextHeading
+    ? markdown.slice(contentStart, contentStart + nextHeading.index)
+    : markdown.slice(contentStart);
+}
+
+function commentLabels(markdown: string): readonly string[] {
+  return [...markdown.matchAll(/\/\*\s*([^*]+?)\s*\*\//g)].map((match) => match[1].trim());
+}
+
+// The ship-ready surface must contain exactly the schema groups enabled by measured
+// capabilities. Value checks remain separate so structural and target fidelity failures
+// stay legible.
+function checkQuickStartFidelity(
+  md: string,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): { passed: boolean; failures: RawValidationIssue[] } {
+  const failures: RawValidationIssue[] = [];
+  const quickStartSection = schemaSection(schema.document.quickStartSectionId, schema);
+  const qs = markdownBlock(md, quickStartSection.heading, 2);
+  if (qs === undefined) return { passed: true, failures };
+
+  for (const target of schema.quickStartTargets) {
+    const targetBlock = markdownBlock(qs, target.heading, 3) ?? '';
+    const labels = commentLabels(targetBlock);
+    const expected = resolveQuickStartGroups(tokens, target.id, schema);
+    const expectedLabels = new Set(expected.map((group) => group.label));
+    for (const group of expected) {
+      const count = labels.filter((label) => label === group.label).length;
+      if (count === 0) {
+        failures.push({
+          type: 'quickstart-missing-group',
+          value: `${target.id}:${group.id}`,
+          message: `${target.heading} is missing required group "${group.label}"`,
+        });
+      } else if (count > 1) {
+        failures.push({
+          type: 'quickstart-duplicate-group',
+          value: `${target.id}:${group.id}`,
+          message: `${target.heading} contains group "${group.label}" ${count} times`,
+        });
+      }
+    }
+    for (const label of new Set(labels)) {
+      if (!expectedLabels.has(label)) {
+        failures.push({
+          type: 'quickstart-unexpected-group',
+          value: `${target.id}:${label}`,
+          message: `${target.heading} contains non-applicable group "${label}"`,
+        });
+      }
+    }
+  }
+
   const hexes = new Set(tokens.colorTokens.map((c) => c.hex.toLowerCase().slice(0, 7)));
   for (const raw of qs.match(/#[0-9a-fA-F]{6}\b/g) ?? []) {
     if (!hexes.has(raw.toLowerCase())) failures.push({ type: 'quickstart-phantom-color', value: raw, message: `Quick Start hex ${raw} not found in tokens.colorTokens` });
@@ -406,61 +478,163 @@ function checkQuickStartFidelity(md: string, tokens: DesignTokens): { passed: bo
   const mw = (tokens as unknown as { spacingSystem?: { maxContentWidth?: string | null } }).spacingSystem?.maxContentWidth;
   const qsMw = qs.match(/--page-max-width:\s*([^;]+);/);
   if (mw && qsMw && qsMw[1].trim() !== mw.trim()) {
-    warnings.push({ type: 'quickstart-maxwidth', value: qsMw[1].trim(), message: `Quick Start --page-max-width "${qsMw[1].trim()}" does not match tokens maxContentWidth "${mw}"` });
+    failures.push({ type: 'quickstart-maxwidth', value: qsMw[1].trim(), message: `Quick Start --page-max-width "${qsMw[1].trim()}" does not match tokens maxContentWidth "${mw}"` });
   }
-  return { passed: failures.length === 0 && warnings.length === 0, warnings, failures };
+  return { passed: failures.length === 0, failures };
 }
 
-export function validateDesignMd(mdContent: string, tokens: DesignTokens): ValidationResult {
-  const passed: string[] = [];
-  const warnings: ValidationIssue[] = [];
+function checkProvenance(
+  md: string,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): RawValidationIssue[] {
+  if (!isSchemaDocument(md, schema)) return [];
+  const raw = tokens as unknown as {
+    meta?: { sourceUrls?: string[] };
+    metadata?: { urls?: string[] };
+  };
+  const sourceUrls = raw.meta?.sourceUrls ?? raw.metadata?.urls ?? [];
+  return sourceUrls.length > 0
+    ? []
+    : [{
+      type: 'provenance-missing',
+      value: 'tokens sourceUrls',
+      message: 'v3 validation requires at least one target source URL in the extraction metadata',
+    }];
+}
+
+function checkCorpusAdvisories(
+  md: string,
+  tokens: DesignTokens,
+  baseline: CorpusBaselineV3,
+  schema: StyleReferenceSchema,
+): RawValidationIssue[] {
+  if (!isSchemaDocument(md, schema) || baseline.bundleCount === 0) return [];
+  const warnings: RawValidationIssue[] = [];
+  const headings = [...md.matchAll(/^##\s+(.+)$/gm)].map((match) => `## ${match[1].trim()}`);
+  if (headings.length < baseline.sectionCount.p10 || headings.length > baseline.sectionCount.p90) {
+    warnings.push({
+      type: 'corpus-shape',
+      value: `${headings.length} sections`,
+      message: `Section count is outside the corpus diagnostic band ${baseline.sectionCount.p10}-${baseline.sectionCount.p90}`,
+    });
+  }
+  const knownHeadings = new Set(schema.sections.map((section) => section.heading.toLowerCase()));
+  const unknownHeadings = headings.filter((heading) => !knownHeadings.has(heading.toLowerCase()));
+  if (unknownHeadings.length > 0) {
+    warnings.push({
+      type: 'corpus-vocabulary',
+      value: unknownHeadings.join(', '),
+      message: 'Extension headings are preserved but sit outside the stable v3 vocabulary',
+    });
+  }
+  const capabilities = resolveCapabilities(tokens, schema);
+  for (const capability of capabilities) {
+    const count = baseline.capabilityCounts[capability];
+    if (count !== undefined && count < Math.ceil(baseline.bundleCount * 0.1)) {
+      warnings.push({
+        type: 'corpus-rarity',
+        value: capability,
+        message: `Capability is present in ${count}/${baseline.bundleCount} corpus bundles; preserve it as valid target evidence`,
+      });
+    }
+  }
+  return warnings;
+}
+
+function classifyValidationIssues(
+  issues: readonly RawValidationIssue[],
+  schema: StyleReferenceSchema,
+): { failures: ValidationIssue[]; warnings: ValidationIssue[] } {
   const failures: ValidationIssue[] = [];
+  const warnings: ValidationIssue[] = [];
+  for (const issue of issues) {
+    const policy = resolveValidationPolicy(issue.type, schema);
+    const classified: ValidationIssue = { ...issue, ...policy };
+    if (classified.severity === 'hard') failures.push(classified);
+    else warnings.push(classified);
+  }
+  return { failures, warnings };
+}
+
+export interface ValidationOptions {
+  readonly schema?: StyleReferenceSchema;
+  readonly corpusBaseline?: CorpusBaselineV3;
+}
+
+export function validateDesignMd(
+  mdContent: string,
+  tokens: DesignTokens,
+  options: ValidationOptions = {},
+): ValidationResult {
+  const schema = options.schema ?? V3_SCHEMA;
+  assertSchemaIntegrity(schema);
+  const corpusBaseline = options.corpusBaseline ?? CORPUS_BASELINE_V3;
+  const passed: string[] = [];
+  const rawIssues: RawValidationIssue[] = [];
 
   const phantom = checkPhantomColors(mdContent, tokens);
   if (phantom.passed) passed.push('phantom-color');
-  else failures.push(...phantom.failures);
+  else rawIssues.push(...phantom.failures);
 
   const gating = checkStabilityGating(mdContent, tokens);
   if (gating.passed) passed.push('stability-gating');
-  else failures.push(...gating.failures);
+  else rawIssues.push(...gating.failures);
 
   const fonts = checkUnknownFonts(mdContent, tokens);
   if (fonts.passed) passed.push('unknown-font');
-  else warnings.push(...fonts.warnings);
+  else rawIssues.push(...fonts.warnings);
 
   const format = checkFormatConsistency(mdContent);
   if (format.passed) passed.push('format-consistency');
-  else failures.push(...format.failures);
+  else rawIssues.push(...format.failures);
 
-  const sections = checkSectionCompleteness(mdContent);
+  const sections = checkSectionCompleteness(mdContent, tokens, schema);
   if (sections.passed) passed.push('section-completeness');
-  else failures.push(...sections.failures);
+  else rawIssues.push(...sections.failures);
 
   const content = checkContent(mdContent);
   if (content.passed) passed.push('content-checks');
-  else warnings.push(...content.warnings);
+  else rawIssues.push(...content.warnings);
 
   const prose = checkProseDiscipline(mdContent, tokens);
   if (prose.passed) passed.push('prose-discipline');
-  else warnings.push(...prose.warnings);
+  else rawIssues.push(...prose.warnings);
 
   const coverage = checkSectionCoverage(mdContent, tokens);
   if (coverage.passed) passed.push('section-coverage');
-  else warnings.push(...coverage.warnings);
+  else rawIssues.push(...coverage.warnings);
 
-  const qsFidelity = checkQuickStartFidelity(mdContent, tokens);
+  const qsFidelity = checkQuickStartFidelity(mdContent, tokens, schema);
   if (qsFidelity.passed) passed.push('quickstart-fidelity');
-  failures.push(...qsFidelity.failures);
-  warnings.push(...qsFidelity.warnings);
+  rawIssues.push(...qsFidelity.failures);
+  rawIssues.push(...checkProvenance(mdContent, tokens, schema));
+  rawIssues.push(...checkCorpusAdvisories(mdContent, tokens, corpusBaseline, schema));
 
-  // Dual score: separate value-fidelity from claim-provenance so a doc with real hexes
-  // but invented prose cannot earn a high combined score on hex-tracing alone.
-  const claimsWarnings = warnings.filter((w) => w.type === 'prose-fabrication' || w.type === 'section-coverage');
-  const valuesScore = Math.max(0, 100 - failures.length * 5 - (warnings.length - claimsWarnings.length) * 1);
-  const claimsScore = Math.max(0, 100 - claimsWarnings.length * 10);
-  const score = Math.max(0, 100 - failures.length * 5 - warnings.length * 1);
+  const { failures, warnings } = classifyValidationIssues(rawIssues, schema);
+  const claimsFailures = failures.filter((failure) => failure.category === 'provenance');
+  const valueFailures = failures.filter((failure) => failure.category !== 'provenance');
+  const valuesScore = Math.max(0, 100 - valueFailures.length * 5);
+  const claimsScore = Math.max(0, 100 - claimsFailures.length * 10);
+  const score = Math.max(0, 100 - failures.length * 5);
 
-  return { passed, warnings, failures, score, valuesScore, claimsScore };
+  return {
+    passed,
+    warnings,
+    failures,
+    score,
+    valuesScore,
+    claimsScore,
+    schemaVersion: schema.version,
+    hardCategories: schema.validation.hardCategories,
+    advisoryStrata: schema.validation.advisoryStrata,
+  };
+}
+
+export function getValidatorSchemaContract(
+  schema: StyleReferenceSchema = V3_SCHEMA,
+): SchemaConsumerContract {
+  return createSchemaConsumerContract('validator', schema);
 }
 
 // ─── CLI ─────────────────────────────────────────────────────────────────────
@@ -479,21 +653,8 @@ const RESET = '\x1b[0m';
 // 6. HELPERS
 // ────────────────────────────────────────────────────────────────
 
-// Phantom colors (hallucinated values not in tokens.json) and missing required
-// sections are hard failures for an anti-hallucination tool: they fail the
-// document regardless of the numeric score, so a single fabricated color cannot
-// pass on points.
-const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section', 'content-color', 'quickstart-phantom-color']);
-
-function hasCriticalFailure(result: ValidationResult): boolean {
-  return result.failures.some((f) => CRITICAL_FAILURE_TYPES.has(f.type));
-}
-
-function isPass(result: ValidationResult): boolean {
-  // claimsScore is gated too: a doc cannot pass on hex-fidelity alone while its prose
-  // carries unverified fabrication claims. Without this, the 99/100-with-fabrication case
-  // the validator exists to catch could still PASS.
-  return result.score >= 80 && result.claimsScore >= 80 && !hasCriticalFailure(result);
+export function isValidationPass(result: ValidationResult): boolean {
+  return result.failures.length === 0;
 }
 
 function printResult(result: ValidationResult): void {
@@ -507,16 +668,18 @@ function printResult(result: ValidationResult): void {
   }
 
   if (result.failures.length > 0) {
-    console.log(`\n${RED}Failures (${result.failures.length}):${RESET}`);
+    console.log(`\n${RED}Hard failures (${result.failures.length}):${RESET}`);
     for (const f of result.failures) {
-      console.log(`  ${RED}[FAIL]${RESET} ${f.type}: ${f.value} — ${f.message}`);
+      console.log(`  ${RED}[FAIL:${f.category}]${RESET} ${f.type}: ${f.value} — ${f.message}`);
     }
   }
 
   if (result.warnings.length > 0) {
-    console.log(`\n${YELLOW}Warnings (${result.warnings.length}):${RESET}`);
-    for (const w of result.warnings) {
-      console.log(`  ${YELLOW}[WARN]${RESET} ${w.type}: ${w.value} — ${w.message}`);
+    console.log(`\n${YELLOW}Advisory corpus warnings (${result.warnings.length}):${RESET}`);
+    for (const stratum of result.advisoryStrata) {
+      for (const warning of result.warnings.filter((item) => item.category === stratum)) {
+        console.log(`  ${YELLOW}[${stratum}:${warning.tier ?? 'notice'}]${RESET} ${warning.type}: ${warning.value} — ${warning.message}`);
+      }
     }
   }
 
@@ -524,13 +687,10 @@ function printResult(result: ValidationResult): void {
   if (result.claimsScore < 80) {
     console.log(`${YELLOW}  Claims score is low — prose may assert relationships/consistency not backed by tokens.${RESET}`);
   }
-  if (isPass(result)) {
+  if (isValidationPass(result)) {
     console.log(`${GREEN}Result: PASS${RESET}\n`);
   } else {
-    const reason = hasCriticalFailure(result)
-      ? 'phantom colors or missing required sections are hard failures'
-      : 'minimum score 80 required';
-    console.log(`${RED}Result: FAIL (${reason})${RESET}\n`);
+    console.log(`${RED}Result: FAIL (${result.hardCategories.join(', ')} failures are hard)${RESET}\n`);
   }
 }
 
@@ -559,5 +719,5 @@ if (require.main === module) {
 
   const result = validateDesignMd(mdContent, tokens);
   printResult(result);
-  process.exit(isPass(result) ? 0 : 1);
+  process.exit(isValidationPass(result) ? 0 : 1);
 }

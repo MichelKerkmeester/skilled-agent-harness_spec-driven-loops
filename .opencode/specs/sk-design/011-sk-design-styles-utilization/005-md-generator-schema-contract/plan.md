@@ -56,17 +56,17 @@ Build one versioned v3 schema manifest that is the single source of truth for se
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 retrieval substrate is available and its interface is stable
-- [ ] The v3 manifest authoring format (TS/JSON/hybrid) is decided in decision-record.md
-- [ ] The closed set of HARD validation categories (target/schema/provenance) is agreed
-- [ ] The advisory strata (shape/vocabulary/density/rarity) are enumerated
+- [x] Phase 004 retrieval substrate is available and its interface is stable
+- [x] The v3 manifest authoring format (TS/JSON/hybrid) is decided in decision-record.md
+- [x] The closed set of HARD validation categories (target/schema/provenance) is agreed
+- [x] The advisory strata (shape/vocabulary/density/rarity) are enumerated
 
 ### Definition of Done
-- [ ] One versioned v3 manifest is the sole authority; formatter/prompt/validator read from it
-- [ ] `emitQuickStart` derives groups from manifest capabilities
-- [ ] Hard-vs-advisory split live in `validateDesignMd` / `checkSectionCompleteness`, surfaced by `report-gen.ts`
-- [ ] Schema-drift sentinel + counterfactual Vitest tests pass
-- [ ] Corpus baseline + de-literalized fixtures generated, carrying no source literals
+- [x] One versioned v3 manifest is the sole authority; formatter/prompt/validator read from it
+- [x] `emitQuickStart` derives groups from manifest capabilities
+- [x] Hard-vs-advisory split live in `validateDesignMd` / `checkSectionCompleteness`, surfaced by `report-gen.ts`
+- [x] Schema-drift sentinel + counterfactual Vitest tests pass
+- [x] Corpus baseline + de-literalized fixtures generated, carrying no source literals
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -107,25 +107,25 @@ corpus (1,290 bundles) ──(phase-004 retrieval)──► de-literalized basel
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: v3 Schema Manifest
-- [ ] Author the versioned v3 manifest module (requiredness, capabilities, extension slots, Quick Start groups, semantic roles, emission, prompt text, validation)
-- [ ] Define the closed HARD category set (target/schema/provenance) and the advisory strata
+- [x] Author the versioned v3 manifest module (requiredness, capabilities, extension slots, Quick Start groups, semantic roles, emission, prompt text, validation)
+- [x] Define the closed HARD category set (target/schema/provenance) and the advisory strata
 
 ### Phase 2: Consumer Migration
-- [ ] Migrate `formatters-v3.ts::emitQuickStart` to capability-driven emission from the manifest
-- [ ] Migrate the write-prompt instructions to read from the manifest
-- [ ] Add the semantic typography-role normalizer (stable core + namespaced extensions)
+- [x] Migrate `formatters-v3.ts::emitQuickStart` to capability-driven emission from the manifest
+- [x] Migrate the write-prompt instructions to read from the manifest
+- [x] Add the semantic typography-role normalizer (stable core + namespaced extensions)
 
 ### Phase 3: Validation Split
-- [ ] Split `validate.ts::validateDesignMd` / `checkSectionCompleteness` into hard vs advisory
-- [ ] Surface stratified advisory warnings through `report-gen.ts`
+- [x] Split `validate.ts::validateDesignMd` / `checkSectionCompleteness` into hard vs advisory
+- [x] Surface stratified advisory warnings through `report-gen.ts`
 
 ### Phase 4: Corpus Baseline
-- [ ] Build the compact corpus baseline via phase-004 retrieval over the 1,290 bundles
-- [ ] Build the de-literalized fixture generator; assert no source literals/assets escape
+- [x] Build the compact corpus baseline via phase-004 retrieval over the 1,290 bundles
+- [x] Build the de-literalized fixture generator; assert no source literals/assets escape
 
 ### Phase 5: Drift + Counterfactual Tests
-- [ ] Add the schema-drift sentinel
-- [ ] Add counterfactual schema/emitter Vitest tests (mutate schema, assert emission/validation follow)
+- [x] Add the schema-drift sentinel
+- [x] Add counterfactual schema/emitter Vitest tests (mutate schema, assert emission/validation follow)
 
 <!-- /ANCHOR:phases -->
 ---
@@ -205,9 +205,9 @@ Phase 1 (Manifest) ──► Phase 2 (Consumers) ──► Phase 3 (Validation s
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Backend baseline captured (current formatter/prompt/validator behavior snapshot)
-- [ ] Phase 004 substrate interface pinned
-- [ ] Golden DESIGN.md outputs recorded for regression comparison
+- [x] Backend baseline captured (current formatter/prompt/validator behavior snapshot)
+- [x] Phase 004 substrate interface pinned
+- [x] Golden DESIGN.md outputs recorded for regression comparison
 
 ### Rollback Procedure
 1. Revert the new `schema-v3` module and consumer edits to `formatters-v3.ts`, `validate.ts`, `report-gen.ts`.
@@ -316,9 +316,9 @@ See `decision-record.md` for full ADRs:
 ## L3: AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirm the phase-004 retrieval substrate exists and its interface is pinned
-- [ ] Read `spec.md`, this `plan.md`, and `decision-record.md` before editing backend code
-- [ ] Capture the golden DESIGN.md baseline outputs for regression comparison
+- [x] Confirm the phase-004 retrieval substrate exists and its interface is pinned
+- [x] Read `spec.md`, this `plan.md`, and `decision-record.md` before editing backend code
+- [x] Capture the golden DESIGN.md baseline outputs for regression comparison
 
 ### Task Execution Rules
 

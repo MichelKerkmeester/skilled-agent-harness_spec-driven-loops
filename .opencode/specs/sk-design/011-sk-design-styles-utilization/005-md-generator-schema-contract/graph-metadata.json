@@ -39,7 +39,7 @@
       "drift"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `design-md-generator` backend defines DESIGN.md structure in several disconnected places: the formatter (`formatters-v3.ts`) decides emission, the write-prompt builds its own instructions, and `validate.ts` re-encodes section requiredness",
     "created_at": "2026-07-18T14:19:11.358Z",
-    "last_save_at": "2026-07-18T14:29:18.280Z",
+    "last_save_at": "2026-07-18T18:22:32.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:751d48131157811367fc7a363746599b4584824ae4967bbbe2eb708036c8bc7a",
+    "source_fingerprint": "sha256:320bcab8b2b3e6dfb981a9611b06d03f1e53dd18708e39f24261cf038fc7847d",
     "source_doc_hashes": {
-      "spec.md": "10236e63e4111b94e324b0ef05874272775921f27c4c0392bab3239db63df7de",
-      "plan.md": "87fc927174a1df5922d59b2c01f7f07cf57433f4e52cda1a7ac1a16db47da8d5",
-      "tasks.md": "95ae0728b9add2cbf551e9b924632e2aa541b47fbd2d10ebeddbe2edff8004dc",
-      "checklist.md": "be4e1eb9b116d2a8f01d07bc5b0e60b606d56bbbb65374d79ba48a04830465ac",
+      "spec.md": "eeaa6449b96922c0329e624ed47aae2b3ff927419e981ec13f136b415463c487",
+      "plan.md": "582a4648e318fb82d9a23b724ca226f5be80a893307d06619d9baf247ad294e7",
+      "tasks.md": "3d5fa20fd0356d3f18e969f213d8628c263a9fed561641e45aa585457fc5abb4",
+      "checklist.md": "e72cdfbd9ab0bd7a0f2535582a30476e6b0cfc2e1ae7e2cbae752fc15c5f78f9",
       "decision-record.md": "11775551b84d9b106dd0ba30df4ae35d01b38c9f5eaeb78d63104bea9448a76c",
-      "implementation-summary.md": "ab1d9582d1fb2bea0735b8e7f4a9e14ac492f7fae8658c94c5061274426f2d42"
+      "implementation-summary.md": "456558bf3da7d0c94868f1ffde1c062f2fcc99d23c53e975bc2c71dad7456fd2"
     },
     "last_active_child_id": null,
     "last_active_at": null

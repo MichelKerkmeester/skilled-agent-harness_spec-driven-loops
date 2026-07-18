@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import { emitQuickStart } from '../scripts/formatters-v3';
 import { generateReport } from '../scripts/report-gen';
 import { generatePreview } from '../scripts/preview-gen';
 import type { DesignTokens } from '../scripts/types';
@@ -76,5 +77,51 @@ describe('report-gen / preview-gen overwrite guard (P1-004 regression)', () => {
     generateReport(tokensPath, sandboxDir);
     const html = fs.readFileSync(path.join(sandboxDir, 'report.html'), 'utf-8');
     expect(html).not.toContain('style="background:red; } * { display:none } /*');
+  });
+
+  it('surfaces hard validation separately from stratified corpus advisories', () => {
+    const designPath = path.join(sandboxDir, 'DESIGN.md');
+    const reportTokens = tokens({
+      fontInfo: { fontFaces: [], loadedFonts: [], googleFontsLinks: [] },
+    });
+    fs.writeFileSync(tokensPath, JSON.stringify(reportTokens));
+    fs.writeFileSync(designPath, `# Example — Style Reference
+
+## Tokens — Colors
+
+Measured colors.
+
+## Tokens — Typography
+
+Measured typography.
+
+## Tokens — Spacing & Shapes
+
+Measured spacing.
+
+## Components
+
+No components detected.
+
+## Do's and Don'ts
+
+Use measured values.
+
+## Surfaces
+
+Measured surfaces.
+
+## Agent Prompt Guide
+
+Use target facts.
+
+${emitQuickStart(reportTokens)}
+`);
+    generateReport(tokensPath, sandboxDir, designPath);
+    const html = fs.readFileSync(path.join(sandboxDir, 'report.html'), 'utf8');
+    expect(html).toContain('Hard Validation');
+    expect(html).toContain('No hard failures');
+    expect(html).toContain('Corpus Advisory Warnings');
+    expect(html).toContain('ADVISORY');
   });
 });
