@@ -1,0 +1,75 @@
+{
+  "topic": "How should the sk-design skill and its five nested modes (interface, foundations, motion, audit, md-generator) smartly index, retrieve, and consume the ~1,290-style design-token library at .opencode/skills/sk-design/styles/?",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization",
+  "artifactDir": ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-18T09:27:16Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "configDir": null,
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900,
+    "governor": null
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784366607889-1j7alg",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

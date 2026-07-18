@@ -83,15 +83,15 @@
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md + CSS-variables + Tailwind-v4 + design-tokens + provenance",
     "created_at": "2026-07-18T09:21:31.581Z",
-    "last_save_at": "2026-07-18T09:22:49.614Z",
+    "last_save_at": "2026-07-18T10:51:49.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8a900946fbe43c8c819835ab6dc8e603af23ecfbe6d4e239abb46c29f897eb5b",
+    "source_fingerprint": "sha256:9972900e0c06eaa9f7ba090bd502c875875b4951da851e0d3072774e14992299",
     "source_doc_hashes": {
-      "spec.md": "6b8e72f668844c1cceeab1a3c838a4d3045f4231a957e164373d40ebc0b1530b"
+      "spec.md": "f61f754023485c4323c2d2753906efccdae01cfa0e676e160e0b20aa6f1ac523"
     },
     "last_active_child_id": null,
     "last_active_at": null

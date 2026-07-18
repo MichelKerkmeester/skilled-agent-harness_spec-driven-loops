@@ -61,8 +61,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the utilization topic (`research/`).
-- [ ] T004 Iterate to convergence or the 10-iteration ceiling (`research/`).
+- [x] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the utilization topic (`research/`). [EVIDENCE: lineage `fanout-sol-1784366607889-1j7alg` ran to `exitCode 0`, status `fulfilled`.]
+- [x] T004 Iterate to convergence or the 10-iteration ceiling (`research/`). [EVIDENCE: 8 iterations in `deep-research-state.jsonl`; `stall_detected` stopped it below the ceiling.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,8 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Confirm `research/research.md` ranks utilization strategies with evidence + rough cost (`research/research.md`).
-- [ ] T006 Confirm recommendations cover the hub + all five modes and state anti-slop discipline (`research/research.md`).
+- [x] T005 Confirm `research/research.md` ranks utilization strategies with evidence + rough cost (`research/research.md`). [EVIDENCE: `research.md` §11 ranks six strategies with per-strategy cost (`5-8 days`, `+1-2 days`).]
+- [x] T006 Confirm recommendations cover the hub + all five modes and state anti-slop discipline (`research/research.md`). [EVIDENCE: `research.md` §6 mode-consumption contract names `interface`/`foundations`/`motion`/`audit`/`md-generator`; §8 states anti-slop discipline.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Loop converged (or ceiling reached); research.md written
-- [ ] Strategies ranked with evidence + cost
-- [ ] Hub + five modes covered
+- [x] Loop converged (or ceiling reached); research.md written
+- [x] Strategies ranked with evidence + cost
+- [x] Hub + five modes covered
 <!-- /ANCHOR:completion -->
 
 ---

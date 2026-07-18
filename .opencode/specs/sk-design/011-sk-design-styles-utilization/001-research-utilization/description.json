@@ -1,23 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
-  "description": "Deep-research (10 iters, GPT 5.6 SOL xhigh) into indexing, retrieving, and consuming the styles library across sk-design + its five modes.",
+  "description": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design",
   "keywords": [
-    "deep-research",
-    "iters",
-    "gpt",
-    "sol",
-    "xhigh",
-    "indexing",
-    "retrieving",
-    "consuming",
+    "extracted",
     "styles",
     "library",
-    "across",
+    "opencode",
+    "skills",
     "sk-design",
-    "five",
-    "modes"
+    "real",
+    "design",
+    "systems",
+    "token",
+    "files",
+    "unused"
   ],
-  "lastUpdated": "2026-07-18T09:21:31.222Z",
+  "lastUpdated": "2026-07-18T10:56:20.296Z",
   "specId": "001",
   "folderSlug": "research-utilization",
   "parentChain": [
@@ -25,6 +24,5 @@
     "011-sk-design-styles-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

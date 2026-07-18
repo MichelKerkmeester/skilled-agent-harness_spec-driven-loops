@@ -1,30 +1,26 @@
 {
+  "level": "2",
   "specFolder": "sk-design/011-sk-design-styles-utilization",
-  "description": "Phase parent: decide how to utilize the ~1,290-style Refero library across sk-design; research phase first, implementation phases gated on findings.",
+  "description": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md +",
   "keywords": [
-    "phase",
-    "parent",
-    "decide",
-    "utilize",
-    "290-style",
-    "refero",
-    "library",
-    "across",
+    "packet",
+    "010-sk-design-styles-from-refero",
+    "extracts",
+    "real",
+    "design",
+    "systems",
+    "opencode",
+    "skills",
     "sk-design",
-    "research",
-    "first",
-    "implementation",
-    "phases",
-    "gated",
-    "findings"
+    "styles",
+    "folder"
   ],
-  "lastUpdated": "2026-07-18T09:21:31.056Z",
+  "lastUpdated": "2026-07-18T10:50:10.787Z",
   "specId": "011",
   "folderSlug": "sk-design-styles-utilization",
   "parentChain": [
     "sk-design"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

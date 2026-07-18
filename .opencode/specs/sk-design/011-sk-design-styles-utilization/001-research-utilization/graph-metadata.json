@@ -39,11 +39,12 @@
       "status"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "research/lineages/sol/research.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -78,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +98,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,8 +169,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "per-strategy",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -186,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built The",
+        "name": "What Was Built An",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design runtime",
     "created_at": "2026-07-18T09:21:31.414Z",
-    "last_save_at": "2026-07-18T09:22:49.253Z",
+    "last_save_at": "2026-07-18T10:56:30.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c158d76cf5d2746989b7348609dfbf365e828cc410b05242773d059755484b6b",
+    "source_fingerprint": "sha256:7fe943954737a611f2d7eb8969388f69ffef47fb93a480c7a742186b47565658",
     "source_doc_hashes": {
-      "spec.md": "7f6f1c35af4d4d7a5c993e9cd594ab24bd2eda09966e4c657e3c18b0e14e6ab7",
-      "plan.md": "3a58a035923a3f36b4f297eca7605c5b7bc95fd4b49e7553f769123fa36863e1",
-      "tasks.md": "84f8c35c87a8c5bddea3458a3d36629e3dfbb69edc768ec67dbbc35c4646f540",
-      "implementation-summary.md": "00dc63a3a92930aa82c404f76fc584857c2d0d5cd661371f9ac95d50a59eca72"
+      "spec.md": "ed3809aebe39c037a162b06bea6fb8e5cd4a82620b36b65d91f532afae623ac1",
+      "plan.md": "55e2a492b50fb59a2073d7df001f1d58f8732d1194e2f8a144515d0715179ecd",
+      "tasks.md": "18d27673b86c87faa4f7768ce3e78cc85650ee6a506beaec427442c0336b9c7e",
+      "implementation-summary.md": "3e92b7201e65cde7536b8cccff03f255a4914765a43b114e312dbc4303d7fe23"
     },
     "last_active_child_id": null,
     "last_active_at": null
