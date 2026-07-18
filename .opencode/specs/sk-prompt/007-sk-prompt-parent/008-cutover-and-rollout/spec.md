@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout"
-    last_updated_at: "2026-07-09T18:15:00Z"
+    last_updated_at: "2026-07-18T06:22:50.367Z"
     last_updated_by: "claude"
     recent_action: "Executed terminal gate; all checks PASS, parent metadata rolled up"
     next_safe_action: "None — packet complete. sk-prompt is now the fifth canon-clean parent hub."
@@ -55,9 +55,9 @@ FAILURE MODES:
 | **Created** | 2026-07-09 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 9 |
 | **Predecessor** | 007-routing-benchmark-and-review |
-| **Successor** | None |
+| **Successor** | 009-prompt-command-canon-refactor |
 | **Handoff Criteria** | Parent-skill strict check, recursive spec validation, stale-reference sweep, and parent metadata rollup are executed with evidence recorded in this phase's completion artifacts. |
 <!-- /ANCHOR:metadata -->
 

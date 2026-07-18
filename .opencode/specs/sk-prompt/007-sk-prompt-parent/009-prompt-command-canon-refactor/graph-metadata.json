@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor",
+  "spec_folder": "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor",
+  "parent_id": "sk-prompt/007-sk-prompt-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prompt improve command",
+      "create-command canon",
+      "router presentation split",
+      "workflow yaml triad",
+      "prompt command refactor",
+      "prompt command plan",
+      "router asset split plan",
+      "canon command refactor plan",
+      "presentation triad plan",
+      "phase 0 dispatch context",
+      "prompt command tasks",
+      "canon refactor tasks"
+    ],
+    "key_topics": [
+      "prompt",
+      "improve",
+      "command",
+      "create-command",
+      "canon",
+      "router",
+      "presentation",
+      "split",
+      "workflow",
+      "yaml",
+      "triad",
+      "refactor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/prompt/improve.md",
+      ".opencode/commands/prompt/assets/prompt_improve_presentation.txt",
+      ".opencode/commands/prompt/assets/prompt_improve_auto.yaml",
+      ".opencode/commands/prompt/assets/prompt_improve_confirm.yaml",
+      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+      ".opencode/commands/deep/command-benchmark.md",
+      ".opencode/commands/README.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "improve.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_improve_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/prompt/assets/prompt_improve_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_improve_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/prompt/assets/prompt_improve_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_improve_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/prompt/assets/prompt_improve_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command_router_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/command-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Command Canon Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prompt-improvement command was a single 28KB Markdown file that carried its whole workflow, every consolidated-prompt question, all interactive templates, and the result formats inline",
+    "created_at": "2026-07-18T06:13:09.420Z",
+    "last_save_at": "2026-07-18T06:21:04.143Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa1ce2d7a4c12d0f3a4369f03eb8abda263f69d7cd54e82673b52112a3ddcb4d",
+    "source_doc_hashes": {
+      "spec.md": "41df7fd333f963b9b0713c3ca556ba00d521ed37bc533fe63a19f36e31c6264f",
+      "plan.md": "44644c3e91dca4a7c9fe8691665d3e3b441514e9d430d7ba9d1f60f9a2e2f9fb",
+      "tasks.md": "e3098b3773d553fca315ce4b3d28635e490d72c68b6f860468b9a0c5cdd208e7",
+      "implementation-summary.md": "5710d5127cc2193fd30a8089e254957fc4430c2c69a35d3ec255c7b2f0d76b5e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -11,7 +11,8 @@
     "sk-prompt/007-sk-prompt-parent/005-foldin-prompt-models",
     "sk-prompt/007-sk-prompt-parent/006-advisor-and-integration",
     "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review",
-    "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout"
+    "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout",
+    "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/commands/prompt-improve.md",
       ".opencode/commands/deep/model-benchmark.md",
       "spec.md"
     ],
@@ -53,12 +53,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-improve.md",
-        "kind": "doc",
-        "path": ".opencode/commands/prompt-improve.md",
         "source": "derived"
       },
       {
@@ -112,15 +106,15 @@
     ],
     "causal_summary": "`sk-prompt` (active prompt-improvement engine: 7 frameworks, DEPTH thinking, CLEAR scoring) and `sk-prompt-models` (read-only small-model prompt-craft profile lookup for DeepSeek/Kimi/MiniMax/MiMo/GLM) are two flat, independently advisor-routable skills that already narrate their own boundary against each other in prose — each README explains how it differs from the other — but have no structural relationship: no shared registry, no advisor graph edge, tagged only by a common `family: sk-util`",
     "created_at": "2026-07-09T13:34:32Z",
-    "last_save_at": "2026-07-15T10:52:34.513Z",
+    "last_save_at": "2026-07-18T06:21:04.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0efc2f77cba1613a14bb90aa6d4f871a00159eb44833bd8c34de76665a4000b0",
+    "source_fingerprint": "sha256:5632af3722a1d666ed9a2aad3874c9c1411cd283262c8c9de4ccb1d44d9a3904",
     "source_doc_hashes": {
-      "spec.md": "d07259b279165b039171d91df90df8f69203d716eb9cb9e78bccf75807062474"
+      "spec.md": "cd6ed56d3d2f085cb72eb27680bea5eb2f91bf3b5b072ba116cdf57db9a28fc8"
     },
     "last_active_child_id": "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout",
     "last_active_at": "2026-07-09T18:15:00Z"

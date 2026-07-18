@@ -131,6 +131,7 @@ Summary of aggregate file scope; per-phase detail lives in each child's `plan.md
 | 6 | 006-advisor-and-integration/ | Sweep remaining ~50 documentation/prose referrers; regenerate `skill-graph.json`; exercise the CI card-sync gate | Complete |
 | 7 | 007-routing-benchmark-and-review/ | Lane-C skill-benchmark against the new hub; independent deep-review pass over the full diff | Complete |
 | 8 | 008-cutover-and-rollout/ | `parent-skill-check.cjs` STRICT (0 warnings); `validate.sh --recursive --strict`; final stale-reference grep sweep; parent rollup | Complete |
+| 9 | 009-prompt-command-canon-refactor/ | Refactor `/prompt:improve` into the create-command canon: thin router with Phase 0 dispatch-context check, auto/confirm workflow-YAML triad, and presentation asset (behavior-preserving) | Complete |
 
 ### Phase Transition Rules
 

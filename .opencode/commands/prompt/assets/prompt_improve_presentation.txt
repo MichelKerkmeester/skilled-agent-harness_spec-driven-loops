@@ -1,0 +1,171 @@
+# Prompt Improve Presentation Contract
+
+Presentation source of truth for `/prompt:improve`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and result displays.
+
+## 1. Startup Presentation
+
+For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait. Never split them across multiple prompts.
+
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-resolution table below and ask targeted questions only for fields that cannot be defaulted (Tier 2).
+
+### Auto Pre-Bound Setup Answers
+
+Accept one optional marker block in the prompt body before applying defaults.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  prompt_input: Help users understand our API authentication flow
+  enhancement_mode: auto
+  save_choice: D
+  save_path: ""
+  execution_mode: AUTONOMOUS
+  dispatch_mode: INLINE
+```
+
+Unknown fields warn. Malformed lines are parse errors. Marker values override flags; omitted fields fall back to defaults.
+
+### Auto Resolution Table
+
+| Field | Required | Default | Tier 2 (targeted-ask when) |
+|-------|----------|---------|----------------------------|
+| `prompt_input` | Yes | none | Never inferred — fail fast if missing (see Auto Fail-Fast Display) |
+| `enhancement_mode` | Yes | `auto` (detect from content) | No |
+| `save_choice` | Yes | `D` (keep in conversation only) | Yes, when the user's request implies persisting a prompt library |
+| `save_path` | No | none unless `save_choice` is A/B/C | No |
+| `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
+| `dispatch_mode` | Yes | `AGENT` when `--agent` or resolved complexity `>= 7/10`, else `INLINE` | No |
+
+### Consolidated Prompt Template
+
+Include only the questions whose fields are still unresolved after parsing `$ARGUMENTS`.
+
+```
+Before proceeding, please answer:
+
+Q0. Prompt Input (if not provided in command):
+    What prompt would you like to create or improve?
+    (paste prompt text, describe a topic, or specify a goal)
+
+Q1. Enhancement Mode (if no $mode prefix detected):
+    A) Auto-detect from content (Recommended)
+    B) $improve — Standard enhancement (10 DEPTH rounds)
+    C) $short — Quick refinement (3 DEPTH rounds)
+    D) $refine — Maximum optimization (deep DEPTH)
+    E) $raw — Skip DEPTH, format only
+
+Q2. Save Location (required):
+    A) Save to existing spec folder: [list if found]
+    B) Save to new spec folder
+    C) Save to specific path (inside the .opencode/specs/ tree)
+    D) Skip — keep in conversation only
+
+Q3. Execution Mode (if no :auto/:confirm suffix):
+    A) Autonomous — run end-to-end (Recommended)
+    B) Interactive — confirm at each DEPTH phase
+
+Q4. Dispatch Mode (if not auto-selected):
+    A) Inline skill — direct, in-context (default)
+    B) Agent — fresh @prompt-improver context, structured return
+
+Reply format: "A, D, A, A" or "my prompt text here, B, A, A, B"
+```
+
+Reply-format rules: markdown dashes for bullets (never emoji bullets); each bullet on its own line; bold headers followed by content; no emojis in questions; defaults shown in brackets.
+
+### Auto Fail-Fast Display
+
+When `:auto` is selected and `prompt_input` cannot be resolved from `$ARGUMENTS` or the pre-bound block:
+
+```
+No prompt or topic was provided. /prompt:improve never infers prompt text
+from open files, screenshots, or conversation history.
+Re-run with the prompt inline, e.g. /prompt:improve "your prompt here" :auto
+
+STATUS=FAIL ERROR="prompt_input required and not provided"
+```
+
+## 2. Dashboard / Checkpoint Layout
+
+Confirm-mode pauses reuse these templates.
+
+Framework choice (complexity 5-6):
+
+```
+Framework Choice — Complexity [5-6]/10
+
+I can optimise your prompt using different frameworks:
+- Option A: RCAF — 92% success | General tasks, clarity focus | Baseline tokens
+- Option B: COSTAR — 94% success | Content creation, audience-specific | +5% tokens
+- Option C: TIDD-EC — 93% success | Precision-critical tasks | +8% tokens
+
+Your choice? (A, B, or C)
+```
+
+Simplification choice (complexity 7+):
+
+```
+High Complexity Detected — Level [X]/10
+
+- Option A: Streamline — simplify to core essentials, clearer focused result
+- Option B: Comprehensive — keep all complexity, detailed but longer
+
+Your preference? (A or B)
+```
+
+Error recovery:
+
+| Situation | Response |
+|---|---|
+| No prompt provided | "I need a prompt or request to enhance. What would you like me to improve?" |
+| Ambiguous intent | "Are you looking to improve an existing prompt, or create a new one from scratch?" |
+| Invalid command | "Available modes: $text, $improve, $refine, $short, $json, $yaml, $raw" |
+| Pasted content, no context | "What should I do with this? Improve clarity, restructure, change format, or full enhancement?" |
+| Conflicting signals | "You mentioned both [A] and [B]. Which mode should I use?" |
+
+Maximum question interactions: standard flow 3 (welcome + framework/simplification + format); command flow 1 (format question); raw mode 0. After the maximum, use smart defaults and flag the assumptions in the output.
+
+## 3. Results Display
+
+### Success
+
+```
+Enhanced Prompt ([FRAMEWORK] Framework):
+─────────────────────────────────
+[Enhanced prompt, formatted per resolved mode: markdown default, JSON, or YAML]
+─────────────────────────────────
+Transparency Report:
+  Framework: [SELECTED]
+  Mode: $[MODE] | Energy: [LEVEL]
+  Dispatch: [INLINE|AGENT]
+  DEPTH Rounds: [N]
+  Perspectives: [COUNT] ([LIST])
+  CLEAR Score: [TOTAL]/50
+    C: [X]/10 | L: [X]/10 | E: [X]/15 | A: [X]/10 | R: [X]/5
+
+[If saved] Saved to: [path]
+
+STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME][ SAVED=[path]]
+```
+
+### Failure
+
+```
+[One-line reason.]
+
+STATUS=FAIL ERROR="[specific message]"
+```
+
+Standard failure messages:
+- Skill missing: `prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md`
+- CLEAR below threshold after 3 iterations: `CLEAR score below threshold after 3 iterations: [SCORE]/50`
+- User cancels: emit `STATUS=CANCELLED`
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Enhanced prompt should become a skill | `/create:skill` | Scaffold an OpenCode skill from the prompt |
+| Prompt-engineering patterns worth documenting | `/create:readme` | Package the results as a documentation artifact |
+| Small-model dispatch of the enhanced prompt | consult `sk-prompt/prompt-models` | Per-model framework/scaffold before dispatch |
+
+End interactive presentations with a single next-step prompt.

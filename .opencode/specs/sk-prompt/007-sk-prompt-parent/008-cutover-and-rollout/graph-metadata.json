@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-prompt parent-hub merge is not provably done until it clears the same strict enforcement bar that the canonical parent hubs already clear",
     "created_at": "2026-07-09T13:34:37Z",
-    "last_save_at": "2026-07-15T10:52:35.934Z",
+    "last_save_at": "2026-07-18T06:22:50.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +210,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9433b9a595d7d50ea1bee0e7a0b5b097d3b0325a671014fc79ff00071e154634",
+    "source_fingerprint": "sha256:d59722082e9854419f9eb6153789467aeec488746665c9795b877674e244488f",
     "source_doc_hashes": {
-      "spec.md": "5a4f5216461b4f1ef5d671445094850da4874aee253429d0a5e3af60cfc4a964",
+      "spec.md": "43d05d87b8d0cc4ff99fafb83d3e2f40dcc8d3c7f63c921706ea992fb05090f2",
       "plan.md": "1c62464c9e163c1b22f8771ac8aa6bc46a9898759a27ef023d8ea49a92d1f419",
       "tasks.md": "5dadc7287b81b09efad08cb0e0fcab67c5dc727186f055d705994dcd7f734274",
       "implementation-summary.md": "81399a1ef498678571e6ade548b9ee7d449c58d351893f78fd7db9a4d7e2ad3a"

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor",
+  "description": "The prompt-improvement command was a single 28KB Markdown file that carried its whole workflow, every consolidated-prompt question, all interactive",
+  "keywords": [
+    "prompt-improvement",
+    "command",
+    "single",
+    "28kb",
+    "markdown",
+    "file",
+    "carried",
+    "whole",
+    "workflow",
+    "every",
+    "consolidated-prompt",
+    "question",
+    "interactive"
+  ],
+  "lastUpdated": "2026-07-18T06:20:29.356Z",
+  "specId": "009",
+  "folderSlug": "prompt-command-canon-refactor",
+  "parentChain": [
+    "sk-prompt",
+    "007-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
