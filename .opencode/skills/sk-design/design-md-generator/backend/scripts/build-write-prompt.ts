@@ -11,10 +11,13 @@ import { formatSchemaValueSectionsV3 } from './formatters-v3';
 import {
   createSchemaConsumerContract,
   resolveSchemaSections,
+  schemaDigest,
   V3_SCHEMA,
 } from './schema-v3';
+import { renderStudyPromptBlock } from './study-exemplars';
 
 import type { SchemaConsumerContract, StyleReferenceSchema } from './schema-v3';
+import type { StudyContext } from './study-exemplars';
 import type { DesignTokens } from './types';
 
 // Wraps a value extracted from the (untrusted) site under analysis as inert
@@ -108,11 +111,29 @@ function promptTasks(tokens: DesignTokens, schema: StyleReferenceSchema): readon
     .map((section, index) => `${index + 1}. \`${section.heading}\`: ${section.promptInstruction}`);
 }
 
-export function buildWritePrompt(
+export function buildLockedFacts(
   tokens: DesignTokens,
   schema: StyleReferenceSchema = V3_SCHEMA,
 ): string {
+  return [
+    typeScaleFacts(tokens, schema),
+    honestFacts(tokens),
+    componentFacts(tokens),
+  ].join('\n\n');
+}
+
+export function buildWritePrompt(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  studyContext?: StudyContext,
+): string {
   const preRendered = formatSchemaValueSectionsV3(tokens, schema);
+  const lockedFacts = buildLockedFacts(tokens, schema);
+  const studyBlock = renderStudyPromptBlock(
+    studyContext,
+    lockedFacts,
+    schemaDigest(schema),
+  );
 
   return [
     schema.prompt.title,
@@ -128,12 +149,9 @@ export function buildWritePrompt(
     '',
     '## FACTS (use verbatim; do not invent beyond these)',
     '',
-    typeScaleFacts(tokens, schema),
+    lockedFacts,
     '',
-    honestFacts(tokens),
-    '',
-    componentFacts(tokens),
-    '',
+    ...(studyBlock ? [studyBlock, ''] : []),
     '## Your prose task (write these sections)',
     '',
     schema.prompt.openingInstruction,
@@ -163,5 +181,15 @@ if (require.main === module) {
     console.error(`Could not read tokens at ${tokensPath}: ${(err as Error).message}`);
     process.exit(1);
   }
-  process.stdout.write(buildWritePrompt(tokens));
+  let studyContext: StudyContext | undefined;
+  const studyFlagIndex = process.argv.indexOf('--study-context');
+  const studyPath = studyFlagIndex >= 0 ? process.argv[studyFlagIndex + 1] : undefined;
+  if (studyPath) {
+    try {
+      studyContext = JSON.parse(fs.readFileSync(studyPath, 'utf-8')) as StudyContext;
+    } catch {
+      studyContext = undefined;
+    }
+  }
+  process.stdout.write(buildWritePrompt(tokens, V3_SCHEMA, studyContext));
 }

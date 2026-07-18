@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Build one-bundle STUDY selection over the phase-004 retrieval surface — pick a single coherent style (`design-md-generator/**/study-select.ts`). Blocked on phase 004.
-- [ ] T002 [B] Add generation-guarded hydration of the matched DESIGN.md + token artifacts (`design-md-generator/**/study-hydrate.ts`). Blocked on phase 004.
+- [x] T001 [B] Build one-bundle STUDY selection over the phase-004 retrieval surface — pick a single coherent style (`design-md-generator/**/study-select.ts`). Blocked on phase 004.
+- [x] T002 [B] Add generation-guarded hydration of the matched DESIGN.md + token artifacts (`design-md-generator/**/study-hydrate.ts`). Blocked on phase 004.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,13 +62,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Build the de-literalized observation transformer — structural observations only, never verbatim values or phrases (`design-md-generator/**/study-transform.ts`).
-- [ ] T004 [B] Bind observations to the locked target-facts digest (`design-md-generator/**/study-bind.ts`). Blocked on phase 005.
-- [ ] T005 Inject the optional STUDY block AFTER locked FACTS, before the prose task (`build-write-prompt.ts::buildWritePrompt`, `guided-run.ts::buildPlan`).
-- [ ] T006 Attach the provenance / rights / injection envelope to each STUDY bundle (`design-md-generator/**/study-envelope.ts`).
-- [ ] T007 Add the two-signal source-leak gate (exact-value + normalized-span) at the authored-draft boundary (`guided-run.ts::runGuided`).
-- [ ] T008 Implement discard-and-retry-without-STUDY on any leak trip (`guided-run.ts::runGuided`).
-- [ ] T009 [P] Author adversarial + counterfactual fixtures for the gate and retry path (`design-md-generator/**/__fixtures__/study-*`).
+- [x] T003 Build the de-literalized observation transformer — structural observations only, never verbatim values or phrases (`design-md-generator/**/study-transform.ts`).
+- [x] T004 [B] Bind observations to the locked target-facts digest (`design-md-generator/**/study-bind.ts`). Blocked on phase 005.
+- [x] T005 Inject the optional STUDY block AFTER locked FACTS, before the prose task (`build-write-prompt.ts::buildWritePrompt`, `guided-run.ts::buildPlan`).
+- [x] T006 Attach the provenance / rights / injection envelope to each STUDY bundle (`design-md-generator/**/study-envelope.ts`).
+- [x] T007 Add the two-signal source-leak gate (exact-value + normalized-span) at the authored-draft boundary (`guided-run.ts::runGuided`).
+- [x] T008 Implement discard-and-retry-without-STUDY on any leak trip (`guided-run.ts::runGuided`).
+- [x] T009 [P] Author adversarial + counterfactual fixtures for the gate and retry path (`design-md-generator/**/__fixtures__/study-*`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -76,8 +76,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Prove reversibility — STUDY-disabled output is byte-identical to the pre-STUDY WRITE path.
-- [ ] T011 Confirm the leak gate trips and forces a clean no-STUDY retry across every seeded leak fixture.
+- [x] T010 Prove reversibility — STUDY-disabled output is byte-identical to the pre-STUDY WRITE path. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
+- [x] T011 Confirm the leak gate trips and forces a clean no-STUDY retry across every seeded leak fixture. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -85,10 +85,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] STUDY is a separate, reversible pre-WRITE phase (SC-001)
-- [ ] The transformer emits no verbatim source values or phrases (SC-002)
-- [ ] The two-signal leak gate discards and retries without STUDY on every seeded leak (SC-003)
-- [ ] STUDY ships with transformation + provenance + leakage controls together — no raw few-shot shortcut (SC-004)
+- [x] STUDY is a separate, reversible pre-WRITE phase (SC-001)
+- [x] The transformer emits no verbatim source values or phrases (SC-002)
+- [x] The two-signal leak gate discards and retries without STUDY on every seeded leak (SC-003)
+- [x] STUDY ships with transformation + provenance + leakage controls together — no raw few-shot shortcut (SC-004)
 <!-- /ANCHOR:completion -->
 
 ---

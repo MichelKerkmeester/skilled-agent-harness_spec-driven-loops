@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `design-md-generator` mode writes DESIGN.md prose with no grounding in any real, shipped design system",
     "created_at": "2026-07-18T14:14:08.114Z",
-    "last_save_at": "2026-07-18T16:04:37.944Z",
+    "last_save_at": "2026-07-18T19:07:27.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:842e726dfcdf02ae44ce1f589cdd464087291cd95904777473bc8aecd1713d99",
+    "source_fingerprint": "sha256:76eaa9dd36be62c17d72d962599804451d462b16c9e397783b77301a76634afe",
     "source_doc_hashes": {
-      "spec.md": "af79327cb120c36932b2a5167c894ddaaa37e27e934430ef7d22cc454bb0f21a",
-      "plan.md": "380bc36c7ca5c40baece069fd932b9a59d46c2d33423d4811fc56e571ee784e7",
-      "tasks.md": "8da226107ca1f6ffdbcb5a7e63f00ddca82495fef2210c1ab7977dceb3fec545",
-      "checklist.md": "1bb5e82aca0183688e4dec5e6ece55949bd666538ce8d396418d127f100226d4",
-      "implementation-summary.md": "f2071690616ef8edf9a3d9a8b81fa6e9c5021634728aa1e79dbde780dfe30ccc"
+      "spec.md": "00d1f84a8376f13b57ef23b898800f276f53daf5208e40a30b5ab08056d34adf",
+      "plan.md": "ba6ada6cde8155f676b8b700e69e09607af8188c47dd3e1b395e378262ea8454",
+      "tasks.md": "433729a429daea189daf7a2cd7d327d4603b51ea2ece8a466945917c97d77ad9",
+      "checklist.md": "a91a1d23a790ef07cc8fa751c722ef68e1a0f84bb3d76fbf796a77ee7915ecf0",
+      "implementation-summary.md": "4ea8199c50fdd80b7301eeeeeb0c35cbd531c3178a9a4909353902f50db3e25b"
     },
     "last_active_child_id": null,
     "last_active_at": null

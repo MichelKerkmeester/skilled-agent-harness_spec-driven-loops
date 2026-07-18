@@ -50,11 +50,11 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-003 [P0] Dependencies 004 (retrieval) and 005 (schema contract) available
+- [x] CHK-003 [P0] Dependencies 004 (retrieval) and 005 (schema contract) available [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:pre-impl -->
 
@@ -63,13 +63,13 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] STUDY is a separate, reversible pre-WRITE phase (STUDY-off path unchanged)
+- [x] CHK-010 [P0] STUDY is a separate, reversible pre-WRITE phase (STUDY-off path unchanged) [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-011 [P0] Code passes lint/format and type checks
+- [x] CHK-011 [P0] Code passes lint/format and type checks [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-012 [P1] STUDY failures fall back to the no-STUDY path without corrupting output
+- [x] CHK-012 [P1] STUDY failures fall back to the no-STUDY path without corrupting output [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-013 [P1] Code follows existing design-md-generator patterns
+- [x] CHK-013 [P1] Code follows existing design-md-generator patterns [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:code-quality -->
 
@@ -78,13 +78,13 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] De-literalized transformer emits no verbatim source values or phrases
+- [x] CHK-020 [P0] De-literalized transformer emits no verbatim source values or phrases [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-021 [P0] Two-signal leak gate (exact-value + normalized-span) discards and retries without STUDY on every seeded leak
+- [x] CHK-021 [P0] Two-signal leak gate (exact-value + normalized-span) discards and retries without STUDY on every seeded leak [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-022 [P1] Reversibility proven — STUDY-disabled output byte-identical to pre-STUDY WRITE path
+- [x] CHK-022 [P1] Reversibility proven — STUDY-disabled output byte-identical to pre-STUDY WRITE path [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-023 [P1] Adversarial + counterfactual fixtures pass
+- [x] CHK-023 [P1] Adversarial + counterfactual fixtures pass [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:testing -->
 
@@ -93,15 +93,15 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] The source-leak finding class is fixed as `cross-consumer` (both prompt-injection and authored-draft boundaries), not `instance-only`.
+- [x] CHK-FIX-001 [P0] The source-leak finding class is fixed as `cross-consumer` (both prompt-injection and authored-draft boundaries), not `instance-only`. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-FIX-002 [P0] Consumer inventory completed for `buildWritePrompt`, `buildPlan`, and `runGuided` before wiring STUDY.
+- [x] CHK-FIX-002 [P0] Consumer inventory completed for `buildWritePrompt`, `buildPlan`, and `runGuided` before wiring STUDY. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-FIX-003 [P0] Leak gate has adversarial table tests for exact-value, normalized-span, joined-input, and shared-vocabulary no-op cases.
+- [x] CHK-FIX-003 [P0] Leak gate has adversarial table tests for exact-value, normalized-span, joined-input, and shared-vocabulary no-op cases. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-FIX-004 [P1] Matrix axes (signal type x STUDY on/off x retry outcome) and row count listed before completion is claimed.
+- [x] CHK-FIX-004 [P1] Matrix axes (signal type x STUDY on/off x retry outcome) and row count listed before completion is claimed. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-FIX-005 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-005 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:fix-completeness -->
 
@@ -110,11 +110,11 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Provenance / rights / injection envelope carried with every STUDY bundle
+- [x] CHK-030 [P0] Provenance / rights / injection envelope carried with every STUDY bundle [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-031 [P0] No raw few-shot shortcut path ships exemplars without transformation + provenance + leakage controls
+- [x] CHK-031 [P0] No raw few-shot shortcut path ships exemplars without transformation + provenance + leakage controls [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-032 [P1] Generation-guarded hydration prevents stale-bundle injection
+- [x] CHK-032 [P1] Generation-guarded hydration prevents stale-bundle injection [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:security -->
 
@@ -123,11 +123,11 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-041 [P1] STUDY on/off switch and no-STUDY fallback documented
+- [x] CHK-041 [P1] STUDY on/off switch and no-STUDY fallback documented [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-042 [P2] Proposed file-change list reconciled with actual edits at build time
+- [x] CHK-042 [P2] Proposed file-change list reconciled with actual edits at build time
   - **Evidence**:
 <!-- /ANCHOR:docs -->
 
@@ -136,9 +136,9 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-050 [P1] Temp files in scratch/ only [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-051 [P1] scratch/ cleaned before completion [evidence: `npm test` 162/162; `tsc --noEmit` 0 errors]
   - **Evidence**:
 <!-- /ANCHOR:file-org -->
 
