@@ -19,7 +19,10 @@
       "idempotency ledger receipt fixtures",
       "execution plane task list",
       "prepare verify commit tasks",
-      "idempotency ledger fixture tasks"
+      "idempotency ledger fixture tasks",
+      "execution plane verification",
+      "prepare verify commit checklist",
+      "idempotency fencing evidence"
     ],
     "key_topics": [
       "execution",
@@ -36,13 +39,63 @@
       "ledger"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "lib/execution-plane.cjs",
+      "lib/idempotency-ledger.cjs",
+      "lib/projector.cjs",
+      "fixtures/execution-route-gold.v1.json",
+      "tests/execution-plane.test.cjs",
+      "harness/run-phase.cjs",
+      "checklist.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "execution-plane.cjs",
+        "kind": "file",
+        "path": "lib/execution-plane.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-ledger.cjs",
+        "kind": "file",
+        "path": "lib/idempotency-ledger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "projector.cjs",
+        "kind": "file",
+        "path": "lib/projector.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "execution-route-gold.v1.json",
+        "kind": "config",
+        "path": "fixtures/execution-route-gold.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "execution-plane.test.cjs",
+        "kind": "file",
+        "path": "tests/execution-plane.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-phase.cjs",
+        "kind": "file",
+        "path": "harness/run-phase.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,6 +112,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -138,35 +197,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Shared Migration",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A route decision is not an effect",
     "created_at": "2026-07-18T13:13:17.358Z",
-    "last_save_at": "2026-07-18T14:47:39.777Z",
+    "last_save_at": "2026-07-18T19:44:22.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac350616003820c7020379be99c2e0490f33f9b91a52cbcdf27030bba4f163a3",
+    "source_fingerprint": "sha256:8d7a69a967d5093713755f763bc74e1c06a109dae03c8f4c9c32764d8e141f4f",
     "source_doc_hashes": {
-      "spec.md": "79cda0332cbdc19959ed052ff0382ae4d862061f4c95fcafffe9457dfb1e8479",
-      "plan.md": "f0b4ebd402d2328acc1d0f8f47c34386210b8de9782fb2a6b7e48b65fadc13be",
-      "tasks.md": "fd8591e27034b4587680fd4fc1e881eed8eac95c550464e92ecd8819cc70ce9d"
+      "spec.md": "0a5697e7c4c763f1b1e13049817493915c9b1da50575e004b42130de6982cde4",
+      "plan.md": "ad9329b0bbe20f391239a1f34d3141fbc5a4f516c6a1461ceef258c3911bf8d3",
+      "tasks.md": "d77759dbe01e6540808ce08ccf62d38145930fe9445673cd50ec7bb33fdd7762",
+      "checklist.md": "1174c2f30c3933257460f7bb6b02e9e54ef2e99b29fefc4aa418a4ab674bf6d0",
+      "implementation-summary.md": "52b7d2a0a2bb2dd63ffcc2b174b11f5ad4c3391ddabdf0b2b869edf64c345edb"
     },
     "last_active_child_id": null,
     "last_active_at": null

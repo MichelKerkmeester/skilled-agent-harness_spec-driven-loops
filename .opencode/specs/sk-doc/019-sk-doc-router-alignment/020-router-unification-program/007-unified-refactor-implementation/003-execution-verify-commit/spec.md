@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Execution Plane — Destination-Local PREPARE → VERIFY → COMMIT"
-description: "Phase 3 of the unified router refactor: the destination-local execution plane (Idea 7). PREPARE emits a short-lived RouteProofV1 (evidence, never a capability) binding request/policy/registry hashes, a versioned read-set, ordered targets, authority class, preconditions, expiry, and an idempotency key. VERIFY recomputes digests and current authority immediately before the first side effect (READY|STALE_PROOF|NEEDS_INPUT|DEFER|REJECT). COMMIT acquires destination-local authority, writes a receipt plus fencing epoch, invalidates every later prepared leg, and opens a new planning epoch on mutation. Idempotency ledger guarantees a single effect per duplicate key. No router-owned atomic rollback across external effects; post-COMMIT recovery is destination-owned. Planning/design only — no live routing config, registry, scorer, or skill is modified."
+description: "Phase 3 of the unified router refactor: a phase-local shadow implementation of the destination execution plane (Idea 7). PREPARE emits a short-lived RouteProofV1 (evidence, never a capability) binding request/policy/registry hashes, a versioned read-set, ordered targets, authority class, preconditions, expiry, and an idempotency key. VERIFY recomputes digests and current authority immediately before the first side effect (READY|STALE_PROOF|NEEDS_INPUT|DEFER|REJECT). COMMIT acquires destination-local authority, writes a receipt plus fencing epoch, invalidates every later prepared leg, and opens a new planning epoch on mutation. Idempotency ledger guarantees a single effect per duplicate key. No router-owned atomic rollback across external effects; post-COMMIT recovery is destination-owned. No live routing config, registry, scorer, or skill is modified."
 trigger_phrases:
   - "execution plane prepare verify commit"
   - "route proof destination local authority"
@@ -25,7 +25,7 @@ The plane is a three-step protocol per target leg:
 
 An **idempotency ledger** keyed on the proof's idempotency key guarantees that a duplicate submission produces **exactly one** effect and returns the original receipt. There is deliberately **no router-owned atomic rollback across external effects**: once a destination COMMITs an external effect, undo is the destination's responsibility, not the router's [synthesis §9 Stage 6 "post-effect recovery is destination-owned"].
 
-This phase is **planning/design only**. It authors the contract, the state machine, and the deterministic route-gold fixtures that prove the plane; it does **not** modify any live routing config, registry, scorer, or skill, and it never edits the shared benchmark scorer `router-replay.cjs` [synthesis §8.2; §10].
+This phase is a **shadow implementation with zero live authority**. It authors and executes the phase-local contract, state machine, ledger, and deterministic route-gold fixtures that prove the plane; it does **not** modify any live routing config, registry, scorer, or skill, and it never edits the shared benchmark scorer `router-replay.cjs` [synthesis §8.2; §10].
 
 ## PROBLEM & PURPOSE
 
@@ -63,11 +63,15 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `spec.md` | Create | This specification |
-| `plan.md` | Create | Build approach, contracts touched, verification |
-| `tasks.md` | Create | Ordered, checkable task list |
+| `spec.md` | Update | Implementation status and phase-local evidence |
+| `plan.md` | Update | Completed build approach and verification status |
+| `tasks.md` | Update | Completed task state and evidence pointers |
+| `lib/*.cjs` | Create | Pure PREPARE, destination VERIFY/COMMIT, ledger, projector |
+| `fixtures/*.json` | Create | Fixed proof/replay hash oracles and authored scorer gold |
+| `tests/*.cjs`, `harness/*.cjs` | Create | Anti-hollow transitions, deterministic replay, protected scorer gate |
+| `execution-plane.md`, `checklist.md`, `implementation-summary.md` | Create | Operating decisions, Level-2 evidence, and honest shadow boundary |
 
-> Runtime contract/fixture artifacts named in `plan.md` are **design targets** for the eventual implementation packet; this phase authors the plan only and mutates no live router, registry, scorer, or skill.
+> All executable artifacts are phase-local shadow assets. They mutate no live router, registry, scorer, or skill and consume zero live authority.
 
 ## REQUIREMENTS
 

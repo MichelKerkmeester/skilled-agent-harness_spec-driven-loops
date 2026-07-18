@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "V1",
+  "cases": [
+    {
+      "id": "stale-proof-rejected",
+      "decision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "single",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "sk-code",
+                "workflowMode": "quality",
+                "packetId": "code-quality",
+                "packetKind": "workflow",
+                "backendKind": "surface-router"
+              },
+              "role": "actor",
+              "authorityRef": "destination:quality",
+              "mutatesWorkspace": true
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "context": {
+        "requestFactsHash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "effectivePolicyHash": "2222222222222222222222222222222222222222222222222222222222222222",
+        "registryAuthorityHash": "3333333333333333333333333333333333333333333333333333333333333333",
+        "readSet": [
+          {
+            "resourceId": "destination-config.v1",
+            "digest": "4444444444444444444444444444444444444444444444444444444444444444"
+          }
+        ],
+        "authorityClass": "workspace-write",
+        "preconditions": ["destination-ready"],
+        "epoch": 10,
+        "expiresAtEpoch": 12
+      },
+      "drift": {
+        "effectivePolicyHash": "5555555555555555555555555555555555555555555555555555555555555555"
+      },
+      "gold": {
+        "expectedIntents": ["quality"],
+        "expectedResources": []
+      },
+      "expectedProofHash": "88694b52808236a2884f49d7b1402a12875cca5db57f3a6b03d272cd598c7f29",
+      "expectedReplayHash": "5e4cd314318ae74d05490f79841821d3bbf7df1613f02fa3b48c6634bfb35d0f"
+    },
+    {
+      "id": "duplicate-key-single-receipt",
+      "decision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "single",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "sk-code",
+                "workflowMode": "quality",
+                "packetId": "code-quality",
+                "packetKind": "workflow",
+                "backendKind": "surface-router"
+              },
+              "role": "actor",
+              "authorityRef": "destination:quality",
+              "mutatesWorkspace": true
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "context": {
+        "requestFactsHash": "6666666666666666666666666666666666666666666666666666666666666666",
+        "effectivePolicyHash": "7777777777777777777777777777777777777777777777777777777777777777",
+        "registryAuthorityHash": "8888888888888888888888888888888888888888888888888888888888888888",
+        "readSet": [
+          {
+            "resourceId": "destination-config.v1",
+            "digest": "9999999999999999999999999999999999999999999999999999999999999999"
+          }
+        ],
+        "authorityClass": "workspace-write",
+        "preconditions": ["destination-ready"],
+        "epoch": 20,
+        "expiresAtEpoch": 24
+      },
+      "gold": {
+        "expectedIntents": ["quality"],
+        "expectedResources": []
+      },
+      "expectedProofHash": "ef28911da76451caa3ed1f82a4828e9995063915e83a8adfe16183c26d0c44c4",
+      "expectedReplayHash": "27677ffbcd73394d8082bd9149d027bb0c70c67a11f9c6ebd9a2dbbd41473d0f"
+    },
+    {
+      "id": "direct-route-carrying-no-forbidden-handoff-artifacts",
+      "decision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "single",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "mcp-code-mode",
+                "workflowMode": "code-mode",
+                "packetId": "packet-code-mode",
+                "packetKind": "standalone",
+                "backendKind": "utcp"
+              },
+              "role": "actor",
+              "authorityRef": "destination:code-mode",
+              "mutatesWorkspace": false
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "context": {
+        "requestFactsHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effectivePolicyHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "registryAuthorityHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "readSet": [
+          {
+            "resourceId": "leaf-manifest.v1",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "authorityClass": "read-only-tool",
+        "preconditions": ["tool-session-ready"],
+        "epoch": 30,
+        "expiresAtEpoch": 34
+      },
+      "gold": {
+        "expectedIntents": ["code-mode"],
+        "expectedResources": []
+      },
+      "expectedProofHash": "1e847d0048d1ee12f1bbb8c6ecc43bbf973cb0e822de47962f4e7f9900b7d88e",
+      "expectedReplayHash": "792242b5362afa976885c25ee50ba5835cebf63ba7aaa26700f555ba59f7e52d"
+    }
+  ]
+}

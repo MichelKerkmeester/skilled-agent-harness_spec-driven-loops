@@ -23,13 +23,13 @@ contextType: "implementation"
 | **Upstream** | `RouteProofV1` schema + deterministic hashing (phase `000`); the positive `route` decision (phase `002`) |
 | **Downstream** | Recovery ladder (phase `004`); per-hub live rollout (phases `006/*`) |
 | **Authority model** | Destination-local; proof/recommendation is evidence, never a capability [synthesis §10] |
-| **Blast radius** | Zero live authority in this phase (shadow only); planning/design artifacts, no live router/registry/scorer/skill edits |
+| **Blast radius** | Zero live authority in this phase (shadow only); phase-local executable artifacts, no live router/registry/scorer/skill edits |
 
 ### Overview
 
 The execution plane turns a single positive `route` decision into an effect through three destination-local steps and a ledger. The build is deliberately staged so that authority is *structurally* impossible to consume before a destination's own VERIFY, and so exactly-once is a property of the **idempotency ledger** rather than a sentence written into the proof [synthesis §3 Idea 7 "exactly-once is an adapter property, not proof text"].
 
-The plan authors the contract, the state machine, the ledger design (resolving open-q 5), the fencing/epoch rules, and the deterministic route-gold fixtures. It writes them as design targets — no live routing config, registry, scorer, or skill is modified in this phase.
+The implementation delivers the contract, state machine, ledger design (resolving open-q 5), fencing/epoch rules, and deterministic route-gold fixtures as phase-local shadow artifacts. No live routing config, registry, scorer, or skill is modified in this phase.
 
 ## 2. QUALITY GATES
 
@@ -39,11 +39,11 @@ The plan authors the contract, the state machine, the ledger design (resolving o
 - [x] Stage 6 gate criteria and rollback semantics are read from the master plan [`../spec.md`; synthesis §9]
 
 ### Definition of Done
-- [ ] Contract + state machine + ledger design authored and internally consistent
-- [ ] Stale-proof and duplicate-key route-gold fixtures designed against the compatibility projector (scorer untouched)
-- [ ] N=1 degenerate correctness argued explicitly (no name conditionals)
-- [ ] Migration Gate (Stage 6) satisfaction path documented; rollback drill defined
-- [ ] `tasks.md` fully enumerates the build steps in dependency order
+- [x] Contract + state machine + ledger design authored and internally consistent
+- [x] Stale-proof and duplicate-key route-gold fixtures execute through the compatibility projector (scorer untouched)
+- [x] N=1 degenerate correctness exercised explicitly (no name conditionals)
+- [x] Migration Gate (Stage 6) satisfaction path documented; rollback drill executed
+- [x] `tasks.md` fully enumerates and records the build steps in dependency order
 
 ## 3. ARCHITECTURE
 
@@ -104,23 +104,23 @@ The plane is cardinality-agnostic. For `mcp-code-mode` the decision has one targ
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: Contract + lifecycle
-- [ ] Fix the `RouteProofV1` binding + lifecycle semantics (fields consumed from phase `000`)
-- [ ] Define `idempotencyKey` derivation and the "proof is evidence" invariant
+- [x] Fix the `RouteProofV1` binding + lifecycle semantics (fields consumed from phase `000`)
+- [x] Define `idempotencyKey` derivation and the "proof is evidence" invariant
 
 ### Phase B: State machines
-- [ ] Specify the pure PREPARE adapter (route → proof | none)
-- [ ] Specify the VERIFY state machine + digest/authority recomputation
-- [ ] Specify COMMIT: authority acquisition, receipt, fencing epoch, later-leg invalidation
+- [x] Implement the pure PREPARE adapter (route → proof | none)
+- [x] Implement the VERIFY state machine + digest/authority recomputation
+- [x] Implement COMMIT: authority acquisition, receipt, fencing epoch, later-leg invalidation
 
 ### Phase C: Ledger + ordering
-- [ ] Design the idempotency ledger (location, partition, retention) — resolve open-q 5
-- [ ] Specify duplicate-key single-effect + original-receipt read
-- [ ] Specify read-only-before-mutating leg scheduling + new-planning-epoch-on-mutation
+- [x] Design and implement the idempotency ledger (location, partition, retention) — resolve open-q 5
+- [x] Implement duplicate-key single-effect + original-receipt read
+- [x] Implement read-only-before-mutating leg scheduling + new-planning-epoch-on-mutation
 
 ### Phase D: Proof + verification
-- [ ] Author the stale-proof-rejected and duplicate-key-single-receipt route-gold fixtures via the compatibility projector
-- [ ] Argue N=1 correctness (no name conditionals)
-- [ ] Document the Stage 6 gate satisfaction path + rollback drill (disable pre-effect adapter)
+- [x] Author and replay the stale-proof-rejected and duplicate-key-single-receipt route-gold fixtures via the compatibility projector
+- [x] Exercise N=1 correctness (no name conditionals)
+- [x] Document and execute the Stage 6 rollback drill (disable pre-effect adapter)
 
 ## 5. TESTING STRATEGY
 
@@ -172,9 +172,9 @@ A (Contract) ──> B (State machines) ──> C (Ledger + ordering) ──> D 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-activation checklist (for downstream 006/* consumers)
-- [ ] Stale-proof and duplicate-key fixtures replay green (scorer byte-unchanged)
-- [ ] Pre-effect adapter has a proven disable path
-- [ ] Destination-owned post-COMMIT recovery is documented per destination role
+- [x] Stale-proof and duplicate-key fixtures replay green at shadow scope (scorer byte-unchanged)
+- [x] Pre-effect adapter has a proven disable path
+- [x] Destination-owned post-COMMIT recovery is documented per destination role
 
 ### Rollback procedure (Stage 6, at live rollout)
 1. **Pre-effect**: disable the PREPARE/VERIFY adapter → legacy serving authority resumes.

@@ -31,10 +31,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-a -->
 ## Phase A: Contract + lifecycle
 
-- [ ] T001 Confirm the `RouteProofV1` field set consumed from phase `000` and pin the binding set: `requestFactsHash`, `effectivePolicyHash`, registry/authority hash, versioned read-set, ordered `targets`, `authorityClass`, `preconditions`, `expiry`, `idempotencyKey` → REQ-001
-- [ ] T002 Specify the "proof is evidence, never a capability" invariant: no proof field authorizes an effect; authority is consumed only at destination VERIFY → COMMIT → REQ-002
-- [ ] T003 Define `idempotencyKey = hash(requestFactsHash, target, effectivePolicyHash)` and prove it is deterministic across resubmission → REQ-005
-- [ ] T004 [P] Specify `expiry` (short-lived TTL) and its role as a `STALE_PROOF` trigger at VERIFY → REQ-003
+- [x] T001 Confirm the `RouteProofV1` field set consumed from phase `000` and pin the binding set through frozen fields + versioned read-set digests → REQ-001 (`lib/execution-plane.cjs`, fixed proof hashes)
+- [x] T002 Enforce the "proof is evidence, never a capability" invariant; authority is consumed only at destination VERIFY → COMMIT → REQ-002 (proof field allowlist + local acquisition)
+- [x] T003 Define `idempotencyKey = hash(requestFactsHash, target, effectivePolicyHash)` and prove it deterministic across resubmission → REQ-005 (duplicate fixture)
+- [x] T004 [P] Bind `expiresAtEpoch` and exercise passed expiry as `STALE_PROOF` → REQ-003 (transition test)
 
 <!-- /ANCHOR:phase-a -->
 ---
@@ -42,14 +42,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-b -->
 ## Phase B: State machines
 
-- [ ] T005 Specify the pure PREPARE adapter `routeDecision → RouteProofV1 | none`; emit `none` for every non-`route` decision (target-free, authority-free) → REQ-002
-- [ ] T006 Assert PREPARE performs zero side effects and never touches destination state → REQ-001
-- [ ] T007 Specify the VERIFY closed state machine `READY | STALE_PROOF | NEEDS_INPUT | DEFER | REJECT` with digest + current-authority recomputation immediately before the first side effect → REQ-003
-- [ ] T008 Map `STALE_PROOF` triggers: any drifted bound hash, superseded generation, or passed expiry → REQ-003
-- [ ] T009 Route a destination `NEEDS_INPUT` back through the phase `004` ladder; assert it does NOT itself open a user turn → REQ-003 (see synthesis §4 Seam B; phase 004 owns the budget)
-- [ ] T010 Specify COMMIT: acquire destination-local authority, perform effect, write receipt `{idempotencyKey, epoch, effectivePolicyHash, target, outcome, ts}` → REQ-004
-- [ ] T011 Assert a COMMIT reached without a matching `READY` VERIFY hard-fails → REQ-003
-- [ ] T012 Wire the guard boundary: `mcp-route-guard.cjs` stays advisory (`allow`/`warn`, fails open) and is NEVER the VERIFY authority check → REQ-010
+- [x] T005 Implement pure PREPARE `routeDecision → RouteProofV1[] | none`; all three negatives emit no proof → REQ-002
+- [x] T006 Prove PREPARE leaves decision/context bytes unchanged and never touches destination state → REQ-001
+- [x] T007 Implement and exercise `READY | STALE_PROOF | NEEDS_INPUT | DEFER | REJECT` with current-authority recomputation → REQ-003
+- [x] T008 Exercise bound-digest drift, superseded generation, and passed expiry as `STALE_PROOF` → REQ-003
+- [x] T009 Document `NEEDS_INPUT` as recovery-ladder data that opens no user turn here → REQ-003 (`execution-plane.md`)
+- [x] T010 Implement destination-local acquisition, effect, and receipt `{idempotencyKey, epoch, effectivePolicyHash, target, outcome, timestamp}` → REQ-004
+- [x] T011 Exercise null, bare-proof, forged, and stale COMMIT attempts as specific hard failures → REQ-003
+- [x] T012 Keep the advisory guard outside every runtime dependency and authority callback → REQ-010 (source/import scan)
 
 <!-- /ANCHOR:phase-b -->
 ---
@@ -57,12 +57,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-c -->
 ## Phase C: Ledger + ordering
 
-- [ ] T013 Design the idempotency ledger: storage location, partition key, retention window — resolve open-q 5 → REQ-012
-- [ ] T014 Declare, per destination role, which destinations supply side-effect-free PREPARE and atomic vs explicitly non-atomic COMMIT → REQ-012
-- [ ] T015 Specify the duplicate-key read path: existing key ⇒ no second effect, return the original receipt → REQ-005
-- [ ] T016 Specify read-only-before-mutating leg scheduling; a mutating leg cannot COMMIT before a preceding read-only leg resolves → REQ-008
-- [ ] T017 Specify the fencing epoch: a committed mutating leg stamps a new epoch and invalidates every not-yet-committed leg prepared against the prior generation (forces re-PREPARE) → REQ-006
-- [ ] T018 Specify "no router-owned atomic rollback across external effects": router owns pre-effect adapter disable only; post-COMMIT recovery is destination-owned → REQ-007
+- [x] T013 Fix destination-local storage, compound partition key, and max-horizon retention rule → REQ-012 (`execution-plane.md`)
+- [x] T014 Declare actor/evidence/transport/judgment PREPARE and atomicity classes → REQ-012 (`execution-plane.md`)
+- [x] T015 Exercise duplicate key ⇒ one effect + exact original receipt → REQ-005
+- [x] T016 Exercise stable read-only-before-mutating scheduling and `ORDERING_BLOCKED` → REQ-008
+- [x] T017 Exercise mutation epoch advance, later-leg invalidation, and `STALE_PROOF` re-PREPARE fence → REQ-006
+- [x] T018 Exercise pre-effect disable and pending non-atomic destination recovery boundary → REQ-007
 
 <!-- /ANCHOR:phase-c -->
 ---
@@ -70,13 +70,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-d -->
 ## Phase D: Proof + verification
 
-- [ ] T019 Author the stale-proof-rejected `TypedRouteGoldV1` fixture via the compatibility projector → REQ-011, SC-001
-- [ ] T020 Author the duplicate-key-single-receipt fixture → REQ-011, SC-002
-- [ ] T021 Author the "direct route carries no forbidden handoff artifacts" fixture → REQ-011
-- [ ] T022 Verify all fixtures replay deterministically and `router-replay.cjs` is byte-unchanged → REQ-011, SC-005
-- [ ] T023 Argue N=1 degeneracy: identical PREPARE/VERIFY/COMMIT path for `mcp-code-mode`; assert zero skill/name conditionals → REQ-009, SC-004
-- [ ] T024 Document the Stage 6 gate satisfaction path (proof/expiry/read-set/authority/epoch/idempotency/receipt fixtures; read-only legs before mutating; zero live authority) → Migration Gate
-- [ ] T025 Define + document the rollback drill: disable pre-effect adapter; note destination-owned post-COMMIT recovery → REQ-007, SC-006
+- [x] T019 Author and execute stale-proof-rejected typed fixture via the compatibility projector → REQ-011, SC-001
+- [x] T020 Author and execute duplicate-key-single-receipt fixture → REQ-011, SC-002
+- [x] T021 Author and score the direct-route/no-forbidden-handoff-artifacts fixture → REQ-011
+- [x] T022 Replay each fixture 25 times against fixed hashes; pin both protected digests and observe zero writes → REQ-011, SC-005
+- [x] T023 Exercise identical N=1 and bundle protocol paths; static gate reports zero skill/name conditionals → REQ-009, SC-004
+- [x] T024 Document and locally prove Stage 6 shadow inputs under zero live authority → Migration Gate
+- [x] T025 Execute adapter-disable drill and document destination-owned external recovery → REQ-007, SC-006
 
 <!-- /ANCHOR:phase-d -->
 ---
@@ -84,12 +84,12 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 requirements (REQ-001..REQ-007) satisfied with evidence
-- [ ] All P1 requirements (REQ-008..REQ-012) satisfied or deferred with approval
-- [ ] Stale-proof and duplicate-key fixtures replay green; scorer byte-unchanged (SC-001, SC-002, SC-005)
-- [ ] No live routing config, registry, scorer, or skill modified (planning/design only)
-- [ ] Migration Gate (Stage 6) satisfaction path + rollback drill documented (SC-006)
-- [ ] Git diff limited to this phase folder's three docs
+- [x] All P0 requirements (REQ-001..REQ-007) satisfied with phase-local evidence
+- [x] All P1 requirements (REQ-008..REQ-012) satisfied at shadow scope
+- [x] Stale-proof and duplicate-key fixtures replay green; scorer byte-unchanged (SC-001, SC-002, SC-005 shadow-partial)
+- [x] No live routing config, registry, scorer, or skill modified
+- [x] Migration Gate (Stage 6) satisfaction path + rollback drill documented and exercised (SC-006)
+- [x] Write inventory is limited to this phase folder; no git command was run
 
 <!-- /ANCHOR:completion -->
 ---
