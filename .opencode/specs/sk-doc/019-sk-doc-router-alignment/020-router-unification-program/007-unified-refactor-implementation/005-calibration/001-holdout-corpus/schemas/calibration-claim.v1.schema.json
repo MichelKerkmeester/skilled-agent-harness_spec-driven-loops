@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/calibration-claim.v1.schema.json",
+  "title": "CalibrationClaimV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "claimKind",
+    "hubId",
+    "riskSliceId",
+    "corpusId",
+    "effectivePolicyHash",
+    "corpusGeneration",
+    "activationAdmission",
+    "grantsCommitAuthority"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "claimKind": { "enum": ["calibration-certificate", "per-hub-canary"] },
+    "hubId": { "type": "string", "minLength": 1 },
+    "riskSliceId": { "type": "string", "minLength": 1 },
+    "corpusId": { "$ref": "#/$defs/digest" },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" },
+    "corpusGeneration": { "type": "integer", "minimum": 1 },
+    "activationAdmission": { "type": "boolean" },
+    "grantsCommitAuthority": { "const": false }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

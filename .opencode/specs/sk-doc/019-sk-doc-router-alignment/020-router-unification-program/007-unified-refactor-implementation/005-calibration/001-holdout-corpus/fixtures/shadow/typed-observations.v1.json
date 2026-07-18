@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "V1",
+  "observations": [
+    {
+      "recordId": "sk-code-route-surface-bundle",
+      "source": "typed-projector-shadow",
+      "capturedAfterLabelLock": true,
+      "nonAuthority": true
+    },
+    {
+      "recordId": "sk-code-reject-forbidden",
+      "source": "typed-projector-shadow",
+      "capturedAfterLabelLock": true,
+      "nonAuthority": true
+    },
+    {
+      "recordId": "deep-loop-reject-forbidden",
+      "source": "typed-projector-shadow",
+      "capturedAfterLabelLock": true,
+      "nonAuthority": true
+    },
+    {
+      "recordId": "mcp-tooling-route-ordered-bundle",
+      "source": "typed-projector-shadow",
+      "capturedAfterLabelLock": true,
+      "nonAuthority": true
+    },
+    {
+      "recordId": "mcp-tooling-reject-forbidden",
+      "source": "typed-projector-shadow",
+      "capturedAfterLabelLock": true,
+      "nonAuthority": true
+    }
+  ]
+}

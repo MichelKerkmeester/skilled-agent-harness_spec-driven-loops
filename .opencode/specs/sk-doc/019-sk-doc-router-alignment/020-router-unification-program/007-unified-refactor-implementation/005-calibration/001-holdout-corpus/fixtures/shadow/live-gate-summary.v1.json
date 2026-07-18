@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "V1",
+  "measurementClass": "synthetic-shadow-example",
+  "hubId": "mcp-tooling",
+  "policyBinding": {
+    "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+    "effectivePolicyHash": "3a388b0fa72def866114c48aabd89a50eb52ecccef23fbade432560636526efe",
+    "corpusGeneration": 1
+  },
+  "privacyFiltered": true,
+  "nonAuthority": true,
+  "slices": [
+    {
+      "riskSliceId": "actor:mutating:single",
+      "sampleCount": 100,
+      "offlineEceBps": 200,
+      "liveEceBps": 225,
+      "deletionLineage": {
+        "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+        "retentionPolicyHash": "ca2334ac683f009a9c582685141ae065118bef82d78d8cbce9231a18f9f72707",
+        "deletionKeyCount": 100
+      }
+    },
+    {
+      "riskSliceId": "transport:nonmutating:single",
+      "sampleCount": 50,
+      "offlineEceBps": 500,
+      "liveEceBps": 525,
+      "deletionLineage": {
+        "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+        "retentionPolicyHash": "ca2334ac683f009a9c582685141ae065118bef82d78d8cbce9231a18f9f72707",
+        "deletionKeyCount": 50
+      }
+    }
+  ]
+}

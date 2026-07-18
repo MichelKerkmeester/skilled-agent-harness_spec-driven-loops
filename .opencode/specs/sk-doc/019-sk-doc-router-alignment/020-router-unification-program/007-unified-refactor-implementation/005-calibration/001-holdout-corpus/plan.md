@@ -7,6 +7,7 @@ trigger_phrases:
   - "corpus identity offline gate plan"
 importance_tier: "critical"
 contextType: "implementation"
+status: "shadow-partial"
 ---
 # Implementation Plan: Calibration Held-Out Routing Corpus (Idea 5, step 1)
 
@@ -38,15 +39,16 @@ The degeneracy proof shapes the scope: at N=1 "there is nothing to calibrate aga
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `effectivePolicyHash` identity model from `000`/`001` is available to pin against (synthesis §2.1).
-- [ ] Destination identity tuple, roles, and the closed algebra are fixed inputs (synthesis §2.2, §2.3).
-- [ ] Non-negotiable constraints restated as corpus invariants (synthesis §10).
+- [x] `effectivePolicyHash` identity model from `000`/`001` is available to pin against (synthesis §2.1).
+- [x] Destination identity tuple, roles, and the closed algebra are fixed inputs (synthesis §2.2, §2.3).
+- [x] Non-negotiable constraints restated as corpus invariants (synthesis §10).
 
 ### Definition of Done
-- [ ] `CalibrationCorpusV1` contract, labeling protocol, risk-slice taxonomy, coverage table, offline/live gates, governance, and identity model are authored.
-- [ ] Every claim tracing to the design cites a synthesis section.
-- [ ] `spec.md` requirements REQ-001..REQ-010 each map to a plan step and a task.
+- [x] `CalibrationCorpusV1` contract, labeling protocol, risk-slice taxonomy, coverage table, offline/live gates, governance, and identity model are authored.
+- [x] Every claim tracing to the design cites a synthesis section.
+- [x] `spec.md` requirements REQ-001..REQ-010 each map to a plan step and a task.
 - [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` is green.
+  - Evidence: orchestrator-owned by explicit instruction; not run in this phase.
 
 ---
 
@@ -81,29 +83,34 @@ Contract-first specification. The corpus is an **immutable, content-addressed ar
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Contract + identity
-- [ ] Specify `CalibrationCorpusV1` record + header schema and sealing rules (REQ-001).
-- [ ] Define `corpusId = hash(records, effectivePolicyHash, schema, generation)` and the pinning rule to a specific `EffectivePolicy` generation (synthesis §2.1).
-- [ ] State the fenced-CAS corpus pointer + prior-generation retention for reversibility (synthesis §9).
+- [x] Specify `CalibrationCorpusV1` record + header schema and sealing rules (REQ-001).
+- [x] Define `corpusId = hash(records, effectivePolicyHash, schema, generation)` and the pinning rule to a specific `EffectivePolicy` generation (synthesis §2.1).
+  - Evidence: the executable content address retains those fields and now binds every remaining admission-relevant corpus field except the two self-referential id fields.
+- [x] State the fenced-CAS corpus pointer + prior-generation retention for reversibility (synthesis §9).
 
 ### Phase 2: Labeling protocol + risk slices
-- [ ] Author the intent-derived labeling protocol and the `labelProvenance`/attestation fields (REQ-002).
-- [ ] Specify the leakage-rejecting validator (gold never sourced from or reconciled against router output).
-- [ ] Define the risk-slice taxonomy over role + mutation scope + `selectionKind`, with per-slice tolerance ordering (REQ-003, synthesis §2.2, §2.3).
+- [x] Author the intent-derived labeling protocol and the `labelProvenance`/attestation fields (REQ-002).
+- [x] Specify the leakage-rejecting validator (gold never sourced from or reconciled against router output).
+- [x] Define the risk-slice taxonomy over role + mutation scope + `selectionKind`, with per-slice tolerance ordering (REQ-003, synthesis §2.2, §2.3).
+  - Evidence: the validator derives the strictest target and requires the taxonomy's fixed tolerance; misclassification and loose-tolerance fixtures reject separately.
 
 ### Phase 3: Coverage requirements
-- [ ] Author per-hub, per-slice minimum record counts with statistical rationale (REQ-004).
-- [ ] Enumerate algebra-branch coverage over `{route, clarify, defer, reject}`; encode zero-signal → `defer(no-match)` with no default union (synthesis §2.3, §10).
-- [ ] Author the explicit `mcp-code-mode` no-slice record (nothing to calibrate at N=1) (REQ-009, synthesis §5.1).
+- [x] Author per-hub, per-slice minimum record counts with statistical rationale (REQ-004).
+- [x] Enumerate algebra-branch coverage over `{route, clarify, defer, reject}`; encode zero-signal → `defer(no-match)` with no default union (synthesis §2.3, §10).
+  - Evidence: a frozen external topology requires all four actions and each hub's reachable positive selection kinds independently of corpus declarations.
+- [x] Author the explicit `mcp-code-mode` no-slice record (nothing to calibrate at N=1) (REQ-009, synthesis §5.1).
 
 ### Phase 4: Gates
-- [ ] Specify the offline gate: deterministic replay, per-slice calibration metric + tolerance, route-gold green, scorer byte-identical (REQ-005, synthesis §8.2, §10).
-- [ ] Specify the live gate: privacy-filtered, evidence-only shadow, offline/live divergence tolerance (REQ-007, synthesis §11 open-q 7).
-- [ ] Specify the downstream binding rule: no certificate/canary without a matching `corpusId` (REQ-006, synthesis §9, §11 open-q 2).
+- [x] Specify the offline gate: deterministic replay, per-slice calibration metric + tolerance, route-gold green, scorer byte-identical (REQ-005, synthesis §8.2, §10).
+  - Evidence: the harness runs the real typed/compatibility projectors, rejects a corrupted observation through `evaluateRouteGold`, compares canonical bytes across three runs, and re-hashes all three protected scorer inputs.
+- [x] Specify the live gate: privacy-filtered, evidence-only shadow, offline/live divergence tolerance (REQ-007, synthesis §11 open-q 7).
+- [x] Specify the downstream binding rule: no certificate/canary without a matching `corpusId` (REQ-006, synthesis §9, §11 open-q 2).
 
 ### Phase 5: Governance + verification
-- [ ] Author retention/privacy governance: sanitization, independent sign-off, retention windows, deletion handling (REQ-008, synthesis §11 open-q 7).
-- [ ] Restate the non-negotiable invariants as hard-block corpus rules (REQ-010, synthesis §10).
+- [x] Author retention/privacy governance: sanitization, independent sign-off, retention windows, deletion handling (REQ-008, synthesis §11 open-q 7).
+- [x] Restate the non-negotiable invariants as hard-block corpus rules (REQ-010, synthesis §10).
 - [ ] Run strict spec validation and reconcile spec/plan/tasks cross-references.
+  - Evidence: cross-references reconciled; strict validation intentionally deferred to the orchestrator.
 
 ---
 
@@ -157,8 +164,10 @@ Phase 1 (Contract+Identity) ──> Phase 2 (Labeling+Slices) ──> Phase 3 (C
 
 ### Pre-seal Checklist
 - [ ] Prior corpus generation retained and byte-verified before the pointer swap (synthesis §9).
-- [ ] Privacy sign-off recorded in the header (REQ-008).
+  - Evidence: no activation pointer swap occurs in this shadow phase.
+- [x] Privacy sign-off recorded in the header (REQ-008).
 - [ ] `effectivePolicyHash` pin matches the active policy generation (REQ-001).
+  - Evidence: representative corpora bind to hash-verified source snapshots; compiler-produced activation identity remains Stage 4.
 
 ### Reversal Procedure
 1. Fenced CAS the corpus pointer to the retained prior generation (token-locked, preimage-checked) (synthesis §9).

@@ -1,0 +1,11 @@
+{
+  "sourceCorpus": "sk-code.v1.json",
+  "policyBindingClass": "compiled-policy",
+  "attestationKind": "operational",
+  "expectedStaleCorpusReason": "CORPUS_HASH_MISMATCH",
+  "expectedStaleClaimReason": "CORPUS_ID_MISMATCH",
+  "expectedMissingAttestationReason": "ACTIVATION_EXTERNAL_ATTESTATION_REQUIRED",
+  "expectedMissingProofReason": "ACTIVATION_EXTERNAL_PROOF_MISSING",
+  "expectedMissingAuthorityReason": "ACTIVATION_ATTESTATION_AUTHORITY_MISSING",
+  "expectedSelfIssuedReason": "ACTIVATION_ATTESTATION_SELF_ISSUED"
+}

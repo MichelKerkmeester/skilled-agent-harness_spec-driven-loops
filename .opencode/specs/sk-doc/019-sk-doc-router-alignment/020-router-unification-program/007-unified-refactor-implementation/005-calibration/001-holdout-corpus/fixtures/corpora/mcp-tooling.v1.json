@@ -1,0 +1,404 @@
+{
+  "schemaVersion": "V1",
+  "generation": 1,
+  "priorCorpusId": null,
+  "hubId": "mcp-tooling",
+  "policyBindingClass": "shadow-fixture",
+  "effectivePolicyIdentity": {
+    "schemaVersion": "V1",
+    "activationGeneration": 1,
+    "basePolicyHash": "ae648bd9c76371308d111f2a17e516af441cf6320e4a39825233386e1b27d7fe"
+  },
+  "effectivePolicyHash": "3a388b0fa72def866114c48aabd89a50eb52ecccef23fbade432560636526efe",
+  "records": [
+    {
+      "recordId": "mcp-tooling-route-refero",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Find real app screens in Refero",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          {
+            "id": {
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetId": "mcp-refero",
+              "packetKind": "transport",
+              "backendKind": "code-mode-remote-mcp"
+            },
+            "role": "transport",
+            "mutatesWorkspace": false
+          }
+        ],
+        "authority": "WithheldUntilVerify",
+        "expectedLegacy": {
+          "intents": ["mcp-refero"],
+          "resources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ]
+        }
+      },
+      "riskSlice": {
+        "id": "transport:nonmutating:single",
+        "role": "transport",
+        "mutatesWorkspace": false,
+        "selectionKindFamily": "single",
+        "toleranceBps": 600,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-refero",
+            "packetId": "mcp-refero",
+            "packetKind": "transport",
+            "backendKind": "code-mode-remote-mcp"
+          },
+          "role": "transport",
+          "mutatesWorkspace": false
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-a",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 120
+      },
+      "calibration": { "predictedAction": "route", "confidenceBps": 9500 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-mcp-tooling-route-refero"
+    },
+    {
+      "recordId": "mcp-tooling-route-clickup",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Use ClickUp to update the task and log time",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          {
+            "id": {
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetId": "mcp-click-up",
+              "packetKind": "workflow",
+              "backendKind": "cli-plus-mcp"
+            },
+            "role": "actor",
+            "mutatesWorkspace": true
+          }
+        ],
+        "authority": "WithheldUntilVerify",
+        "expectedLegacy": {
+          "intents": ["mcp-click-up"],
+          "resources": [
+            "mcp-click-up/references/cupt_commands.md",
+            "mcp-click-up/references/mcp_tools.md"
+          ]
+        }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:single",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "single",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-click-up",
+            "packetId": "mcp-click-up",
+            "packetKind": "workflow",
+            "backendKind": "cli-plus-mcp"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-b",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 121
+      },
+      "calibration": { "predictedAction": "route", "confidenceBps": 9800 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-mcp-tooling-route-clickup"
+    },
+    {
+      "recordId": "mcp-tooling-route-ordered-bundle",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Use Chrome DevTools, then update the matching ClickUp task",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "route",
+        "selectionKind": "orderedBundle",
+        "targets": [
+          {
+            "id": {
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetId": "mcp-chrome-devtools",
+              "packetKind": "workflow",
+              "backendKind": "cli-plus-mcp"
+            },
+            "role": "actor",
+            "mutatesWorkspace": true
+          },
+          {
+            "id": {
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetId": "mcp-click-up",
+              "packetKind": "workflow",
+              "backendKind": "cli-plus-mcp"
+            },
+            "role": "actor",
+            "mutatesWorkspace": true
+          }
+        ],
+        "authority": "WithheldUntilVerify",
+        "expectedLegacy": {
+          "intents": ["mcp-chrome-devtools", "mcp-click-up"],
+          "resources": [
+            "mcp-chrome-devtools/references/cdp_patterns.md",
+            "mcp-chrome-devtools/references/session_management.md",
+            "mcp-click-up/references/cupt_commands.md",
+            "mcp-click-up/references/mcp_tools.md"
+          ]
+        }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:composite",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "composite",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-chrome-devtools",
+            "packetId": "mcp-chrome-devtools",
+            "packetKind": "workflow",
+            "backendKind": "cli-plus-mcp"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-c",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 122
+      },
+      "calibration": { "predictedAction": "route", "confidenceBps": 9800 },
+      "replayMode": "typed-shadow",
+      "deletionKey": "delete-mcp-tooling-route-ordered-bundle"
+    },
+    {
+      "recordId": "mcp-tooling-clarify-provider",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Use Refero or Mobbin for design research",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "clarify",
+        "reason": "one-turn provider ambiguity",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "transport:nonmutating:none",
+        "role": "transport",
+        "mutatesWorkspace": false,
+        "selectionKindFamily": "none",
+        "toleranceBps": 600,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-refero",
+            "packetId": "mcp-refero",
+            "packetKind": "transport",
+            "backendKind": "code-mode-remote-mcp"
+          },
+          "role": "transport",
+          "mutatesWorkspace": false
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-d",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 123
+      },
+      "calibration": { "predictedAction": "clarify", "confidenceBps": 9500 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-mcp-tooling-clarify-provider"
+    },
+    {
+      "recordId": "mcp-tooling-defer-no-match",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Tell me a joke",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "defer",
+        "reason": "no-match",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:none",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "none",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-click-up",
+            "packetId": "mcp-click-up",
+            "packetKind": "workflow",
+            "backendKind": "cli-plus-mcp"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-e",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 124
+      },
+      "calibration": { "predictedAction": "defer", "confidenceBps": 9800 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-mcp-tooling-defer-no-match"
+    },
+    {
+      "recordId": "mcp-tooling-reject-forbidden",
+      "hubId": "mcp-tooling",
+      "requestFacts": {
+        "prompt": "Use a transport to approve its own external mutation",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "reject",
+        "reason": "forbidden transport judgment",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "transport:nonmutating:none",
+        "role": "transport",
+        "mutatesWorkspace": false,
+        "selectionKindFamily": "none",
+        "toleranceBps": 600,
+        "contextDestination": {
+          "id": {
+            "skillId": "mcp-tooling",
+            "workflowMode": "mcp-figma",
+            "packetId": "mcp-figma",
+            "packetKind": "transport",
+            "backendKind": "figma-desktop-transport"
+          },
+          "role": "transport",
+          "mutatesWorkspace": false
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-mcp-f",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 125
+      },
+      "calibration": { "predictedAction": "reject", "confidenceBps": 9500 },
+      "replayMode": "typed-shadow",
+      "deletionKey": "delete-mcp-tooling-reject-forbidden"
+    }
+  ],
+  "coverageRequirements": [
+    {
+      "riskSliceId": "transport:nonmutating:single",
+      "minimumRecords": 1,
+      "requiredBranches": ["route"]
+    },
+    {
+      "riskSliceId": "actor:mutating:single",
+      "minimumRecords": 1,
+      "requiredBranches": ["route"]
+    },
+    {
+      "riskSliceId": "actor:mutating:composite",
+      "minimumRecords": 1,
+      "requiredBranches": ["route"]
+    },
+    {
+      "riskSliceId": "transport:nonmutating:none",
+      "minimumRecords": 2,
+      "requiredBranches": ["clarify", "reject"]
+    },
+    {
+      "riskSliceId": "actor:mutating:none",
+      "minimumRecords": 1,
+      "requiredBranches": ["defer"]
+    }
+  ],
+  "privacySignoff": {
+    "status": "approved",
+    "reviewerId": "privacy-reviewer-shadow-mcp-tooling",
+    "independentFromAuthors": true,
+    "reviewedAtEpoch": 190,
+    "attestationKind": "test-fixture"
+  },
+  "retentionPolicy": {
+    "retentionDays": 90,
+    "storagePartition": "offline-authored/mcp-tooling",
+    "rightToBeForgotten": true,
+    "deletionSlaDays": 7
+  },
+  "seal": {
+    "sealed": true,
+    "sealedAtEpoch": 200,
+    "immutable": true,
+    "priorGenerationRetained": true,
+    "casFenceRequired": true
+  },
+  "corpusHash": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+  "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607"
+}

@@ -1,0 +1,10 @@
+{
+  "sourceCorpus": "sk-code.v1.json",
+  "recordId": "sk-code-route-surface-bundle",
+  "declaredTargetIndex": 1,
+  "declaredRiskSliceId": "evidence:nonmutating:composite",
+  "declaredToleranceBps": 800,
+  "looseToleranceBps": 800,
+  "expectedClassificationReason": "RISK_STRICTEST_TARGET_MISMATCH",
+  "expectedToleranceReason": "RISK_TOLERANCE_MISMATCH"
+}

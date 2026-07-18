@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "V1",
+  "claimKind": "calibration-certificate",
+  "hubId": "sk-code",
+  "riskSliceId": "actor:mutating:single",
+  "corpusId": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "effectivePolicyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+  "corpusGeneration": 1,
+  "activationAdmission": false,
+  "grantsCommitAuthority": false,
+  "expectedReason": "CORPUS_ID_MISMATCH"
+}

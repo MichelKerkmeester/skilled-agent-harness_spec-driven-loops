@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "V1",
+  "hubId": "mcp-code-mode",
+  "candidateCount": 1,
+  "noCalibrationSlice": true,
+  "reason": "no calibration slice — nothing to calibrate (one candidate)",
+  "destinationIdentity": {
+    "skillId": "mcp-code-mode",
+    "workflowMode": "mcp-code-mode",
+    "packetId": ".",
+    "packetKind": "standalone",
+    "backendKind": "utcp"
+  },
+  "selectionKinds": ["single"],
+  "rankCallsExpected": 0
+}

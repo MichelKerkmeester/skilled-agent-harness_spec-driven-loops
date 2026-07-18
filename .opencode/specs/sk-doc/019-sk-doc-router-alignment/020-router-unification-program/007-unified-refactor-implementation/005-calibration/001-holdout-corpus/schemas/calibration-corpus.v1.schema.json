@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/calibration-corpus.v1.schema.json",
+  "title": "CalibrationCorpusV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generation",
+    "priorCorpusId",
+    "hubId",
+    "policyBindingClass",
+    "effectivePolicyIdentity",
+    "effectivePolicyHash",
+    "records",
+    "coverageRequirements",
+    "privacySignoff",
+    "retentionPolicy",
+    "seal",
+    "corpusHash",
+    "corpusId"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "generation": { "type": "integer", "minimum": 1 },
+    "priorCorpusId": {
+      "oneOf": [
+        { "$ref": "#/$defs/digest" },
+        { "type": "null" }
+      ]
+    },
+    "hubId": { "$ref": "#/$defs/nonEmpty" },
+    "policyBindingClass": { "enum": ["shadow-fixture", "compiled-policy"] },
+    "effectivePolicyIdentity": { "$ref": "#/$defs/effectivePolicyIdentity" },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/record" }
+    },
+    "coverageRequirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/coverageRequirement" }
+    },
+    "privacySignoff": { "$ref": "#/$defs/privacySignoff" },
+    "retentionPolicy": { "$ref": "#/$defs/retentionPolicy" },
+    "seal": { "$ref": "#/$defs/seal" },
+    "corpusHash": { "$ref": "#/$defs/digest" },
+    "corpusId": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "destinationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
+      "properties": {
+        "skillId": { "$ref": "#/$defs/nonEmpty" },
+        "workflowMode": { "$ref": "#/$defs/nonEmpty" },
+        "packetId": { "$ref": "#/$defs/nonEmpty" },
+        "packetKind": { "$ref": "#/$defs/nonEmpty" },
+        "backendKind": { "$ref": "#/$defs/nonEmpty" },
+        "runtimeDiscriminator": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "mutatesWorkspace"],
+      "properties": {
+        "id": { "$ref": "#/$defs/destinationId" },
+        "role": { "enum": ["actor", "evidence", "transport", "judgment"] },
+        "mutatesWorkspace": { "type": "boolean" }
+      }
+    },
+    "effectivePolicyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "activationGeneration", "basePolicyHash"],
+      "properties": {
+        "schemaVersion": { "const": "V1" },
+        "activationGeneration": { "type": "integer", "minimum": 0 },
+        "basePolicyHash": { "$ref": "#/$defs/digest" },
+        "overlayHash": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "requestFacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt", "sourcePartition", "piiScrubStatus"],
+      "properties": {
+        "prompt": { "$ref": "#/$defs/nonEmpty" },
+        "sourcePartition": { "enum": ["offline-authored", "privacy-filtered-live-shadow"] },
+        "piiScrubStatus": { "const": "passed" }
+      }
+    },
+    "intentGold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "authority", "expectedLegacy"],
+      "properties": {
+        "action": { "enum": ["route", "clarify", "defer", "reject"] },
+        "selectionKind": { "enum": ["single", "orderedBundle", "surfaceBundle"] },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/destination" }
+        },
+        "reason": { "$ref": "#/$defs/nonEmpty" },
+        "authority": { "enum": ["Withheld", "WithheldUntilVerify"] },
+        "expectedLegacy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["intents", "resources"],
+          "properties": {
+            "intents": { "type": "array", "items": { "type": "string" } },
+            "resources": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "action": { "const": "route" } } },
+          "then": { "required": ["selectionKind", "targets"] },
+          "else": {
+            "required": ["reason"],
+            "not": {
+              "anyOf": [
+                { "required": ["selectionKind"] },
+                { "required": ["targets"] }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "riskSlice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "mutatesWorkspace", "selectionKindFamily", "toleranceBps", "contextDestination"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmpty" },
+        "role": { "enum": ["actor", "evidence", "transport", "judgment"] },
+        "mutatesWorkspace": { "type": "boolean" },
+        "selectionKindFamily": { "enum": ["single", "composite", "none"] },
+        "toleranceBps": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "contextDestination": { "$ref": "#/$defs/destination" }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorId",
+        "goldSource",
+        "independentFromRouterOperator",
+        "routerOutputViewedBeforeLabelLock",
+        "reconciledAgainstRouterOutput",
+        "labelLockedAtEpoch"
+      ],
+      "properties": {
+        "authorId": { "$ref": "#/$defs/nonEmpty" },
+        "goldSource": { "const": "user-intent" },
+        "independentFromRouterOperator": { "const": true },
+        "routerOutputViewedBeforeLabelLock": { "const": false },
+        "reconciledAgainstRouterOutput": { "const": false },
+        "labelLockedAtEpoch": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predictedAction", "confidenceBps"],
+      "properties": {
+        "predictedAction": { "enum": ["route", "clarify", "defer", "reject"] },
+        "confidenceBps": { "type": "integer", "minimum": 0, "maximum": 10000 }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordId",
+        "hubId",
+        "requestFacts",
+        "intentGold",
+        "riskSlice",
+        "labelProvenance",
+        "authorAttestation",
+        "calibration",
+        "replayMode",
+        "deletionKey"
+      ],
+      "properties": {
+        "recordId": { "$ref": "#/$defs/nonEmpty" },
+        "hubId": { "$ref": "#/$defs/nonEmpty" },
+        "requestFacts": { "$ref": "#/$defs/requestFacts" },
+        "intentGold": { "$ref": "#/$defs/intentGold" },
+        "riskSlice": { "$ref": "#/$defs/riskSlice" },
+        "labelProvenance": { "const": "intent-derived" },
+        "authorAttestation": { "$ref": "#/$defs/attestation" },
+        "calibration": { "$ref": "#/$defs/calibration" },
+        "replayMode": { "enum": ["legacy-router", "typed-shadow"] },
+        "deletionKey": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "coverageRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["riskSliceId", "minimumRecords", "requiredBranches"],
+      "properties": {
+        "riskSliceId": { "$ref": "#/$defs/nonEmpty" },
+        "minimumRecords": { "type": "integer", "minimum": 1 },
+        "requiredBranches": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["route", "clarify", "defer", "reject"] }
+        }
+      }
+    },
+    "privacySignoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewerId", "independentFromAuthors", "reviewedAtEpoch", "attestationKind"],
+      "properties": {
+        "status": { "const": "approved" },
+        "reviewerId": { "$ref": "#/$defs/nonEmpty" },
+        "independentFromAuthors": { "const": true },
+        "reviewedAtEpoch": { "type": "integer", "minimum": 0 },
+        "attestationKind": { "enum": ["test-fixture", "operational"] },
+        "externalAttestation": { "$ref": "#/$defs/externalAttestation" }
+      }
+    },
+    "externalAttestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compilerProofId",
+        "compilerAuthorityRef",
+        "privacyReviewerSignatureRef",
+        "privacyReviewerAuthorityRef"
+      ],
+      "properties": {
+        "compilerProofId": { "$ref": "#/$defs/nonEmpty" },
+        "compilerAuthorityRef": { "$ref": "#/$defs/nonEmpty" },
+        "privacyReviewerSignatureRef": { "$ref": "#/$defs/nonEmpty" },
+        "privacyReviewerAuthorityRef": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "retentionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retentionDays", "storagePartition", "rightToBeForgotten", "deletionSlaDays"],
+      "properties": {
+        "retentionDays": { "type": "integer", "minimum": 1 },
+        "storagePartition": { "$ref": "#/$defs/nonEmpty" },
+        "rightToBeForgotten": { "const": true },
+        "deletionSlaDays": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "seal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sealed", "sealedAtEpoch", "immutable", "priorGenerationRetained", "casFenceRequired"],
+      "properties": {
+        "sealed": { "const": true },
+        "sealedAtEpoch": { "type": "integer", "minimum": 0 },
+        "immutable": { "const": true },
+        "priorGenerationRetained": { "const": true },
+        "casFenceRequired": { "const": true }
+      }
+    }
+  }
+}

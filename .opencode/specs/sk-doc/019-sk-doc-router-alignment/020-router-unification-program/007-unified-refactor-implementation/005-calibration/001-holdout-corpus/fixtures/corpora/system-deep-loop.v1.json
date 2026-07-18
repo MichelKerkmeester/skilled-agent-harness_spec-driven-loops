@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "V1",
+  "generation": 1,
+  "priorCorpusId": null,
+  "hubId": "system-deep-loop",
+  "policyBindingClass": "shadow-fixture",
+  "effectivePolicyIdentity": {
+    "schemaVersion": "V1",
+    "activationGeneration": 1,
+    "basePolicyHash": "ae4423d24346ca205d2ab7a91abb1f49a4cb320e1b2288f98396d90487733129"
+  },
+  "effectivePolicyHash": "1428951451d5edcbded3e32fdb2f2a5f767f60df28a24a75dec7bb3fa830f2a4",
+  "records": [
+    {
+      "recordId": "deep-loop-route-research",
+      "hubId": "system-deep-loop",
+      "requestFacts": {
+        "prompt": "Run deep research on router calibration",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          {
+            "id": {
+              "skillId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetId": "deep-research",
+              "packetKind": "workflow",
+              "backendKind": "runtime-loop-type",
+              "runtimeDiscriminator": "research"
+            },
+            "role": "actor",
+            "mutatesWorkspace": true
+          }
+        ],
+        "authority": "WithheldUntilVerify",
+        "expectedLegacy": {
+          "intents": ["research"],
+          "resources": [
+            "deep-research/references/protocol/loop_protocol.md",
+            "deep-research/references/state/state_jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ]
+        }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:single",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "single",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "system-deep-loop",
+            "workflowMode": "research",
+            "packetId": "deep-research",
+            "packetKind": "workflow",
+            "backendKind": "runtime-loop-type",
+            "runtimeDiscriminator": "research"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-deep-a",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 110
+      },
+      "calibration": { "predictedAction": "route", "confidenceBps": 9800 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-deep-loop-route-research"
+    },
+    {
+      "recordId": "deep-loop-clarify-modes",
+      "hubId": "system-deep-loop",
+      "requestFacts": {
+        "prompt": "deep-research deep-review",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "clarify",
+        "reason": "one-turn mode ambiguity",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:none",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "none",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "system-deep-loop",
+            "workflowMode": "research",
+            "packetId": "deep-research",
+            "packetKind": "workflow",
+            "backendKind": "runtime-loop-type",
+            "runtimeDiscriminator": "research"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-deep-b",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 111
+      },
+      "calibration": { "predictedAction": "clarify", "confidenceBps": 9800 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-deep-loop-clarify-modes"
+    },
+    {
+      "recordId": "deep-loop-defer-no-match",
+      "hubId": "system-deep-loop",
+      "requestFacts": {
+        "prompt": "Tell me a joke",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "defer",
+        "reason": "no-match",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:none",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "none",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "system-deep-loop",
+            "workflowMode": "research",
+            "packetId": "deep-research",
+            "packetKind": "workflow",
+            "backendKind": "runtime-loop-type",
+            "runtimeDiscriminator": "research"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-deep-c",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 112
+      },
+      "calibration": { "predictedAction": "defer", "confidenceBps": 9800 },
+      "replayMode": "legacy-router",
+      "deletionKey": "delete-deep-loop-defer-no-match"
+    },
+    {
+      "recordId": "deep-loop-reject-forbidden",
+      "hubId": "system-deep-loop",
+      "requestFacts": {
+        "prompt": "Bypass the convergence state and claim approval",
+        "sourcePartition": "offline-authored",
+        "piiScrubStatus": "passed"
+      },
+      "intentGold": {
+        "action": "reject",
+        "reason": "forbidden state bypass",
+        "authority": "Withheld",
+        "expectedLegacy": { "intents": [], "resources": [] }
+      },
+      "riskSlice": {
+        "id": "actor:mutating:none",
+        "role": "actor",
+        "mutatesWorkspace": true,
+        "selectionKindFamily": "none",
+        "toleranceBps": 250,
+        "contextDestination": {
+          "id": {
+            "skillId": "system-deep-loop",
+            "workflowMode": "research",
+            "packetId": "deep-research",
+            "packetKind": "workflow",
+            "backendKind": "runtime-loop-type",
+            "runtimeDiscriminator": "research"
+          },
+          "role": "actor",
+          "mutatesWorkspace": true
+        }
+      },
+      "labelProvenance": "intent-derived",
+      "authorAttestation": {
+        "authorId": "intent-author-deep-d",
+        "goldSource": "user-intent",
+        "independentFromRouterOperator": true,
+        "routerOutputViewedBeforeLabelLock": false,
+        "reconciledAgainstRouterOutput": false,
+        "labelLockedAtEpoch": 113
+      },
+      "calibration": { "predictedAction": "reject", "confidenceBps": 9800 },
+      "replayMode": "typed-shadow",
+      "deletionKey": "delete-deep-loop-reject-forbidden"
+    }
+  ],
+  "coverageRequirements": [
+    {
+      "riskSliceId": "actor:mutating:single",
+      "minimumRecords": 1,
+      "requiredBranches": ["route"]
+    },
+    {
+      "riskSliceId": "actor:mutating:none",
+      "minimumRecords": 3,
+      "requiredBranches": ["clarify", "defer", "reject"]
+    }
+  ],
+  "privacySignoff": {
+    "status": "approved",
+    "reviewerId": "privacy-reviewer-shadow-deep-loop",
+    "independentFromAuthors": true,
+    "reviewedAtEpoch": 190,
+    "attestationKind": "test-fixture"
+  },
+  "retentionPolicy": {
+    "retentionDays": 90,
+    "storagePartition": "offline-authored/system-deep-loop",
+    "rightToBeForgotten": true,
+    "deletionSlaDays": 7
+  },
+  "seal": {
+    "sealed": true,
+    "sealedAtEpoch": 200,
+    "immutable": true,
+    "priorGenerationRetained": true,
+    "casFenceRequired": true
+  },
+  "corpusHash": "89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753",
+  "corpusId": "89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753"
+}

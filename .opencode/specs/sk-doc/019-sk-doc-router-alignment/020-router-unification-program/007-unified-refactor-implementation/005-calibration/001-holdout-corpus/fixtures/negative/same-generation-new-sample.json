@@ -1,0 +1,6 @@
+{
+  "sourceCorpus": "sk-code.v1.json",
+  "changedRecordId": "sk-code-route-single-quality",
+  "changedPrompt": "Run a code quality gate, comment hygiene check, and author verification",
+  "expectedSameGenerationReason": "CORPUS_GENERATION_NOT_INCREMENTED"
+}

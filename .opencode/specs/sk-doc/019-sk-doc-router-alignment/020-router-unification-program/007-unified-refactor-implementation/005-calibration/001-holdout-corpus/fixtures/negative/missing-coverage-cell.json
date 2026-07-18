@@ -1,0 +1,10 @@
+{
+  "sourceCorpus": "sk-code.v1.json",
+  "removeRecordIds": [
+    "sk-code-route-surface-bundle"
+  ],
+  "removeCoverageRequirementIds": [
+    "actor:mutating:composite"
+  ],
+  "expectedReason": "HUB_TOPOLOGY_CELL_MISSING"
+}

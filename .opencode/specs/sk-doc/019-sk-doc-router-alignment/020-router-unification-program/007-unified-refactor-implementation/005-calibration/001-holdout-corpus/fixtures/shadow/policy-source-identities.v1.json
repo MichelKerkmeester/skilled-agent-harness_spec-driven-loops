@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "V1",
+  "identities": [
+    {
+      "hubId": "sk-code",
+      "hubRouterPath": ".opencode/skills/sk-code/hub-router.json",
+      "modeRegistryPath": ".opencode/skills/sk-code/mode-registry.json",
+      "basePolicyHash": "28b0ba07cf1e87b457e065c3a62d9e0fade1ed6fead4195b04a105e98e35efca"
+    },
+    {
+      "hubId": "system-deep-loop",
+      "hubRouterPath": ".opencode/skills/system-deep-loop/hub-router.json",
+      "modeRegistryPath": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "basePolicyHash": "ae4423d24346ca205d2ab7a91abb1f49a4cb320e1b2288f98396d90487733129"
+    },
+    {
+      "hubId": "mcp-tooling",
+      "hubRouterPath": ".opencode/skills/mcp-tooling/hub-router.json",
+      "modeRegistryPath": ".opencode/skills/mcp-tooling/mode-registry.json",
+      "basePolicyHash": "ae648bd9c76371308d111f2a17e516af441cf6320e4a39825233386e1b27d7fe"
+    }
+  ]
+}

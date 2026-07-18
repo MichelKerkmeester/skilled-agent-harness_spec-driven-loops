@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "V1",
+  "claims": [
+    {
+      "schemaVersion": "V1",
+      "claimKind": "calibration-certificate",
+      "hubId": "sk-code",
+      "riskSliceId": "actor:mutating:single",
+      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "effectivePolicyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+      "corpusGeneration": 1,
+      "activationAdmission": false,
+      "grantsCommitAuthority": false
+    },
+    {
+      "schemaVersion": "V1",
+      "claimKind": "per-hub-canary",
+      "hubId": "system-deep-loop",
+      "riskSliceId": "actor:mutating:single",
+      "corpusId": "89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753",
+      "effectivePolicyHash": "1428951451d5edcbded3e32fdb2f2a5f767f60df28a24a75dec7bb3fa830f2a4",
+      "corpusGeneration": 1,
+      "activationAdmission": false,
+      "grantsCommitAuthority": false
+    },
+    {
+      "schemaVersion": "V1",
+      "claimKind": "calibration-certificate",
+      "hubId": "mcp-tooling",
+      "riskSliceId": "transport:nonmutating:single",
+      "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+      "effectivePolicyHash": "3a388b0fa72def866114c48aabd89a50eb52ecccef23fbade432560636526efe",
+      "corpusGeneration": 1,
+      "activationAdmission": false,
+      "grantsCommitAuthority": false
+    }
+  ]
+}

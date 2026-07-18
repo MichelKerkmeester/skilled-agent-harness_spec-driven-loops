@@ -7,6 +7,7 @@ trigger_phrases:
   - "calibrated auto-route certificate corpus"
 importance_tier: "critical"
 contextType: "implementation"
+status: "shadow-partial"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

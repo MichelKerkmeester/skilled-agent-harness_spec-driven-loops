@@ -1,0 +1,61 @@
+{
+  "recordId": "negative-router-derived-gold",
+  "hubId": "sk-code",
+  "requestFacts": {
+    "prompt": "Run a code quality gate",
+    "sourcePartition": "offline-authored",
+    "piiScrubStatus": "passed"
+  },
+  "intentGold": {
+    "action": "route",
+    "selectionKind": "single",
+    "targets": [
+      {
+        "id": {
+          "skillId": "sk-code",
+          "workflowMode": "quality",
+          "packetId": "code-quality",
+          "packetKind": "workflow",
+          "backendKind": "surface-router"
+        },
+        "role": "actor",
+        "mutatesWorkspace": true
+      }
+    ],
+    "authority": "WithheldUntilVerify",
+    "expectedLegacy": {
+      "intents": ["quality"],
+      "resources": ["code-quality/SKILL.md"]
+    }
+  },
+  "riskSlice": {
+    "id": "actor:mutating:single",
+    "role": "actor",
+    "mutatesWorkspace": true,
+    "selectionKindFamily": "single",
+    "toleranceBps": 250,
+    "contextDestination": {
+      "id": {
+        "skillId": "sk-code",
+        "workflowMode": "quality",
+        "packetId": "code-quality",
+        "packetKind": "workflow",
+        "backendKind": "surface-router"
+      },
+      "role": "actor",
+      "mutatesWorkspace": true
+    }
+  },
+  "labelProvenance": "intent-derived",
+  "authorAttestation": {
+    "authorId": "negative-author",
+    "goldSource": "live-router-output",
+    "independentFromRouterOperator": false,
+    "routerOutputViewedBeforeLabelLock": true,
+    "reconciledAgainstRouterOutput": true,
+    "labelLockedAtEpoch": 1
+  },
+  "calibration": { "predictedAction": "route", "confidenceBps": 9900 },
+  "replayMode": "legacy-router",
+  "deletionKey": "delete-negative-router-derived-gold"
+}
