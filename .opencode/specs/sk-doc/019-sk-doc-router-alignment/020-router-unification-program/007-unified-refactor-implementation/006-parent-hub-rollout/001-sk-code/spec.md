@@ -26,7 +26,7 @@ This is the **first parent-hub activation** of the compiled router contract, app
 
 `sk-code` is the canonical **workflow-plus-evidence** archetype (synthesis §7): one acting workflow mode plus zero-or-more read-only surfaces, where the advisor routes a single hub identity and the surfaces are advisor-invisible. The repository confirms this shape — the hub bundles `zero-or-more surfaces as evidence via routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first and surfaces after, with surface packets marked `routingClass: metadata` and a read-only `toolSurface` [Confirmed: `.opencode/skills/sk-code/SKILL.md:53-57`].
 
-The move is to compile that authored shape into a `surfaceBundle` route inside the closed decision algebra (synthesis §2.3): a `route` decision whose `selectionKind = surfaceBundle` carries one `actor` target (`mutatesWorkspace = true`) followed by N `evidence` targets (`mutatesWorkspace = false`). The load-bearing invariant of this phase is that **an evidence target can never COMMIT**, and that **evidence ordering is order-of-loading, not effect order** (synthesis §7). The activation is a fenced compare-and-swap on the activation manifest, legacy stays serving-authoritative until the gate passes, and rollback swaps to the byte-identical prior generation. This is planning and design only: no live routing config, registry, scorer, or skill is modified here.
+The authored shape is now compiled into a `surfaceBundle` route inside the closed decision algebra (synthesis §2.3): a `route` decision whose `selectionKind = surfaceBundle` carries one `actor` target (`mutatesWorkspace = true`) followed by N `evidence` targets (`mutatesWorkspace = false`). The load-bearing invariant is proven: **an evidence target can never COMMIT**, and **evidence ordering is order-of-loading, not effect order** (synthesis §7). The phase-local activation drill uses a fenced compare-and-swap, legacy stays serving-authoritative, and rollback swaps to the byte-identical prior generation. No live routing config, registry, scorer, or skill was modified.
 
 ## 1. METADATA
 
@@ -34,7 +34,7 @@ The move is to compile that authored shape into a `surfaceBundle` route inside t
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Implemented — Stage-4 phase-local gate GREEN; legacy serving-authoritative |
 | **Created** | 2026-07-18 |
 | **Branch** | `006-parent-hub-rollout/001-sk-code` |
 | **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
@@ -64,7 +64,7 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 
 ### Out of Scope
 
-- Any live edit to routing config, `mode-registry.json`, the advisor scorer, or the `sk-code` skill — this phase is planning/design only. [why] The refactor is activated by a fenced selector, not by file conversion; authority moves in gates (synthesis §9).
+- Any live edit to routing config, `mode-registry.json`, the advisor scorer, or the `sk-code` skill. [why] The phase-local candidate and fenced drill prove the gate without converting live files; authority moves in gates (synthesis §9).
 - Editing the shared benchmark scorer `router-replay.cjs`. [why] Hard constraint; a scorer edit required to pass is a migration failure, not a licence (synthesis §8.2, §10).
 - Building the correction overlay (`CorrectionOverlayV1`) or calibrated auto-route for `sk-code`. [why] Overlay is offline/optional/last (phase 007); at activation `sk-code` runs `overlay = null`, `P = static` (synthesis §5.3 sk-code row, §12).
 - Activating `system-deep-loop` or `mcp-tooling`. [why] Those are the next phases (`006/002`, `006/003`) and only activate after this canary's gate is green (synthesis §9 activation order).
@@ -77,8 +77,12 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 | `006-parent-hub-rollout/001-sk-code/spec.md` | Create | This specification |
 | `006-parent-hub-rollout/001-sk-code/plan.md` | Create | Build approach for the sk-code canary |
 | `006-parent-hub-rollout/001-sk-code/tasks.md` | Create | Ordered, checkable task list |
+| `006-parent-hub-rollout/001-sk-code/lib/*.cjs` | Create | Compiler, router, authority, policy-card, and activation logic |
+| `006-parent-hub-rollout/001-sk-code/fixtures/`, `harness/` | Create | Real-hub fixtures, artifact builder, and Stage-4 validator |
+| `006-parent-hub-rollout/001-sk-code/compiled/`, `activation/` | Create | Generated snapshot, accepted candidate, retained prior, and fence state |
+| `006-parent-hub-rollout/001-sk-code/checklist.md`, `implementation-summary.md` | Create | Level-2 verification evidence and completion record |
 
-> No runtime files are modified by this planning phase. The "Files to Change" for the *implementation* it plans (compiled artifacts, typed fixtures, policy card, fenced-selector manifest entry for `sk-code`) are enumerated in `plan.md` §3 and remain design targets until the shared compiler/evaluator/selector phases (`000`–`004`) land.
+> All implementation files are phase-local. Live runtime files remain read-only; the accepted candidate is shadow-only and legacy remains serving-authoritative.
 
 ## 4. REQUIREMENTS
 
@@ -113,7 +117,7 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Shared contract schemas + serialization (phase `000`) | Cannot compile `sk-code` without the canonical `CompiledPolicyV1`/`RouteDecisionV1` shapes | This phase is design-only until `000` lands; plan targets the frozen schema |
+| Dependency | Shared contract schemas + serialization (phase `000`) | Cannot compile `sk-code` without the canonical `CompiledPolicyV1`/`RouteDecisionV1` shapes | Green: frozen canonical shapes and hashing were reused |
 | Dependency | Shadow compiler + N=1 base + fenced selector (phase `001`) | No activation mechanism without the proven selector and rollback primitive | Reuse the `mcp-code-mode`-proven fenced CAS; do not re-invent activation |
 | Dependency | Pure evaluator + typed fixtures via projector (phase `002`) | No typed replay without the evaluator and compatibility projector | `sk-code` fixtures extend the `002` projector; scorer stays untouched |
 | Risk | A scorer edit appears necessary to pass a `sk-code` fixture | Would violate the hard constraint and invalidate baseline comparability | Treat any required scorer edit as a **migration failure**; fix the projector or the compiled data, never the scorer (synthesis §8.2, §10) |
@@ -174,6 +178,21 @@ This phase must satisfy the shared migration model's **Stage 4 — Per-hub canar
 **Hard blocks (aggregate score can never override — synthesis §9):** an evidence target that commits; a negative decision carrying a target/tool/authority; a hash mismatch against the pinned tuple; a request observing mixed generations; an exact route emitting clarification/handoff artifacts; a COMMIT lacking VERIFY; a scorer edit required to pass. Any one of these blocks activation regardless of route-gold aggregate.
 
 **Reversibility:** activation is a fenced CAS on the activation manifest with the prior generation retained for the bake window; rollback swaps to the byte-identical prior manifest. Because this phase is evidence composition (pre-effect), rollback is clean; the post-effect caveat (rollback cannot undo an external COMMIT) applies to later destination-rollout phases, not this canary (synthesis §9, §10).
+
+### Implementation Evidence
+
+| Requirement / Criterion | Status | Evidence |
+|-------------------------|--------|----------|
+| REQ-001, NFR-D01 | Pass | Four roles derive from authored `packetKind`; byte-identical canonical recompile and source-byte mismatch rejection pass. |
+| REQ-002 | Pass | Reference request returns actor-first `surfaceBundle [code-review, code-webflow]`. |
+| REQ-003, SC-002 | Pass | Evidence VERIFY rejects, evidence COMMIT fails `ROLE_CANNOT_COMMIT`, and legal actor commit requires PREPARE→VERIFY→COMMIT. |
+| REQ-004, SC-001 | GREEN | Five typed real-hub rows pass the real read-only scorer; corruption fails; three protected scorer digests remain pinned. |
+| REQ-005, SC-003 | Pass | Fenced ship and rollback advance epochs 0→1→2; prior/restored manifest hashes are byte-identical; mixed generations fail closed. |
+| REQ-006, SC-004 | Pass | Live identity-match may rank; stale, absent, unavailable, and projection drift cannot rewrite the decision. |
+| REQ-007 | Pass | Zero signal and surface-only defer; ambiguous input emits one checklist-derived clarify. |
+| REQ-008, SC-004 | Pass | Five document-only decisions match; planted divergence is rejected with no machine fallback. |
+| REQ-009 | Pass | All 29 authored aliases resolve and an unknown alias fails closed. |
+| SC-005 | Pass | Compiled snapshot, fixtures, validator, rollback proof, checklist, and summary are reproducible inputs for the next hub phase. |
 
 ## RELATED DOCUMENTS
 

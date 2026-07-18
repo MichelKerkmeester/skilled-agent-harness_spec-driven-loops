@@ -36,23 +36,27 @@ FAILURE MODES:
 
 ### Overview
 
-Compile `sk-code`'s authored routing into the shared compiled contract, model its bundle outcome as a `surfaceBundle` route (one `actor` + N `evidence`), and activate it behind the fenced selector as the **first parent-hub canary** — the second link in the blast-radius order after `mcp-code-mode` (synthesis §9). The work is additive: a shadow compile of one hub plus typed fixtures and a rollback drill, with legacy serving-authoritative and the scorer untouched. This document plans that implementation; it modifies no runtime files.
+`sk-code`'s authored routing is compiled into the shared contract and its bundle outcome is modeled as a `surfaceBundle` route (one `actor` + N `evidence`). The **first parent-hub canary** is phase-locally proven behind the fenced selector — the second link in the blast-radius order after `mcp-code-mode` (synthesis §9). The work is additive: a compiled snapshot, typed fixtures, real-scorer replay, and rollback drill, with legacy serving-authoritative and the scorer untouched.
 
 ---
 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Contract schemas (`000`), shadow compiler + fenced selector (`001`), and evaluator + projector (`002`) are landed and frozen.
-- [ ] The frozen legacy route-gold baseline for `sk-code` is recorded (Stage 0).
-- [ ] `sk-code`'s authored routing surface is inventoried: workflow modes, surface packets, `routerPolicy.outcomes.surfaceBundle`, and the legacy alias set [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`].
+- [x] Contract schemas (`000`), shadow compiler + fenced selector (`001`), and evaluator + projector (`002`) are landed and frozen.
+- [x] The frozen legacy route-gold baseline for `sk-code` is recorded (Stage 0).
+- [x] `sk-code`'s authored routing surface is inventoried: workflow modes, surface packets, `routerPolicy.outcomes.surfaceBundle`, and the legacy alias set [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`].
+
+**Evidence**: All upstream harnesses exit 0; the final canary pins the real scorer digests and compiles four destinations plus 29 aliases from the live authored inputs.
 
 ### Definition of Done
-- [ ] `sk-code` runs behind the typed evaluator in canary with zero hard route-gold mismatch; scorer diff empty.
-- [ ] Actor-only-commits proven structurally; every non-`route` decision withholds authority.
-- [ ] Advisor `live`/`stale`/`absent` parity and document parity both pass.
-- [ ] Byte-exact rollback drill demonstrated end to end.
-- [ ] spec.md / plan.md / tasks.md reconciled; no conflicting completion claims.
+- [x] `sk-code` runs behind the typed evaluator in canary with zero hard route-gold mismatch; scorer digests unchanged.
+- [x] Actor-only-commits proven structurally; every non-`route` decision withholds authority.
+- [x] Advisor `live`/`stale`/`absent` parity and document parity both pass.
+- [x] Byte-exact rollback drill demonstrated end to end.
+- [x] spec.md / plan.md / tasks.md reconciled; no conflicting completion claims.
+
+**Evidence**: `validate-canary.cjs` reports `status: GREEN`, `routeGold: GREEN`, document/advisor/rollback pass, and `servingAuthority: legacy`.
 
 ---
 
@@ -100,22 +104,28 @@ Required inventories before implementation:
 
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Compile and shape (design targets)
-- [ ] Inventory `sk-code` authored routing (modes, surfaces, surfaceBundle rule, aliases).
-- [ ] Compile the `sk-code` destination graph with `role` + `mutatesWorkspace` derived from `packetKind`.
-- [ ] Model the bundle outcome as `route(surfaceBundle, [actor, ...evidence])`, order-of-loading.
-- [ ] Generate `AdvisorProjectionV1` and `PolicyCardV1.md` for sk-code from the same snapshot.
+### Phase 1: Compile and shape
+- [x] Inventory `sk-code` authored routing (modes, surfaces, surfaceBundle rule, aliases).
+- [x] Compile the `sk-code` destination graph with `role` + `mutatesWorkspace` derived from `packetKind`.
+- [x] Model the bundle outcome as `route(surfaceBundle, [actor, ...evidence])`, order-of-loading.
+- [x] Generate `AdvisorProjectionV1` and `PolicyCardV1.md` for sk-code from the same snapshot.
+
+**Evidence**: Generated snapshot contains four destinations and canonical policy/advisor/card artifacts; identical authored bytes reproduce the fixed hashes.
 
 ### Phase 2: Fixtures and parity (scorer untouched)
-- [ ] Add `TypedRouteGoldV1` fixtures: surfaceBundle route; single-mode degenerate; evidence-cannot-commit hard-block; advisor stale/absent parity; ambiguous-leaf clarify; zero-signal defer; forbidden reject; dual-read unmapped-fails-closed.
-- [ ] Project typed decisions through the compatibility projector; run route-gold; confirm zero hard mismatch and empty scorer diff.
-- [ ] Run the document-only replay lane against the sk-code policy card; confirm parity.
+- [x] Add `TypedRouteGoldV1` fixtures: surfaceBundle route; single-mode degenerate; evidence-cannot-commit hard-block; advisor stale/absent parity; ambiguous-leaf clarify; zero-signal defer; forbidden reject; dual-read unmapped-fails-closed.
+- [x] Project typed decisions through the compatibility projector; run route-gold; confirm zero hard mismatch and unchanged scorer digests.
+- [x] Run the document-only replay lane against the sk-code policy card; confirm parity.
+
+**Evidence**: Five decision rows pass real `evaluateRouteGold`; corrupted observation and planted document divergence both fail.
 
 ### Phase 3: Fenced activation + rollback drill
-- [ ] Add the sk-code entry to the fenced activation manifest (candidate generation), legacy serving-authoritative.
-- [ ] Prove one-generation pinning per request; assert no mixed-generation observation.
-- [ ] Execute the rollback drill: accept → ship (canary) → rollback CAS to the byte-identical prior generation; confirm drift checks pass.
-- [ ] Reconcile the Stage-4 gate checklist; record evidence for `006/002` handoff.
+- [x] Add the sk-code entry to the fenced activation manifest (candidate generation), legacy serving-authoritative.
+- [x] Prove one-generation pinning per request; assert no mixed-generation observation.
+- [x] Execute the rollback drill: accept → ship (canary) → rollback CAS to the byte-identical prior generation; confirm drift checks pass.
+- [x] Reconcile the Stage-4 gate checklist; record evidence for `006/002` handoff.
+
+**Evidence**: Actual phase-local CAS reaches generation 2, rejects mixed pins, and restores the retained generation at fencing epoch 2 with byte-exact prior/restored hashes.
 
 ---
 
@@ -135,11 +145,11 @@ Required inventories before implementation:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Contract schemas + serialization (`000`) | Internal | Red (upstream) | No canonical shapes to compile against |
-| Shadow compiler + N=1 base + fenced selector (`001`) | Internal | Red (upstream) | No proven activation/rollback primitive |
-| Pure evaluator + compatibility projector (`002`) | Internal | Red (upstream) | No typed replay or scorer-safe projection |
-| Frozen legacy route-gold baseline (Stage 0) | Internal | Yellow | Cannot measure "zero hard mismatch" |
-| `sk-code` registry stability during canary | Internal | Yellow | Concurrent registry edits invalidate the compiled snapshot |
+| Contract schemas + serialization (`000`) | Internal | Green | Frozen canonical shapes and hashing reused |
+| Shadow compiler + N=1 base + fenced selector (`001`) | Internal | Green | Fenced selector and compiled shape reused |
+| Pure evaluator + compatibility projector (`002`) | Internal | Green | Typed evaluator and scorer-safe projector reused |
+| Frozen legacy route-gold baseline (Stage 0) | Internal | Green | Three scorer digests pinned and rechecked |
+| `sk-code` registry stability during canary | Internal | Green | Raw authored bytes hash-bound before compilation; drift fails closed |
 
 ---
 

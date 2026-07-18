@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 2,
+  "cases": [
+    {
+      "id": "surface-bundle-reference",
+      "prompt": "review my webflow animation for jank",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": ["code-review", "code-webflow"],
+      "gold": {
+        "expectedIntents": ["code-review", "code-webflow"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "single-quality",
+      "prompt": "run the quality gate before done",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["quality"],
+      "gold": {
+        "expectedIntents": ["quality"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "ambiguous-leaf",
+      "prompt": "quality review",
+      "expectedAction": "clarify",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "zero-leaf-signal",
+      "prompt": "unrelated orchard inventory",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-request",
+      "prompt": "forbidden workspace operation",
+      "constraints": ["forbidden"],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "trust": "live", "expectedContribution": true },
+    { "id": "stale", "trust": "stale", "expectedContribution": false },
+    { "id": "absent", "trust": "absent", "expectedContribution": false },
+    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
+    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+  ]
+}

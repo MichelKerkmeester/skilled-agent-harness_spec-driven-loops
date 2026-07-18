@@ -19,7 +19,10 @@
       "fenced selector rollback drill sk-code",
       "sk-code canary tasks",
       "surfaceBundle activation task list",
-      "stage-4 per-hub canary checklist sk-code"
+      "stage-4 per-hub canary checklist sk-code",
+      "sk-code canary verification",
+      "surfaceBundle stage-4 evidence",
+      "sk-code rollback drill"
     ],
     "key_topics": [
       "sk-code",
@@ -36,14 +39,64 @@
       "approach"
     ],
     "importance_tier": "critical",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      "lib/registry-compiler.cjs",
+      "lib/canary-router.cjs",
+      "lib/execution-fence.cjs",
+      "lib/policy-card.cjs",
+      "lib/activation-gate.cjs",
+      "fixtures/canary-cases.v1.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-code/mode-registry.json",
-      "spec.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/mode-registry.json"
     ],
     "entities": [
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": "lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": "lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "execution-fence.cjs",
+        "kind": "file",
+        "path": "lib/execution-fence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy-card.cjs",
+        "kind": "file",
+        "path": "lib/policy-card.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "activation-gate.cjs",
+        "kind": "file",
+        "path": "lib/activation-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -57,15 +110,21 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
         "source": "derived"
       },
       {
@@ -117,13 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Compile",
+        "name": "Pattern Shadow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Shadow",
+        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,35 +198,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Shared Migration",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a workflow mode with read-only surfaces [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`]",
     "created_at": "2026-07-18T13:13:19.473Z",
-    "last_save_at": "2026-07-18T14:47:36.610Z",
+    "last_save_at": "2026-07-18T23:41:38.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c61b4cecff62be7b8b8f33bfb55cd7e6700be2cfb3bc1c3766ed61b65a470b9",
+    "source_fingerprint": "sha256:7a29b556def61fc102660017c34a1429b45515d8a8df3d85a2acd1b9d0fac568",
     "source_doc_hashes": {
-      "spec.md": "475dcfcd2c95e9f45e2ec9f055db02e0d8888b32cf9dd7445533064babce61a3",
-      "plan.md": "f8d4eed94d44c9b1ee1615d86024be293702e3e9aa3694612cb397cb3d4801d8",
-      "tasks.md": "c7d123e2c990ee38ba626b19368a7c022c33d6c8df2773c33f3d1bee160b7424"
+      "spec.md": "a2ab7129c8b4b7603faa024326a21ed3776c4ae4e15f202e58ea61d52ece2594",
+      "plan.md": "7afb599dd2204c0950972b1644cff5e47efdf524f12caf39164bbfb16bfc78a0",
+      "tasks.md": "c1fed7e1e150eb25be84585dd5cd5d6b60831cfcc17e45ef36a632366958e077",
+      "checklist.md": "8d064f0e2157d6b5f40ae1fe7e244f1999e04e6b5f13ac7d0b065104d7fef1cb",
+      "implementation-summary.md": "83dddacd4a374703bc9ba391f34298f3f34017b1e5453937c03bff11953fa55f"
     },
     "last_active_child_id": null,
     "last_active_at": null
