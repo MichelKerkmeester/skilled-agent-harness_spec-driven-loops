@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "V1",
+  "files": [
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      "sha256": "b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "sha256": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c"
+    },
+    {
+      "path": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas/fixtures/typed-route-gold.negative.json",
+      "sha256": "f1890c0c0dd5114cd31373b25797caf64f40c48a46fe3049599f623ceed81c15"
+    },
+    {
+      "path": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas/fixtures/typed-route-gold.singular-duplicate.json",
+      "sha256": "aa892f6d14b7c7e9bae694aad343d71149ab781589600b62371333b534d9107f"
+    }
+  ]
+}

@@ -13,6 +13,9 @@ contextType: "implementation"
 
 # Implementation Plan: Decision Evaluator — Closed 4-Action Route Algebra
 
+**Implementation status**: Executed. Phase-local verification is green; orchestrator-owned strict
+spec validation remains intentionally unrun in this worktree.
+
 ## APPROACH
 
 Build the decision plane **type-first, then evaluator, then projector, then fixtures** — because the whole value of this phase is that the dangerous states are unrepresentable, and that guarantee lives in the type/guard layer, not in runtime checks (synthesis §2.3, §4 seam A). The evaluator is a pure total function; every capability, effect, and budget belongs to a sibling phase. The benchmark seam is treated as an inviolable boundary: the shared scorer `router-replay.cjs` is a fixed dependency the projector adapts *to*, never a file this phase edits (synthesis §8.2, §6).
@@ -58,6 +61,11 @@ The sequence is deliberately staged so each step is independently replayable and
 - **Scorer untouched:** `git diff --exit-code router-replay.cjs` is empty; the existing route-gold gate stays green with the projector in place (SC-003).
 - **Stage 3 gate:** deterministic typed replay; projection matches gold; mismatches classified; gold untouched (SC-004).
 - **N=1 degeneracy:** the `mcp-code-mode` fixture asserts zero rank/bundle/handoff calls and `defer(no-match)` on zero signal (SC-005).
+
+**Verification evidence**: `tests/decision-evaluator.test.cjs` reports 112 assertions. The replay
+driver reports 11/11 shared-scorer matches, fixed hashes across 25 in-process repetitions and three
+child processes, 12 exact structural rejection codes, an `intent-mismatch` falsifier result, and
+zero N=1 rank/bundle/handoff calls.
 
 ## ROLLBACK
 

@@ -1,0 +1,529 @@
+{
+  "schemaVersion": "V1",
+  "manifestResources": [
+    {
+      "workflowMode": "code-mode",
+      "leafResourceId": "canonical-leaf",
+      "resource": "canonical-leaf"
+    }
+  ],
+  "routerProducerMappings": [
+    {
+      "fixtureId": "exact-single-route",
+      "skillRoot": ".opencode/skills/mcp-code-mode",
+      "taskText": "workflow",
+      "intentAliases": { "WORKFLOW": "code-mode" },
+      "resourceAliases": { "references/workflows.md": "canonical-leaf" }
+    },
+    {
+      "fixtureId": "degraded-fallback",
+      "skillRoot": ".opencode/skills/mcp-code-mode",
+      "taskText": "workflow",
+      "intentAliases": { "WORKFLOW": "code-mode" },
+      "resourceAliases": { "references/workflows.md": "canonical-leaf" }
+    }
+  ],
+  "cases": [
+    {
+      "id": "exact-single-route",
+      "family": "exact-single-route",
+      "policyFixture": "compiled-policy.n1.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [{ "kind": "resource", "value": "canonical-leaf" }],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":1,\"effectivePolicyHash\":\"200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 1 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 1,
+        "requestFactsHash": "0a7bdd30e5d3cebcdb4ac7b8cb20bd2ddf702497c2923382a2405ab9a26ed0cf"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "single",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "mcp-code-mode",
+                "workflowMode": "code-mode",
+                "packetId": "packet-code-mode",
+                "packetKind": "standalone",
+                "backendKind": "utcp"
+              },
+              "role": "actor",
+              "authorityRef": "authority:mcp-code-mode",
+              "mutatesWorkspace": false
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "leafPairs": [{ "workflowMode": "code-mode", "leafResourceId": "canonical-leaf" }],
+      "intentGold": {
+        "expectedIntents": ["code-mode"],
+        "expectedResources": ["canonical-leaf"]
+      },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "2d58fd378561a86a5651d3156e445e2e45b04f684ffea0be0b0dc5cfb4cac7c4"
+    },
+    {
+      "id": "ordered-bundle",
+      "family": "ordered-bundle",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "intent", "value": "implement" },
+          { "kind": "resource", "value": "figma" }
+        ],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":7,\"effectivePolicyHash\":\"d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 7 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "e80245b08f07b372c69628f55457732bbb5ba125a8ed8a732d344333e81c5572"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "orderedBundle",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "sk-code",
+                "workflowMode": "implementation",
+                "packetId": "packet-impl",
+                "packetKind": "workflow",
+                "backendKind": "native"
+              },
+              "role": "actor",
+              "authorityRef": "authority:sk-code",
+              "mutatesWorkspace": true
+            },
+            {
+              "destinationId": {
+                "skillId": "mcp-tooling",
+                "workflowMode": "figma",
+                "packetId": "packet-figma",
+                "packetKind": "transport",
+                "backendKind": "remote",
+                "runtimeDiscriminator": "plugin-api"
+              },
+              "role": "transport",
+              "authorityRef": "authority:figma-transport",
+              "mutatesWorkspace": true
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "leafPairs": [],
+      "intentGold": {
+        "expectedIntents": ["implementation", "figma"],
+        "expectedResources": []
+      },
+      "expectedTrace": { "rankCalls": 1, "bundleCalls": 1, "handoffCalls": 0 },
+      "expectedDecisionHash": "12b202c50bac243924cc24500e11012cb7c6e816293230dd6ab4b974081ca947"
+    },
+    {
+      "id": "surface-bundle",
+      "family": "surface-bundle",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "intent", "value": "implementation" },
+          { "kind": "resource", "value": "context" }
+        ],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":7,\"effectivePolicyHash\":\"d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 7 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "46ca747384f9920b588deeed1372f9b01bccc59d7ca870da0b0fe0db47c34800"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "surfaceBundle",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "sk-code",
+                "workflowMode": "implementation",
+                "packetId": "packet-impl",
+                "packetKind": "workflow",
+                "backendKind": "native"
+              },
+              "role": "actor",
+              "authorityRef": "authority:sk-code",
+              "mutatesWorkspace": true
+            },
+            {
+              "destinationId": {
+                "skillId": "system-code-graph",
+                "workflowMode": "context",
+                "packetId": "packet-code-graph",
+                "packetKind": "evidence",
+                "backendKind": "mcp"
+              },
+              "role": "evidence",
+              "authorityRef": "authority:read-only",
+              "mutatesWorkspace": false
+            }
+          ],
+          "basis": { "kind": "signal" },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "leafPairs": [],
+      "intentGold": {
+        "expectedIntents": ["implementation", "context"],
+        "expectedResources": []
+      },
+      "expectedTrace": { "rankCalls": 1, "bundleCalls": 1, "handoffCalls": 0 },
+      "expectedDecisionHash": "5675c50f829b1b886b6380d7c1e2eef5e8cc6aa398c0a33c516a5543a023a180"
+    },
+    {
+      "id": "zero-signal-defer",
+      "family": "zero-signal-idle-defer",
+      "policyFixture": "compiled-policy.n1.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [],
+        "evidence": [],
+        "pinnedActivationGeneration": 1,
+        "requestFactsHash": "b96f3fcdc9e46af5a244256966840a592ed80f27bd76b06934b3a1061f485b0c"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "defer",
+        "defer": { "reason": "no-match", "recovery": [], "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "047e3e970fa50ea3796bf4619006815e83ee31a4455ae1f42dd7c0dc5fe95f1f"
+    },
+    {
+      "id": "one-turn-clarify",
+      "family": "one-turn-clarify",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "intent", "value": "implementation" },
+          { "kind": "resource", "value": "context" },
+          { "kind": "resource", "value": "figma" }
+        ],
+        "evidence": [],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "d69658e60d652d2830f0ee5730b5e1206ae1822e744c57cf508e9c822cb85b6c"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "clarify",
+        "clarify": {
+          "question": "Which local route matches the request?",
+          "budgetRef": "budget:d69658e60d652d28",
+          "alternatives": ["implementation", "context", "figma", "none_of_these"],
+          "authority": "Withheld"
+        }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 1, "bundleCalls": 1, "handoffCalls": 0 },
+      "expectedDecisionHash": "16b476b64e7743877651d77c39133452e64892faa8fc2d11ee51f159720ee7a3"
+    },
+    {
+      "id": "forbidden-reject",
+      "family": "forbidden-reject",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [{ "kind": "constraint", "value": "forbidden" }],
+        "evidence": [],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "1c3772d79bfb8a5974ab7c0a6e39aff618d864b08034dc132aba8846e460beb4"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "reject",
+        "reject": { "reason": "forbidden", "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "10fc1aaf86b64f78e7cb49d6550e15c11da4223e2459e26f3b72b403f1ba0d86"
+    },
+    {
+      "id": "degraded-fallback",
+      "family": "named-degraded-fallback",
+      "policyFixture": "compiled-policy.n1.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [{ "kind": "resource", "value": "canonical-leaf" }],
+        "evidence": [
+          {
+            "id": "advisor:projection",
+            "kind": "advisor",
+            "value": "",
+            "provenance": { "source": "advisor-projection", "capturedAtEpoch": 1 },
+            "trust": "unavailable"
+          },
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":1,\"effectivePolicyHash\":\"200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 1 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 1,
+        "requestFactsHash": "e057b9b706b33d41d537c7d304d99723dd143b927ad2561ec90131ea6fb33f58"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "route",
+        "route": {
+          "selectionKind": "single",
+          "targets": [
+            {
+              "destinationId": {
+                "skillId": "mcp-code-mode",
+                "workflowMode": "code-mode",
+                "packetId": "packet-code-mode",
+                "packetKind": "standalone",
+                "backendKind": "utcp"
+              },
+              "role": "actor",
+              "authorityRef": "authority:mcp-code-mode",
+              "mutatesWorkspace": false
+            }
+          ],
+          "basis": {
+            "kind": "degraded-fallback",
+            "unavailableEvidence": ["advisor:projection"]
+          },
+          "evidence": [],
+          "authority": "WithheldUntilVerify"
+        }
+      },
+      "leafPairs": [{ "workflowMode": "code-mode", "leafResourceId": "canonical-leaf" }],
+      "intentGold": {
+        "expectedIntents": ["code-mode"],
+        "expectedResources": ["canonical-leaf"]
+      },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "fbe0e6a0cfe656b72fe96836bd9c36c3bbc4e5be5ac871c3d6396e9abaf6a336"
+    },
+    {
+      "id": "rank-only-defer",
+      "family": "rank-is-evidence-only",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [],
+        "evidence": [
+          {
+            "id": "advisor:rank",
+            "kind": "advisor",
+            "value": "{\"rankScore\":\"999\",\"scoreMargin\":\"999\"}",
+            "provenance": { "source": "advisor-projection", "capturedAtEpoch": 7 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "a8c8bbe151a98ee83a52c2b67e77357a2620d1afed5739050b2553415aca346b"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "defer",
+        "defer": { "reason": "no-match", "recovery": [], "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 1, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "047e3e970fa50ea3796bf4619006815e83ee31a4455ae1f42dd7c0dc5fe95f1f"
+    },
+    {
+      "id": "stale-policy-defer",
+      "family": "stale-generation-refusal",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [{ "kind": "intent", "value": "implement" }],
+        "evidence": [],
+        "pinnedActivationGeneration": 6,
+        "requestFactsHash": "80c727330bbf32b5994c646079b5f33113481ee71a752d6581b370c065275bd9"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "defer",
+        "defer": { "reason": "stale-policy", "recovery": [], "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "38a548d135ab41dc75cbc30c49e32195b0f8cf156419a780f80c880a6cca06aa"
+    },
+    {
+      "id": "named-handoff-defer",
+      "family": "named-handoff-defer",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "constraint", "value": "handoff-required:mcp-tooling/figma" }
+        ],
+        "evidence": [],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "4f04c0620a1d1dee4423d6bed49e76432cc9000047d5b3b632d98df8c70f2afb"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "defer",
+        "defer": {
+          "reason": "handoff-required",
+          "recovery": ["handoff"],
+          "authority": "Withheld"
+        }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 1, "bundleCalls": 0, "handoffCalls": 1 },
+      "expectedDecisionHash": "32eea173eaa95fc9aecc18b11883170e545493ae82b791fae87c0bdda9605d8b"
+    },
+    {
+      "id": "mixed-generation-reject",
+      "family": "mixed-generation-hard-block",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [{ "kind": "intent", "value": "implement" }],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":7,\"effectivePolicyHash\":\"200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 7 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "603ab1bfb0167f180b5bc6abf676452a26901212d737129e919b0311e25cd907"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "reject",
+        "reject": { "reason": "invalid", "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "005d9ea9cd4122443f419967b5e4074f11d48f9f25408abbac3e9ec2c916b64e"
+    },
+    {
+      "id": "advisor-tuple-conflict-reject",
+      "family": "advisor-policy-tuple-conflict",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "intent", "value": "implementation" },
+          { "kind": "resource", "value": "context" }
+        ],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":7,\"effectivePolicyHash\":\"d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 7 },
+            "trust": "live"
+          },
+          {
+            "id": "advisor:mixed-generation-rank",
+            "kind": "advisor",
+            "value": "{\"activationGeneration\":6,\"effectivePolicyHash\":\"200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167\",\"rankScore\":\"999\"}",
+            "provenance": { "source": "advisor-projection", "capturedAtEpoch": 7 },
+            "trust": "live"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "b77f6bdac1af2a0ce79c1b085f60e5173176d335366c734cc856b489c123149e"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "reject",
+        "reject": { "reason": "invalid", "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "005d9ea9cd4122443f419967b5e4074f11d48f9f25408abbac3e9ec2c916b64e"
+    },
+    {
+      "id": "stale-compatibility-conflict-reject",
+      "family": "stale-policy-tuple-conflict",
+      "policyFixture": "compiled-policy.multimode.json",
+      "request": {
+        "schemaVersion": "V1",
+        "observations": [
+          { "kind": "intent", "value": "implementation" },
+          { "kind": "resource", "value": "context" }
+        ],
+        "evidence": [
+          {
+            "id": "compatibility:pinned-policy",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":7,\"effectivePolicyHash\":\"d5e575abe14d0052456abccd7360e235611378603fd30b79012d21eee68ad25f\"}",
+            "provenance": { "source": "activation-selector", "capturedAtEpoch": 7 },
+            "trust": "live"
+          },
+          {
+            "id": "compatibility:stale-generation",
+            "kind": "compatibility",
+            "value": "{\"activationGeneration\":0,\"effectivePolicyHash\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+            "provenance": { "source": "stale-compatibility-cache", "capturedAtEpoch": 0 },
+            "trust": "stale"
+          }
+        ],
+        "pinnedActivationGeneration": 7,
+        "requestFactsHash": "611af585c03863babe73aac7cc5d9bfdb053709a3e316bf5f719c4112bd8a3d4"
+      },
+      "expectedDecision": {
+        "schemaVersion": "V1",
+        "action": "reject",
+        "reject": { "reason": "invalid", "authority": "Withheld" }
+      },
+      "leafPairs": [],
+      "intentGold": { "expectedIntents": ["defer"], "expectedResources": [] },
+      "expectedTrace": { "rankCalls": 0, "bundleCalls": 0, "handoffCalls": 0 },
+      "expectedDecisionHash": "005d9ea9cd4122443f419967b5e4074f11d48f9f25408abbac3e9ec2c916b64e"
+    }
+  ]
+}

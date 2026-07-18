@@ -19,7 +19,10 @@
       "compatibility projector route-gold",
       "decision evaluator tasks",
       "route algebra task list",
-      "typed route-gold fixtures tasks"
+      "typed route-gold fixtures tasks",
+      "decision evaluator verification",
+      "route decision checklist",
+      "shadow replay evidence"
     ],
     "key_topics": [
       "decision",
@@ -36,13 +39,62 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "lib/decision-contract.cjs",
+      "lib/evaluator.cjs",
+      "lib/projector.cjs",
+      "fixtures/evaluator-cases.v1.json",
+      "tests/decision-evaluator.test.cjs",
+      "checklist.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "decision-contract.cjs",
+        "kind": "file",
+        "path": "lib/decision-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "evaluator.cjs",
+        "kind": "file",
+        "path": "lib/evaluator.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "projector.cjs",
+        "kind": "file",
+        "path": "lib/projector.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "evaluator-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/evaluator-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-evaluator.test.cjs",
+        "kind": "file",
+        "path": "tests/decision-evaluator.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -56,9 +108,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -148,19 +200,23 @@
     ],
     "causal_summary": "The eight routing ideas each type \"what happens next\" differently, and two of them collide directly: Idea 3 (typed no-destination) and Idea 6 (minimal typed contract) both propose an outcome type, and Idea 6's sketch flattens composition and control flow into a single six-value enum `single|orderedBundle|surfaceBundle|clarify|defer|reject`",
     "created_at": "2026-07-18T13:13:17.009Z",
-    "last_save_at": "2026-07-18T14:47:40.116Z",
+    "last_save_at": "2026-07-18T19:06:11.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad01d31361a93f09851eee4ab05e58a7a8e711ed948e24bdf2d362ef056ebcaf",
+    "source_fingerprint": "sha256:681e9a8ca78ca985aff6d6de161d36959e1d2bfdb46dba042814239c3393f1e4",
     "source_doc_hashes": {
-      "spec.md": "b7f2f6a166bc6d9841c481f9fedaec97910e7c2b4c08d94b672477d929488680",
-      "plan.md": "c60f42aa0e4affd5ea1699e63a4825838153bd17c29f0f43b9cbe78d83a685a6",
-      "tasks.md": "9b52507f7b39769fe357aa8e5dcb2a48216803579669fd312b71169896e57f84"
+      "spec.md": "11a95686a94baaa190a43617a30cb37e7cb71e4d1356212e2d3a6b19333b0fdc",
+      "plan.md": "b3547ee2a17eb23b8d998fbec08452a3913ba30cb748f648dd3c0ba3c1b0131a",
+      "tasks.md": "ff6c6316e7a56b85a4c56e760bca862c52d87548a43f719b828a4928d0a0bd25",
+      "checklist.md": "c92a3d70f94841d7d40925a44eac023667687ab20acb4bc931cc7e0106baad2d",
+      "implementation-summary.md": "6ba9e3ab25026b9e7d5d78851b4d718df9e94b8b1158d99c3c65f0cb3550066d"
     },
     "last_active_child_id": null,
     "last_active_at": null

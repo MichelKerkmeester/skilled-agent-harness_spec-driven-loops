@@ -13,6 +13,9 @@ contextType: "implementation"
 
 # Decision Evaluator — The Closed 4-Action Route Algebra
 
+**Implementation status**: Implemented with phase-local verification passing; repository-level
+strict validation is reserved for the orchestrator as directed.
+
 ## EXECUTIVE SUMMARY
 
 This phase builds the **decision plane** of the unified router refactor: a single pure function that takes a pinned `RouteRequestV1` plus the immutable `CompiledPolicyV1` produced by Phase 1 and returns exactly one `RouteDecisionV1`. The decision type is the **closed, nested four-action algebra** the council converged on — `route | clarify | defer | reject` — with the positive composition shapes (`single | orderedBundle | surfaceBundle`) living as a `selectionKind` field *inside* `route`, never as top-level actions (synthesis §2.3, §4 seam A).
@@ -86,6 +89,12 @@ Ship a pure, offline, deterministic evaluator whose only output type is the clos
 - **SC-004**: The Stage 3 shadow-evaluate gate passes — deterministic typed replay, projection matches gold, mismatches classified, gold untouched (REQ-009).
 - **SC-005**: The N=1 case emits `single`/`defer` decisions with zero rank/bundle/handoff calls, proving the evaluator is the same contract at cardinality one (REQ-012).
 
+**Implementation evidence**: `replay-driver.cjs` replays 11 typed cases 25 times each and in
+three child processes; all decision hashes match fixed fixture oracles. The shared
+`evaluateRouteGold()` scorer reports 11/11 matches, the injected mismatch is classified as
+`intent-mismatch`, protected scorer/gold hashes remain unchanged, and all three N=1 rows report
+zero rank, bundle, and handoff calls.
+
 ## VERIFICATION & EDGE CASES
 
 Verification is **replay-first**: the acceptance evidence for this phase is a deterministic offline replay of the typed fixture families through the evaluator and the compatibility projector, compared against the frozen route-gold. The shared scorer is invoked, never modified.
@@ -103,6 +112,10 @@ Edge cases the fixtures must pin:
 This phase owns **Stage 3 — Shadow evaluate** in the shared migration-gate model (master plan `../spec.md` → "SHARED MIGRATION-GATE MODEL"; synthesis §9 stage 3). Legacy remains serving-authoritative throughout; the typed evaluator runs in shadow with **zero live authority**.
 
 **Gate to advance (must pass before Phase 3 activates):** full typed replay is deterministic; the compatibility projection matches route-gold; mismatches are classified (not silently reconciled); and the gold is never auto-updated. **Rollback:** disable the shadow lane — because the evaluator holds no authority and mutates nothing, disabling it restores the prior behavior exactly. Any of the following hard-blocks activation regardless of aggregate score (synthesis §9): a negative decision carrying a target/tool/authority, an exact route emitting recovery artifacts, a request observing mixed generations, a `hash` mismatch against the pinned tuple, or a singular evaluation calling ranking/bundle/handoff machinery.
+
+**Gate evidence**: phase-local replay passes all 11 projected rows through the unchanged shared
+scorer, rejects an injected mismatch without write-back, and records byte hashes for the scorer,
+router replay, and frozen typed-gold fixtures before and after execution.
 
 ## RELATED DOCUMENTS
 - **Build approach**: see `plan.md`
