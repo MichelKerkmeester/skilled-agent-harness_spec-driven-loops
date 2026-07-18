@@ -49,7 +49,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | None; first child |
-| **Successor** | `../002-*` (planned — pending convergence) |
+| **Successor** | `../002-md-generator-upgrade/` |
 <!-- /ANCHOR:metadata -->
 
 ---

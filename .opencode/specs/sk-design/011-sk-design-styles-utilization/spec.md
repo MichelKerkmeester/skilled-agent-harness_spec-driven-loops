@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio |
 | **Priority** | P1 |
-| **Status** | Research phase complete (001); implementation phases (002+) ready to seed from the ranked Phase A/B/C sequence |
+| **Status** | Research in progress — 001 complete; 002 (md-generator) + 003 (global modes) loops dispatched; implementation phases (004+) gated on their convergence |
 | **Created** | 2026-07-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -100,7 +100,9 @@ Determine, with evidence, the smart ways to put the styles library to work acros
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-research-utilization/` | Deep-research: how to index, retrieve, and consume the styles library across sk-design + modes | Complete — 8 iters, ranked synthesis |
-| 2+ | `002-*` (planned) | Build the top-ranked utilization strategies (research §15 Phase A/B/C) | Planned — ready to seed from Phase A |
+| 2 | `002-md-generator-upgrade/` | Deep-research: how the library upgrades the design-md-generator mode (exemplars, schema calibration, token grounding, validation) | In Progress — loop dispatched |
+| 3 | `003-global-modes-utilization/` | Deep-research: how the library integrates globally across the hub + interface/foundations/motion/audit/open-design modes | In Progress — loop dispatched |
+| 4+ | `004-*` (planned) | Build the top-ranked strategies from 001/002/003 | Planned — pending research convergence |
 
 ### Phase Transition Rules
 

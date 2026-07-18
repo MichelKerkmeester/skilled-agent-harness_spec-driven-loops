@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "description": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes —",
+  "keywords": [
+    "research",
+    "settled",
+    "shared",
+    "retrieval",
+    "substrate",
+    "md-generator",
+    "gets",
+    "own",
+    "deep",
+    "dive",
+    "sk-design",
+    "modes"
+  ],
+  "lastUpdated": "2026-07-18T12:25:44.087Z",
+  "specId": "003",
+  "folderSlug": "global-modes-utilization",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

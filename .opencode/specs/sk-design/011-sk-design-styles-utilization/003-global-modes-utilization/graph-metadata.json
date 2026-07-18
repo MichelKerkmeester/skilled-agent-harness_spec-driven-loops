@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,39 @@
   },
   "derived": {
     "trigger_phrases": [
-      "styles utilization research",
-      "how to use the style library",
-      "design library retrieval research",
-      "styles utilization research plan",
-      "design library research plan",
-      "deep research styles plan",
-      "styles utilization research tasks",
-      "design library research tasks",
-      "deep research styles tasks",
-      "styles utilization research summary",
-      "design library research status",
-      "deep research styles status"
+      "global styles utilization research",
+      "styles across design modes",
+      "sk-design hub library integration",
+      "global styles utilization plan",
+      "styles across design modes plan",
+      "sk-design hub integration plan",
+      "global styles utilization tasks",
+      "styles across design modes tasks",
+      "sk-design hub integration tasks",
+      "global styles utilization summary",
+      "styles across design modes status",
+      "sk-design hub integration status"
     ],
     "key_topics": [
+      "global",
       "styles",
       "utilization",
       "research",
-      "style",
-      "library",
+      "across",
       "design",
-      "retrieval",
-      "plan",
-      "deep",
-      "tasks",
-      "summary",
-      "status"
+      "modes",
+      "sk-design",
+      "hub",
+      "library",
+      "integration",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -79,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,12 +103,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -169,8 +168,8 @@
         "source": "derived"
       },
       {
-        "name": "per-strategy",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -187,15 +186,15 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built An",
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design runtime",
-    "created_at": "2026-07-18T09:21:31.414Z",
-    "last_save_at": "2026-07-18T12:28:07.062Z",
+    "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
+    "created_at": "2026-07-18T12:23:41.736Z",
+    "last_save_at": "2026-07-18T12:25:55.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5e2cc92385026733c64e09b549dbdda7e222c645d5c0b36405e43909285c6a0",
+    "source_fingerprint": "sha256:11e713ae860a118f96ada77c5742f9677e72d0b1ca9701f404fca71c47788bbf",
     "source_doc_hashes": {
-      "spec.md": "094c7919b5d429401edcf857cefc4ede0e610846f033640c009e8bf185e3d922",
-      "plan.md": "55e2a492b50fb59a2073d7df001f1d58f8732d1194e2f8a144515d0715179ecd",
-      "tasks.md": "18d27673b86c87faa4f7768ce3e78cc85650ee6a506beaec427442c0336b9c7e",
-      "implementation-summary.md": "0b5fea96a644dc0a6e57c49713fb63137ed60f1a7132e8c365ae3940e37d7efa"
+      "spec.md": "99397e0089814be242c38b5d5c64cabfc295f3cf67f24c9d995f4e23212d5f0e",
+      "plan.md": "06ca7b42de7a3c4475456b5ae4373cd9e2d0e2b7ca2dae2c3abd7ecd6883c012",
+      "tasks.md": "1fa3ac6c7c3c41fffde3e8d31e39bd3cf756e9e17031e311a1cbe93a54346781",
+      "implementation-summary.md": "23b43b24e011031a978403687784220fa49010d117724c960e98050740209bf5"
     },
     "last_active_child_id": null,
     "last_active_at": null

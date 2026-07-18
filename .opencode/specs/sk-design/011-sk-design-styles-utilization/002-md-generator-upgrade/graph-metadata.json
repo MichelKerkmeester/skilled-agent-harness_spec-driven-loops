@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,39 @@
   },
   "derived": {
     "trigger_phrases": [
-      "styles utilization research",
-      "how to use the style library",
-      "design library retrieval research",
-      "styles utilization research plan",
-      "design library research plan",
-      "deep research styles plan",
-      "styles utilization research tasks",
-      "design library research tasks",
-      "deep research styles tasks",
-      "styles utilization research summary",
-      "design library research status",
-      "deep research styles status"
+      "md generator upgrade research",
+      "design-md-generator styles",
+      "improve DESIGN.md output",
+      "md generator upgrade plan",
+      "design-md-generator research plan",
+      "improve DESIGN.md plan",
+      "md generator upgrade tasks",
+      "design-md-generator research tasks",
+      "improve DESIGN.md tasks",
+      "md generator upgrade summary",
+      "design-md-generator research status",
+      "improve DESIGN.md status"
     ],
     "key_topics": [
-      "styles",
-      "utilization",
+      "generator",
+      "upgrade",
       "research",
-      "style",
-      "library",
+      "design-md-generator",
+      "styles",
+      "improve",
       "design",
-      "retrieval",
+      "output",
       "plan",
-      "deep",
       "tasks",
       "summary",
       "status"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -79,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,12 +103,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -169,8 +168,8 @@
         "source": "derived"
       },
       {
-        "name": "per-strategy",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -187,15 +186,15 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built An",
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design runtime",
-    "created_at": "2026-07-18T09:21:31.414Z",
-    "last_save_at": "2026-07-18T12:28:07.062Z",
+    "causal_summary": "The sk-design `design-md-generator` mode (backend `formatters-v3` + the DESIGN.md section schema at `.opencode/skills/sk-design/design-md-generator/`) generates design documents without any grounding in real, high-quality design systems",
+    "created_at": "2026-07-18T12:23:41.357Z",
+    "last_save_at": "2026-07-18T12:25:54.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5e2cc92385026733c64e09b549dbdda7e222c645d5c0b36405e43909285c6a0",
+    "source_fingerprint": "sha256:0645644274a14b86023cbde30dfb43e3baadead5f1250e905e8fc04670b86215",
     "source_doc_hashes": {
-      "spec.md": "094c7919b5d429401edcf857cefc4ede0e610846f033640c009e8bf185e3d922",
-      "plan.md": "55e2a492b50fb59a2073d7df001f1d58f8732d1194e2f8a144515d0715179ecd",
-      "tasks.md": "18d27673b86c87faa4f7768ce3e78cc85650ee6a506beaec427442c0336b9c7e",
-      "implementation-summary.md": "0b5fea96a644dc0a6e57c49713fb63137ed60f1a7132e8c365ae3940e37d7efa"
+      "spec.md": "fd572fbce8044d4da1ee946d7aa0250560adfbb6868627d109771948a23edf99",
+      "plan.md": "635ecb27734c10c2fb28102b3c8f695aa9daaa9977848e0ea1e6b165ac0d7509",
+      "tasks.md": "40155c80fee29a92da04b4f9bff864ea9cddeb3bec7339e12280118ffc2b30b1",
+      "implementation-summary.md": "323ea7822e1219eb873611965c573f2f8d10b08f9e34bedbbcba1f7bca565d5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
+  "description": "The sk-design `design-md-generator` mode (backend `formatters-v3` + the DESIGN.md section schema at `.opencode/skills/sk-design/design-md-generator/`)",
+  "keywords": [
+    "sk-design",
+    "design-md-generator",
+    "mode",
+    "backend",
+    "formatters-v3",
+    "design",
+    "section",
+    "schema",
+    "opencode",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-18T12:25:34.444Z",
+  "specId": "002",
+  "folderSlug": "md-generator-upgrade",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
