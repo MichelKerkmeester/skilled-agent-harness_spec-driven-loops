@@ -1,0 +1,71 @@
+{
+  "run_id": "1784347200936-r7aos1",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-oob",
+      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research/lineages/glm-oob/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-18T04:00:00.939Z",
+        "end_at_iso": "2026-07-18T04:27:13.558Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 8,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T06:00:01Z",
+          "deltaMs": 5447442
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T06:08:00Z",
+          "deltaMs": 5926442
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T06:18:00Z",
+          "deltaMs": 6526442
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T06:28:00Z",
+          "deltaMs": 7126442
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-18T06:38:00Z",
+          "deltaMs": 7726442
+        }
+      ]
+    }
+  ]
+}

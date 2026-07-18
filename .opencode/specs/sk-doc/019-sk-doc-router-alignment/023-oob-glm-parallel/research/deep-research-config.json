@@ -1,0 +1,34 @@
+{
+  "researchTopic": "Parent-hub routing, out-of-box GLM lineage: radical lateral rethinks over the agenda in the packet spec.md.",
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "dryRun": false,
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "zai-coding-plan/glm-5.2",
+        "reasoningEffort": "max",
+        "label": "glm-oob",
+        "iterations": 5
+      }
+    ],
+    "concurrency": 1
+  },
+  "runId": "1784347200936-r7aos1",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "startedAt": "2026-07-18T04:00:00.938Z",
+  "completedAt": "2026-07-18T04:27:13.558Z"
+}

@@ -1,0 +1,73 @@
+{
+  "mergedFrom": [
+    "glm-oob"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-1-1-600c921201ae",
+      "title": "Abolish the hub-router layer entirely (agenda #1): take _apply_deep_skill_routing_layer to its extreme and stress what breaks/improves",
+      "summary": "Abolish the hub-router layer entirely (agenda #1): take _apply_deep_skill_routing_layer to its extreme and stress what breaks/improves",
+      "text": "Abolish the hub-router layer entirely (agenda #1): take _apply_deep_skill_routing_layer to its extreme and stress what breaks/improves",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-oob"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-216e63b7fadd",
+      "title": "Confidence-first + learned/adaptive routing (agenda #2+#6): threshold subsumes defaultMode; learn the vocab-to-mode assignment not the weights",
+      "summary": "Confidence-first + learned/adaptive routing (agenda #2+#6): threshold subsumes defaultMode; learn the vocab-to-mode assignment not the weights",
+      "text": "Confidence-first + learned/adaptive routing (agenda #2+#6): threshold subsumes defaultMode; learn the vocab-to-mode assignment not the weights",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-oob"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-3d23609ffd1e",
+      "title": "Contrarian frame-break + radical simplification (agenda #7+#8): defaultMode was a documented bug not a knob; minimal router is (T,R,P)+vocabulary",
+      "summary": "Contrarian frame-break + radical simplification (agenda #7+#8): defaultMode was a documented bug not a knob; minimal router is (T,R,P)+vocabulary",
+      "text": "Contrarian frame-break + radical simplification (agenda #7+#8): defaultMode was a documented bug not a knob; minimal router is (T,R,P)+vocabulary",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-oob"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-3dfbc429afc8",
+      "title": "Cross-domain analogies — load-balancer health-check transfer (agenda #3): survey 5 analogies, find the one primitive routing lacks",
+      "summary": "Cross-domain analogies — load-balancer health-check transfer (agenda #3): survey 5 analogies, find the one primitive routing lacks",
+      "text": "Cross-domain analogies — load-balancer health-check transfer (agenda #3): survey 5 analogies, find the one primitive routing lacks",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-oob"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-42b5991a212d",
+      "title": "No-wrong-door/handoff + routing as dialogue (agenda #4+#5): typed handoff dissolves keep-vs-null by making wrong defaults recoverable",
+      "summary": "No-wrong-door/handoff + routing as dialogue (agenda #4+#5): typed handoff dissolves keep-vs-null by making wrong defaults recoverable",
+      "text": "No-wrong-door/handoff + routing as dialogue (agenda #4+#5): typed handoff dissolves keep-vs-null by making wrong defaults recoverable",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-oob"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 5,
+    "convergenceScore": 0.6,
+    "coverageBySources": {}
+  }
+}

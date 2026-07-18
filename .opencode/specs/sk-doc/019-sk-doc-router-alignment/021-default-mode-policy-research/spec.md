@@ -101,3 +101,20 @@ Run 1 (4 iterations, in `run1-archive/`) reached a clear answer: keep sk-prompt,
 11. **Historical & evidential.** Why were defaults added (bulk commits)? What would a real zero-signal traffic corpus look like, and is it worth building vs the archetype+fixture approach?
 12. **Contrarian pass.** Argue the STRONGEST case AGAINST the run-1 verdict — where might keeping a named default actually be right? Steelman "auto-default is fine."
 <!-- /ANCHOR:divergent-agenda -->
+
+---
+
+<!-- ANCHOR:oob-agenda -->
+## 6. OUT-OF-BOX AGENDA (Run 3 — 7 iterations, non-converge, lateral)
+
+Runs 1-2 answered the practical question. Run 3 must be RADICAL and lateral — question the frame itself, not tune within it. Each iteration should propose a genuinely out-of-the-box idea and stress it, not refine run-2. Threads (extend freely):
+
+1. **Abolish the hub-router layer.** What if hubs had no keyword router at all — the advisor (Layer 0) picks the mode directly, hubs are pure packet containers? What breaks, what improves?
+2. **Learned / adaptive routing.** Routing weights that update from observed corrections; a hub that gets better at its own zero-signal branch over time. Feasible offline-deterministic?
+3. **Cross-domain analogies.** How do OS schedulers, IP routers, DNS resolvers, load balancers, and a human receptionist each handle "no clear destination"? Which transfers?
+4. **No-wrong-door / handoff routing.** Any mode can accept then hand off; routing becomes recoverable rather than a single upfront guess. Kills the whole keep-vs-null question?
+5. **Routing as dialogue.** The zero-signal case as a one-turn negotiation with typed options, not a silent default — formalize the compressed card as an interaction protocol.
+6. **Confidence-first architecture.** Every route carries a calibrated confidence; below a threshold the system always defers with the card. Does this subsume all three archetypes?
+7. **Radical simplification.** Is the INTENT_SIGNALS + RESOURCE_MAP two-layer scheme even necessary, or an accident? A minimal replacement.
+8. **Contrarian frame-break.** Argue the entire defaultMode debate is a symptom of a deeper design smell; name the smell and the reframe.
+<!-- /ANCHOR:oob-agenda -->

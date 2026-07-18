@@ -1,0 +1,55 @@
+{
+  "lineage": "glm-oob",
+  "sessionId": "fanout-glm-oob-1784347200936-r7aos1",
+  "topic": "Parent-hub routing, radical lateral rethinks (out-of-box GLM lineage)",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "q1", "text": "If Layer-1 routing were deleted entirely, what breaks vs improves?", "status": "resolved", "iteration": 1, "resolution": "Abolition is a tier-split (cold advisor + hot advisor-loaded vocab), not a deletion."},
+    {"id": "q2", "text": "Which routing primitive transfers from a non-routing domain, and at what cost?", "status": "resolved", "iteration": 2, "resolution": "Closed-loop feedback channel (smaller than health-check); four-of-five analogies collapse to weighted selection."},
+    {"id": "q3", "text": "Does no-wrong-door/handoff dissolve the keep-vs-null distinction? At what cost?", "status": "resolved", "iteration": 3, "resolution": "Orthogonally yes; keep-vs-null becomes a cost inequality (one handoff vs one clarification turn), not a moral judgment."},
+    {"id": "q4", "text": "Does confidence-first + learned routing make defaultMode meaningless?", "status": "resolved", "iteration": 4, "resolution": "Yes with handoff; the (T,R,P) decomposition subsumes defaultMode as one corner."},
+    {"id": "q5", "text": "Is the INTENT_SIGNALS+RESOURCE_MAP scheme load-bearing or an accident?", "status": "resolved", "iteration": 5, "resolution": "Field-level conflation of three orthogonal concerns; minimal router = (T,R,P) + vocabulary table."}
+  ],
+  "keyFindings": [
+    {"id": "f1-handoff", "severity": "P1", "iteration": 3, "label": "Typed handoff needs routeId/fromMode/toMode/reason/evidence; current router has no handoff vocabulary"},
+    {"id": "f4-feedback", "severity": "P1", "iteration": 2, "label": "Genuine transfer is the feedback channel (closed-loop routing), smaller than health-check analogy"},
+    {"id": "f3-learn-assignment", "severity": "P1", "iteration": 4, "label": "Learn the vocabulary-to-mode assignment, not the weights (weights uniformly 4 = vestigial)"},
+    {"id": "f5-trp", "severity": "P1", "iteration": 4, "label": "Routing has three orthogonal knobs: Threshold (T), Recovery (R), Provenance (P); defaultMode is one corner"},
+    {"id": "f1-conflation", "severity": "P1", "iteration": 5, "label": "Smell named: routerPolicy fields conflate T/R/P across all 7 hubs"},
+    {"id": "f5-bug", "severity": "P1", "iteration": 5, "label": "defaultMode was never a design knob — it was a documented bug compensating for missing recovery primitive"},
+    {"id": "f2-minimal", "severity": "P1", "iteration": 5, "label": "Minimal router = (T,R,P) triple + vocabulary table; 6 routerPolicy fields deleted/relocated"},
+    {"id": "f1-precedent", "severity": "P1", "iteration": 1, "label": "_apply_deep_skill_routing_layer is the one shipped precedent for advisor-side mode pre-resolution"},
+    {"id": "f5-converge", "severity": "P1", "iteration": 3, "label": "Cross-iteration convergence: handoff is the typed substrate turning re-prompt into first-class closed-loop channel"}
+  ],
+  "ruledOutDirections": [
+    {"direction": "Set every defaultMode to null as abolition", "iteration": 1},
+    {"direction": "Generalise _apply_deep_skill_routing_layer verbatim", "iteration": 1},
+    {"direction": "OS scheduler priority/preemption as routing primitive", "iteration": 2},
+    {"direction": "IP longest-prefix match as routing primitive", "iteration": 2},
+    {"direction": "Receptionist ask-don't-guess as routing primitive", "iteration": 2},
+    {"direction": "Full health-score routing as immediate destination", "iteration": 2},
+    {"direction": "Any-mode-accepts without typed handoff vocabulary", "iteration": 3},
+    {"direction": "NWD as replacement for defaultMode:null", "iteration": 3},
+    {"direction": "Open-ended clarifying_question as zero-signal outcome", "iteration": 3},
+    {"direction": "Confidence-first routing without handoff", "iteration": 4},
+    {"direction": "Learn the weights", "iteration": 4},
+    {"direction": "Live in-path weight updates", "iteration": 4},
+    {"direction": "Keep defaultMode alongside (T,R,P)", "iteration": 5},
+    {"direction": "Mechanical codemod for (T,R,P) migration", "iteration": 5},
+    {"direction": "Shrink the vocabulary table too", "iteration": 5}
+  ],
+  "saturatedDirections": [
+    "static-selection analogies (iter 2)",
+    "confidence-first-without-handoff (iter 4)",
+    "static-Provenance plane generally (iter 4 F5)"
+  ],
+  "pivotLineage": [],
+  "rejectedPatterns": [],
+  "promotedIdeas": [
+    {"ideaId": "idea-closed-loop-router", "observationCount": 3, "firstObservedRun": 2, "lastObservedRun": 4, "idea": "Closed-loop routing with typed handoff as the substrate"},
+    {"ideaId": "idea-minimal-router", "observationCount": 1, "firstObservedRun": 5, "lastObservedRun": 5, "idea": "Minimal router = (T,R,P) + vocabulary table", "note": "early-promoted as load-bearing synthesis claim"}
+  ],
+  "blockedStopHistory": [],
+  "graphNodes": 15,
+  "graphEdges": 11
+}

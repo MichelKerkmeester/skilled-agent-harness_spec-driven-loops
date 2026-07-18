@@ -1,0 +1,95 @@
+{
+  "mergedFrom": [
+    "sol-oob"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-1-1-27b9bd3229ae",
+      "title": "Abolish the hub-router layer: test direct Layer-0-to-mode selection against packet modularity, local routing context, and authority boundaries.",
+      "summary": "Abolish the hub-router layer: test direct Layer-0-to-mode selection against packet modularity, local routing context, and authority boundaries.",
+      "text": "Abolish the hub-router layer: test direct Layer-0-to-mode selection against packet modularity, local routing context, and authority boundaries.",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-d93e5f5bd3b2",
+      "title": "Compare cross-domain no-destination semantics and extract transferable mechanisms for skill routing.",
+      "summary": "Compare cross-domain no-destination semantics and extract transferable mechanisms for skill routing.",
+      "text": "Compare cross-domain no-destination semantics and extract transferable mechanisms for skill routing.",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-532eebd74835",
+      "title": "Design and stress-test a deterministic/adaptive hybrid using a versioned correction overlay and replayable learning loop.",
+      "summary": "Design and stress-test a deterministic/adaptive hybrid using a versioned correction overlay and replayable learning loop.",
+      "text": "Design and stress-test a deterministic/adaptive hybrid using a versioned correction overlay and replayable learning loop.",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-bd282013cb5c",
+      "title": "Falsify a capability/type-directed replacement for INTENT_SIGNALS plus RESOURCE_MAP across the composite sk-code hub and the flat system-deep-loop hub, preserving only irreducible routing information.",
+      "summary": "Falsify a capability/type-directed replacement for INTENT_SIGNALS plus RESOURCE_MAP across the composite sk-code hub and the flat system-deep-loop hub, preserving only irreducible routing information.",
+      "text": "Falsify a capability/type-directed replacement for INTENT_SIGNALS plus RESOURCE_MAP across the composite sk-code hub and the flat system-deep-loop hub, preserving only irreducible routing information.",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-9b2ea06008fc",
+      "title": "Formalize the zero-signal branch as a one-turn negotiation with calibrated confidence, compressed options, typed clarification, and a measurable friction budget; test whether confidence-first routing subsumes default, defer, and detection archetypes.",
+      "summary": "Formalize the zero-signal branch as a one-turn negotiation with calibrated confidence, compressed options, typed clarification, and a measurable friction budget; test whether confidence-first routing subsumes default, defer, and detection archetypes.",
+      "text": "Formalize the zero-signal branch as a one-turn negotiation with calibrated confidence, compressed options, typed clarification, and a measurable friction budget; test whether confidence-first routing subsumes default, defer, and detection archetypes.",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-3dea748061f0",
+      "title": "Specify and stress-test a no-wrong-door protocol where a mode can accept intake and offer a typed transfer, while execution authority remains with the destination packet.",
+      "summary": "Specify and stress-test a no-wrong-door protocol where a mode can accept intake and offer a typed transfer, while execution authority remains with the destination packet.",
+      "text": "Specify and stress-test a no-wrong-door protocol where a mode can accept intake and offer a typed transfer, while execution authority remains with the destination packet.",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-0ea5611093e0",
+      "title": "Treat defaultMode as a symptom of irreversible, unobservable commitment and falsify proof-carrying, speculative, reversible route plans.",
+      "summary": "Treat defaultMode as a symptom of irreversible, unobservable commitment and falsify proof-carrying, speculative, reversible route plans.",
+      "text": "Treat defaultMode as a symptom of irreversible, unobservable commitment and falsify proof-carrying, speculative, reversible route plans.",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-oob"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 7,
+    "convergenceScore": 0.9,
+    "coverageBySources": {}
+  }
+}

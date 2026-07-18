@@ -1,0 +1,72 @@
+{
+  "topic": "Parent-hub routing, out-of-box GLM lineage: radical lateral rethinks over the agenda in the packet spec.md.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel",
+  "artifactDir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research/lineages/glm-oob",
+  "createdAt": "2026-07-18T06:00:00Z",
+  "status": "complete",
+  "completedAt": "2026-07-18T06:55:00Z",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-oob-1784347200936-r7aos1",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "lineageLabel": "glm-oob",
+    "lineageKind": "fanout-detached",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "convergenceTelemetryOnly": true,
+  "divergenceCharter": "RADICAL and LATERAL. Question the FRAME, not tune within it. Each iteration proposes a genuinely out-of-the-box idea and stresses it. Do NOT re-derive the run-1/run-2 keep-1/flip-4 answer (that is in 021/run2-archive/research.md). Diverge, never refine.",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "research.md": "mutable"
+  },
+  "resource_map_present": false,
+  "resource_map_note": "resource-map.md not present; skipping coverage gate. Bounded context snapshot taken from packet spec.md + sibling 021/run2-archive/research.md."
+}

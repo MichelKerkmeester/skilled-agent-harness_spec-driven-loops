@@ -1,0 +1,52 @@
+{
+  "topic": "Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-Box Agenda in the packet spec.md.",
+  "researchTopic": "Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-Box Agenda in the packet spec.md.",
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
+  "maxIterations": 7,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "dryRun": false,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executionMode": "auto",
+  "status": "initialized",
+  "createdAt": "2026-07-18T03:24:35Z",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "ultra",
+        "serviceTier": "fast",
+        "label": "sol-oob",
+        "iterations": 7
+      }
+    ],
+    "concurrency": 1
+  },
+  "lineage": {
+    "sessionId": "dr-20260718T032435Z-run3",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

@@ -51,9 +51,15 @@ Executor: **GPT-5.6-SOL high fast** (`codex exec`), independently verified by th
 
 Originals recorded in `spec.md` §3. Any flip is undone by restoring its `defaultMode`/`defaultResource`. Confidence is directional-pending-measurement, so the changes are deliberately reversible.
 
-## Known Limitations / Follow-ups (shared machinery — out of scope here)
+## Follow-ups
 
-- **`defaultApplied` dual-write telemetry** (`configured` vs `consulted` vs `selected`) lives in the shared scorer (`router-replay.cjs`) — needs a scorer change, not done.
-- **Compressed presented-not-scored disambiguation card** — the fallback currently loads the full mode-map (`smart_routing.md` + `mode-registry.json`); a compressed card + a "present don't score" runtime contract is a refinement.
-- **cli-external runtime-detection block** (auto-exclude the in-runtime CLI) — the null flip is the safe first step; the detection mechanism is deferred.
+### Done in the follow-up pass (2026-07-18, config-only, each route-gold-gated + reversible)
+
+- **Compressed presented-not-scored card — DONE.** All four flipped hubs (`system-deep-loop`, `sk-design`, `mcp-tooling`, `cli-external-orchestration`) now declare `defaultResourceSemantics: "fallback-only"` + a `defaultResourceContract`, and `defaultResource` drops `mode-registry.json` (loads only the compressed `shared/references/smart_routing.md`). This stops the scorer's legacy behavior of unioning the full registry into every scored route — the exact over-emission the null default guards against. Route-gold held: sdl 99/20, sk-design 94/37, mcp 98/13, cli 90/7 — all PASS, unchanged. (mcp-tooling already had the semantics from a prior pass; it only needed the card swap.)
+- **cli-external runtime-detection block — DONE (declarative config).** Added a `runtimeDetection` block to cli-external's `routerPolicy`: an `excludeInRuntimeMode` map (`opencode→cli-opencode`, `claude-code→cli-claude-code`, `codex→cli-codex`) plus a contract to remove the in-runtime CLI from candidates before scoring/defer, fail-open when detection is unavailable. This is the config/contract layer; the runtime enforcement that consumes the block is a separate wiring step.
+
+### Still open
+
+- **`defaultApplied` dual-write telemetry** (`configured` vs `consulted` vs `selected`) — **BLOCKED by a constraint conflict**: it lives in the shared scorer (`router-replay.cjs`), which the goal's own constraint says never to touch. Cannot be implemented without violating that rule; operator must resolve the conflict.
+- **cli runtimeDetection runtime enforcement** — the consuming logic (actually reading the runtime + filtering candidates) is a runtime-code change, deferred beyond the config block.
 - **Live measurement** — sol-ultra's 2×4 keep-vs-null benchmark (from `021`) would turn "directional" into "measured".
