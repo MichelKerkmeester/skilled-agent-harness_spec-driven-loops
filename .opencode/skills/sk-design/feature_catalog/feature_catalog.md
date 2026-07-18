@@ -1,13 +1,13 @@
 ---
 title: "sk-design: Feature Catalog"
-description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, transport separation, and private procedure-card selection."
+description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, styles-library grounding, transport separation, and private procedure-card selection."
 trigger_phrases:
   - "sk-design feature catalog"
   - "design family hub capabilities"
   - "procedure card system"
   - "design proof gates"
-last_updated: "2026-07-06"
-version: 1.0.0.0
+last_updated: "2026-07-18"
+version: 1.1.0.0
 ---
 
 # sk-design: Feature Catalog
@@ -103,3 +103,69 @@ The cards support narrower workflows after public mode routing: discovery, aesth
 #### Source Files
 
 See [`procedure-card-system/procedure-card-inventory.md`](procedure_card_system/procedure_card_inventory.md) for the complete card list and ownership boundaries.
+
+---
+
+## 4. STYLES-LIBRARY UTILIZATION
+
+### Retrieval Engine
+
+#### Description
+
+The committed styles corpus has a deterministic retrieval surface that filters eligibility before ranking, returns compact candidate cards and hydrates selected records only under generation and path-containment guards.
+
+#### Current Reality
+
+The engine checks a byte-stable manifest over 1,290 bundles, uses an in-memory full-text accelerator with a bounded source-scan fallback and refuses stale or unprovenanced hydration. The corpus remains advisory evidence rather than a source of design authority.
+
+#### Source Files
+
+See [`styles-library-utilization/retrieval-engine.md`](styles_library_utilization/retrieval_engine.md) for implementation and validation anchors.
+
+---
+
+### Shared Corpus-Context Seam
+
+#### Description
+
+The shared `CORPUS_CONTEXT_PLAN v1` envelope carries capability and proof planning to mode-owned consumers without hydrating a style or choosing taste in the hub.
+
+#### Current Reality
+
+The seam enforces zero hydrated styles, a closed capability vocabulary, five fail-closed outcomes and the fixed authority order. Corpus evidence can explain relationships, expose counterexamples, sharpen critique and preserve provenance, but it cannot make a verdict or accept transport output.
+
+#### Source Files
+
+See [`styles-library-utilization/shared-corpus-context-seam.md`](styles_library_utilization/shared_corpus_context_seam.md) for the envelope and validator contract.
+
+---
+
+### Per-Mode Consumers
+
+#### Description
+
+Interface, audit, foundations, motion and Open Design transport each consume styles-library evidence through a mode-specific closed contract.
+
+#### Current Reality
+
+Interface emits a decision-only relational handoff, audit emits non-authoritative comparison rows, foundations emits typed relationships, motion runs restraint before retrieval and transport carries metadata-only grounding receipts. Each consumer fails closed and leaves acceptance with the selected mode.
+
+#### Source Files
+
+See [`styles-library-utilization/per-mode-consumers.md`](styles_library_utilization/per_mode_consumers.md) for the mode-specific boundaries and tests.
+
+---
+
+### md-Generator Schema And STUDY
+
+#### Description
+
+The generator has one v3 schema authority plus an optional, reversible STUDY phase that can learn structural shape from one bounded exemplar without importing source literals.
+
+#### Current Reality
+
+Formatter emission, prompt instructions and validation resolve from `V3_SCHEMA`. STUDY de-literalizes and injection-neutralizes one generation-bound exemplar, binds it to locked target facts and discards any leaking draft before a real retry without STUDY.
+
+#### Source Files
+
+See [`styles-library-utilization/md-generator-schema-and-study.md`](styles_library_utilization/md_generator_schema_and_study.md) for schema, STUDY and leak-gate anchors.

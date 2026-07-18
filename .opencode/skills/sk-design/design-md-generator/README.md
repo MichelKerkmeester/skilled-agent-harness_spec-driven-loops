@@ -75,6 +75,12 @@ npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/valid
 
 ## 4. HOW IT WORKS
 
+### Styles-Library Utilization
+
+The generator resolves section requiredness, capability groups, semantic roles, formatter emission, prompt instructions and validation from one versioned `V3_SCHEMA`. Corpus signals can inform advisory strata, but they cannot change locked target facts or downgrade target, schema or provenance failures.
+
+The optional STUDY step queries bounded cards, hydrates one generation-bound bundle and transforms it into inert structural observations before WRITE. Instruction-like content and source-specific literals are removed. Exact-value and normalized-span leak checks run at the draft boundary, and any hit discards the draft before a production retry without STUDY. Authority remains user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output.
+
 ### The Three-Phase Pipeline
 
 ```

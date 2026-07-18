@@ -87,6 +87,12 @@ The skill never jumps straight to code. It grounds the subject, brainstorms a to
 
 Boldness is spent in one place. The signature element is the one memorable move and everything around it stays quiet and disciplined. Decoration that does not serve the brief is cut, including numbered markers when the content is not actually a sequence, and motion that piles up rather than serving one orchestrated moment. The build meets a quiet quality floor: responsive to mobile, visible keyboard focus, reduced motion respected.
 
+### Styles-Library Utilization
+
+Interface consumes the shared zero-hydration plan through the maintainer adapter in [`corpus/`](./corpus/README.md). After the brief and owned system are fixed, the mode may select one coherent anchor plus one bounded contrast or rejected default. The adapter emits only typed preserve, transform or reject decisions with source attestation. It never emits raw style content or selects taste.
+
+The authority order is user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. Corpus evidence stays advisory and cannot override locked navigation, target or preflight decisions.
+
 ### Relational Corpus Grounding
 
 The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shared neutral context seam and styles engine after the brief and owned system are fixed. It selects no taste by itself. The mode chooses one anchor and at most one bounded secondary source, records preserve/transform/reject relationships and the no-corpus default that changed, then emits a decision-only handoff. No raw style body, token literal, source asset or screenshot crosses that boundary; provenance and rights state do.

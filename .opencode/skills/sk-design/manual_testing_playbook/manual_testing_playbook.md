@@ -1,7 +1,7 @@
 ---
 title: "sk-design: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, execution expectations, and per-feature validation files for the sk-design parent-skill hub."
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # sk-design: Manual Testing Playbook
@@ -24,12 +24,13 @@ Canonical package artifacts:
 - `parity_behavior/`
 - `fallback_and_resilience/`
 - `hub_manager_intake/`
+- `styles_library_utilization/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 37 deterministic scenarios across 8 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 42 deterministic scenarios across 9 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
 - Mode routing across the five `packetKind: "workflow"` registry modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
@@ -41,6 +42,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 - Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, motion/audit procedure selection, interface variation-set selection, and shared polish-gate selection.
 - Fallback and resilience proof: exact no-card fallback lines and direct fallback behavior without subagents, including the md-generator backend-preserving distinction.
 - Hub manager-intake proof: context-first intake fields, visible plan before substantial work, verifier-cadence pause when required proof is missing, and design-mode pairing before a design-affecting Open Design run.
+- Styles-library proof: eligibility-first retrieval, generation-mismatch refusal, zero-hydration seam validation, corpus-verdict rejection and the generator's leak-gated retry without STUDY.
 
 ### Realistic Test Model
 
@@ -70,6 +72,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 5. Scenarios outside `md_generator_pipeline/` are read-only routing tests against skill assets.
 6. `md-generator` scenarios may write only to sandboxed output paths under `/tmp/skd-*` during execution.
 7. Concurrency cap: advisor probes can run concurrently up to 5 workers; md-generator pipeline runs MUST run serially because they use browser tooling and write output artifacts.
+8. Styles-library scenarios require Node.js. `SLU-005` also requires the installed design-md-generator backend dependencies.
 
 ---
 
@@ -268,13 +271,32 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. STYLES-LIBRARY UTILIZATION (`SLU-001..SLU-005`)
 
-No automated tests are claimed by this playbook. Manual execution is the validation source for advisor behavior, hub routing, resource loading, transform-verb framing, and md-generator pipeline behavior.
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
+|---|---|---|---|---|---|
+| `SLU-001` | Retrieval Eligible Cards | Query returns only bounded, generation-bound cards from the eligible set | `Run a local styles-library query for a restrained product interface with motion context. Return the engine result and verify that every card comes from the eligible set. Do not turn a card into a design verdict.` | `ok:true`, bounded cards, generation and content hashes and no authoritative verdict | `styles_library_utilization/retrieval_query_eligible_cards.md` |
+| `SLU-002` | Generation Mismatch Refusal | Hydration refuses a stale selected generation without returning source content | `Select one current styles-library card, retry hydration with a mismatched generation hash and show the closed refusal. Do not read or print hydrated source content.` | closed `generation-mismatch` and no hydrated artifact | `styles_library_utilization/generation_guarded_hydration_mismatch.md` |
+| `SLU-003` | Zero-Hydration Seam | Neutral context envelope validates with zero hydrated styles | `Validate the positive corpus-context plan and report its hydration count. Pass only if the envelope is valid, carries zero hydrated styles and leaves hydration to the selected mode.` | `hydratedStyleCount:0`, `valid:true` and no style payload | `styles_library_utilization/zero_hydration_seam_envelope.md` |
+| `SLU-004` | Corpus Verdict Rejection | Corpus-authored acceptance verdict is rejected by the closed plan | `Add a corpus acceptance verdict to the valid neutral context plan, run the validator and report the refusal. Preserve this order: user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, transport output.` | `valid:false` and `plan.corpusVerdict:unexpected` | `styles_library_utilization/corpus_verdict_rejected.md` |
+| `SLU-005` | STUDY Leak Gate Retry | Both leak signals trip and production re-authors without STUDY | `Run the focused STUDY regressions for exact-value and normalized-span leaks plus the production no-STUDY retry. Pass only if both leak signals trip independently and the clean retry omits the STUDY context.` | two focused tests pass, the leaking draft is discarded and the retry omits STUDY | `styles_library_utilization/study_leak_gate_retry.md` |
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. AUTOMATED TEST CROSS-REFERENCE
+
+| Test Module | Coverage | Playbook Overlap |
+|---|---|---|
+| `styles/_engine/__tests__/eligibility-first.test.mjs` | Eligibility-before-ranking and bounded cards | `SLU-001` |
+| `styles/_engine/__tests__/hydrate-guard.test.mjs` | Generation mismatch, stale records and path containment | `SLU-002` |
+| `shared/corpus-context/__tests__/validate-context-plan.test.mjs` | Zero hydration and authority prohibitions | `SLU-003`, `SLU-004` |
+| `design-md-generator/backend/tests/study-exemplars.test.ts` | Leak signals and real no-STUDY retry | `SLU-005` |
+
+Manual execution remains the validation source for advisor behavior, hub routing, resource loading, transform-verb framing and the full md-generator pipeline.
+
+---
+
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File |
 |---|---|---|
@@ -315,7 +337,12 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Hub Manager Intake | HM-002 | `hub_manager_intake/visible_plan_before_build.md` |
 | Hub Manager Intake | HM-003 | `hub_manager_intake/verifier_cadence_pause.md` |
 | Hub Manager Intake | HM-004 | `hub_manager_intake/design_mode_pairing_before_run.md` |
-**Total scenarios**: 37
+| Styles-Library Utilization | SLU-001 | `styles_library_utilization/retrieval_query_eligible_cards.md` |
+| Styles-Library Utilization | SLU-002 | `styles_library_utilization/generation_guarded_hydration_mismatch.md` |
+| Styles-Library Utilization | SLU-003 | `styles_library_utilization/zero_hydration_seam_envelope.md` |
+| Styles-Library Utilization | SLU-004 | `styles_library_utilization/corpus_verdict_rejected.md` |
+| Styles-Library Utilization | SLU-005 | `styles_library_utilization/study_leak_gate_retry.md` |
+**Total scenarios**: 42
 **Critical-path scenarios**: 16
 **Critical-path candidates pending operator confirmation**: 10
-**Categories**: 8
+**Categories**: 9

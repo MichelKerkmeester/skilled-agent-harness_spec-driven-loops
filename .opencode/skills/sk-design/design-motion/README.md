@@ -55,6 +55,12 @@ The flow runs gate first, choreography second, verification last. Skipping the g
 
 **Use the private procedure card when interaction states dominate.** The maintainer-facing card in [`procedures/interaction_states_pass.md`](./procedures/interaction_states_pass.md) supports state-by-state evidence gathering after the public `motion` mode is chosen. It is not a user-selectable route.
 
+### Styles-Library Utilization
+
+Motion runs its target-owned restraint gate before any corpus query. If motion is justified, the maintainer adapter in [`corpus/`](./corpus/README.md) applies polarity-aware eligibility and binds one purpose or state reference to its generation and content hashes. A prohibition is a hard negative, while incidental or mismatched evidence returns a validated no-authority outcome.
+
+The authority order is user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. The corpus cannot decide that an interaction should move or supply reusable timing and choreography literals.
+
 ### The Three Cards
 
 The cards convert a motion decision into a build-ready spec and two pre-handoff gates.

@@ -76,6 +76,12 @@ Before scoring, the audit reads the Brand-vs-Product register. That one call set
 
 The anti-patterns dimension leans on a model-specific tell catalog. A ghost-card border plus shadow, over-rounded cards, a diagonal stripe background, an image-hover transform, a cream body background: each is a structural pattern a generator reaches for by reflex, turned into a checkable rule. One isolated tell is polish. Three or more on one surface is the dimension failing.
 
+### Styles-Library Utilization
+
+Audit consumes the shared zero-hydration plan through the comparison adapter in [`corpus/`](./corpus/README.md). The mode may select zero to two source-attested references, but the adapter can emit only comparison context and limitations. It cannot represent a severity, score, accessibility or performance proof, copying decision, exact-reuse permission or fix owner.
+
+The authority order is user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. A corpus comparison can sharpen critique, but only target evidence supports an audit verdict.
+
 ### Corpus Comparison Lane
 
 The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shared neutral context seam and styles engine without creating another finding class. It returns zero to two source-aware comparison rows labelled non-authoritative context. Intended-anchor drift requires target evidence; no eligible reference becomes `comparison-unavailable`, and the normal audit continues. Corpus material never supplies severity, the `/20` score, accessibility or performance proof, a copying determination, exact-reuse permission or a fix owner.

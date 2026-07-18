@@ -91,6 +91,12 @@ Responsive work here adapts the experience to the context rather than scaling pi
 
 When a surface carries charts or tables, the skill treats the encoding as the design. A chart matches the question rather than the dataset shape, every visual channel carries one variable, and color-for-data uses a sequential, diverging or categorical scale chosen by the question, kept separate from brand color. Numeric tables right-align with tabular numerals so magnitude reads down the column.
 
+### Styles-Library Utilization
+
+Foundations consumes the shared zero-hydration plan through the relationship adapter in [`corpus/`](./corpus/README.md). The selected mode can hydrate one coherent anchor and bounded axis owners, then emit a typed compatibility graph and a transformation ledger bound to source evidence. Unresolved relationships remain `not-assessed`, and corpus evidence never locks a target-measured value.
+
+The authority order is user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. Corpus relationships can explain compatibility, but downstream contrast, gamut, rhythm, responsive and extraction checks keep authority.
+
 ### Private Procedure Cards
 
 The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local evidence gathering after the public `foundations` mode is chosen. The three cards are `component_system_inventory.md`, `hierarchy_rhythm_review.md` and `tweakable_design_controls.md`. They are not user-selectable routes.
