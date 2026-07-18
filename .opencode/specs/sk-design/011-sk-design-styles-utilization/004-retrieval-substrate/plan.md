@@ -56,17 +56,17 @@ Implement the Phase A substrate from `../001-research-utilization/research/linea
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Research §4/§5/§9/§15 substrate contract reviewed and frozen as the build target
-- [ ] Manifest header + per-style field list agreed (research §9)
-- [ ] Facet vocabulary seed list drafted (`serif-role`, `warm-surface`, `license-restricted`, `generation-mismatch`)
-- [ ] Corpus generation-hash inputs enumerated (schema, crawl-manifest hash, sorted content hashes)
+- [x] Research §4/§5/§9/§15 substrate contract reviewed and frozen as the build target
+- [x] Manifest header + per-style field list agreed (research §9)
+- [x] Facet vocabulary seed list drafted (`serif-role`, `warm-surface`, `license-restricted`, `generation-mismatch`)
+- [x] Corpus generation-hash inputs enumerated (schema, crawl-manifest hash, sorted content hashes)
 
 ### Definition of Done
-- [ ] `build --check` byte-stable on an unchanged corpus; flags exact mutated ids
-- [ ] Eligibility demonstrably runs before ranking
-- [ ] Hydration refuses `generation-mismatch`; source-scan fallback returns `degraded:true`
-- [ ] `CORPUS_USE_PROOF v1` blocks an unproven ready claim
-- [ ] All change/invalidation fixtures pass in CI
+- [x] `build --check` byte-stable on an unchanged corpus; flags exact mutated ids
+- [x] Eligibility demonstrably runs before ranking
+- [x] Hydration refuses `generation-mismatch`; source-scan fallback returns `degraded:true`
+- [x] `CORPUS_USE_PROOF v1` blocks an unproven ready claim
+- [x] All change/invalidation fixtures pass in CI
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -129,32 +129,32 @@ hydrate ──> generation guard (re-hash) ──> permitted artifacts/slices
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Manifest generator
-- [ ] Manifest schema (header + per-style fields) per research §9
-- [ ] Refresh algorithm: enumerate/sort inputs, hash bytes, reparse only changed, remove deleted
-- [ ] Content hash per style; generation hash over schema + crawl-manifest hash + sorted content hashes
-- [ ] Atomic `--write` (temp file + rename); `corpus-changing` abort on fingerprint drift
+- [x] Manifest schema (header + per-style fields) per research §9
+- [x] Refresh algorithm: enumerate/sort inputs, hash bytes, reparse only changed, remove deleted
+- [x] Content hash per style; generation hash over schema + crawl-manifest hash + sorted content hashes
+- [x] Atomic `--write` (temp file + rename); `corpus-changing` abort on fingerprint drift
 
 ### Phase 2: Eligibility (first stage)
-- [ ] Required-facet filter
-- [ ] Exclusion filter
-- [ ] Provenance/rights gate
-- [ ] Guarantee: ineligible styles cannot reach ranking
+- [x] Required-facet filter
+- [x] Exclusion filter
+- [x] Provenance/rights gate
+- [x] Guarantee: ineligible styles cannot reach ranking
 
 ### Phase 3: Ranking + fallback
-- [ ] Disposable SQLite FTS5/BM25 projection built from the current generation
-- [ ] Bounded `DESIGN.md` source-scan fallback returning `degraded:true`
-- [ ] Deterministic tie-breaking and card ordering
+- [x] Disposable SQLite FTS5/BM25 projection built from the current generation
+- [x] Bounded `DESIGN.md` source-scan fallback returning `degraded:true`
+- [x] Deterministic tie-breaking and card ordering
 
 ### Phase 4: Cards + hydration
-- [ ] Compact candidate cards (≤5, byte-capped, score breakdown, provenance)
-- [ ] Generation-guarded hydration; refuse `generation-mismatch`
-- [ ] Mode-scoped includes and byte caps
+- [x] Compact candidate cards (≤5, byte-capped, score breakdown, provenance)
+- [x] Generation-guarded hydration; refuse `generation-mismatch`
+- [x] Mode-scoped includes and byte caps
 
 ### Phase 5: Proof gate + CI
-- [ ] `CORPUS_USE_PROOF v1` schema + validator
-- [ ] `build --check` byte-stability + add/change/delete invalidation fixtures
-- [ ] Fallback, generation-mismatch, ordering, and valid/invalid proof-card fixtures
-- [ ] CI selectors on `styles/**`, the engine, and mode contracts
+- [x] `CORPUS_USE_PROOF v1` schema + validator
+- [x] `build --check` byte-stability + add/change/delete invalidation fixtures
+- [x] Fallback, generation-mismatch, ordering, and valid/invalid proof-card fixtures
+- [x] CI selectors on `styles/**`, the engine, and mode contracts
 <!-- /ANCHOR:phases -->
 
 ---
@@ -234,8 +234,8 @@ Phase 1 (Manifest) ──> Phase 2 (Eligibility) ──> Phase 3 (Rank/Fallback)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Manifest committed and `--check` green in CI
-- [ ] No mode wired to the engine until `../005-md-generator-schema-contract/`
+- [x] Manifest committed and `--check` green in CI
+- [x] No mode wired to the engine until `../005-md-generator-schema-contract/`
 
 ### Rollback Procedure
 1. Remove `styles/_engine/` modules and `styles/_retrieval-manifest.json`.

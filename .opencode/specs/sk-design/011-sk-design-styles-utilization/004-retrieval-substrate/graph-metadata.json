@@ -39,12 +39,20 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
+      ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
+      ".opencode/skills/sk-design/styles/_engine/manifest.mjs",
+      ".opencode/skills/sk-design/styles/_engine/eligibility.mjs",
+      ".opencode/skills/sk-design/styles/_engine/rank-fts.mjs",
+      ".opencode/skills/sk-design/styles/_engine/cards.mjs",
+      ".opencode/skills/sk-design/styles/_engine/hydrate.mjs",
+      ".opencode/skills/sk-design/styles/_engine/corpus-use-proof.mjs",
+      ".opencode/skills/sk-design/styles/_retrieval-manifest.json",
       "checklist.md",
       "implementation-summary.md"
     ],
@@ -71,6 +79,54 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "style-library.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/manifest.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "eligibility.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/eligibility.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rank-fts.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/rank-fts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cards.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/cards.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hydrate.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/hydrate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-use-proof.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/corpus-use-proof.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "_retrieval-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/_retrieval-manifest.json",
         "source": "derived"
       },
       {
@@ -144,59 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Reporting Format Report",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracted 1,290 real design-system bundles into `.opencode/skills/sk-design/styles/` (1,291 child directories, one of which is `harness` infrastructure)",
     "created_at": "2026-07-18T14:18:05.487Z",
-    "last_save_at": "2026-07-18T16:04:37.525Z",
+    "last_save_at": "2026-07-18T17:30:41.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52127503fee14a2d65ddf7ee9da2ec9e5c3455fb8c5107e31231ff0abc574d94",
+    "source_fingerprint": "sha256:f48f7c32e4d22c9d62a5358a732cc00c38f4f0fc62bb107c22f70ded4027bf7d",
     "source_doc_hashes": {
-      "spec.md": "d443cfd4c0fb30c7a341fd3d7dc28fa651e2d27fcc19510790ea0883e6e4aaaf",
-      "plan.md": "d92e57dd85f5f71d913fc34e140fb5caa6aa3f916190d8b2ddf2d4e3c41dbe60",
-      "tasks.md": "da35474891b983bc3ca5a68f1f041af5e0963376dbfce2bc55175d7fd424ec26",
-      "checklist.md": "f79b7172286fd836d57ab2b47233120f706a5ddb2564ce2918dcbb14e1bfc93c",
-      "decision-record.md": "445b06e2927cf8fec0be76e3618cd22a495fad1f92e5ff8d15bc709b605baf5c",
-      "implementation-summary.md": "78999b295c7ce1d08cf3f716ccf6f2a7aee672b310f693860df343e2994dc928"
+      "spec.md": "145131977d07a99c3540ff5a6ae1e751b5db6c07899f3e5ee00d4a96bfd0ea17",
+      "plan.md": "b62a4b4fc5effc0a28e2e091371388abe4312c617d98eb9caadee13ac630c19f",
+      "tasks.md": "3c9d56324e25445df3e431be7747feb279a03cfe092fd97bf171bc1627b4a7f5",
+      "checklist.md": "7a1457d911c7dff34b617c1d4900549ae172511175aa2ce68adde105451e0eb0",
+      "decision-record.md": "43858fc35152c3c3101bb63f39d5cf29e469e072e660c90c95dd9245d65e1723",
+      "implementation-summary.md": "f097334043b4ba0795e2ac3b52f9b1e30652c3086840770d2cc54e1feedf48b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

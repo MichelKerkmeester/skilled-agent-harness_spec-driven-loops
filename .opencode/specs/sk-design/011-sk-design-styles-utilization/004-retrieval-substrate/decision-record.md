@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainer |
 
@@ -144,7 +144,7 @@ Retrieval over the 1,290-bundle corpus needs a stable, joinable, reviewable inde
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainer |
 
@@ -191,7 +191,7 @@ Retrieval must honor required-facet composition and exclusions (negation), and m
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainer |
 
@@ -238,7 +238,7 @@ Lexical ranking adds value for discriminating positive terms, but a committed le
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainer |
 
@@ -285,7 +285,7 @@ Hydration loads the chosen style's artifacts/slices. If it served an old-generat
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainer |
 
