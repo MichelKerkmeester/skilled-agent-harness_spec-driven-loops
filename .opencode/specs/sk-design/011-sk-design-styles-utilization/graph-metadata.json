@@ -24,7 +24,10 @@
     "trigger_phrases": [
       "sk-design styles utilization",
       "use the refero style library",
-      "design token library retrieval"
+      "design token library retrieval",
+      "styles utilization handover",
+      "implement packet 011",
+      "sk-design retrieval implementation"
     ],
     "key_topics": [
       "sk-design",
@@ -36,21 +39,36 @@
       "design",
       "token",
       "retrieval",
-      "packet",
-      "010-sk-design-styles-from-refero",
-      "extracts"
+      "handover",
+      "implement",
+      "packet"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-research-utilization/spec.md"
+      "001-research-utilization/spec.md",
+      "review/review-report.md",
+      "001-research-utilization/research/lineages/sol/research.md",
+      "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -88,19 +106,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover Document",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Time",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md + CSS-variables + Tailwind-v4 + design-tokens + provenance",
     "created_at": "2026-07-18T09:21:31.581Z",
-    "last_save_at": "2026-07-18T14:31:03.482Z",
+    "last_save_at": "2026-07-18T16:13:49.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:22f28073fb66b6c37ef3a42883b36efbae383262f2ba0c061a6a0f53e8ab6d61",
+    "source_fingerprint": "sha256:37329632b0eecce3c5a2f946463619b1e30cca98cf0c9fafed2702d0cc8ac869",
     "source_doc_hashes": {
-      "spec.md": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd"
+      "spec.md": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd",
+      "handover.md": "4565099b9b68015a99b9335c3a78071a662aa623be010d4fd7c66fee22be6219"
     },
     "last_active_child_id": null,
     "last_active_at": null
